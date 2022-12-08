@@ -62,11 +62,11 @@
         app:layout_constraintVertical_bias="0.548" />
 
     <EditText
-        android:id="@+id/schoolname"
+        android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="school name"
+        android:hint="E-mail"
         android:inputType="text"
         android:minHeight="48dp"
         android:textColor="@color/black"
@@ -90,7 +90,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/schoolname"
-        app:layout_constraintVertical_bias="0.298"
+        app:layout_constraintTop_toBottomOf="@+id/email"
+        app:layout_constraintVertical_bias="0.282"
         tools:visibility="visible" />
 </androidx.constraintlayout.widget.ConstraintLayout>
