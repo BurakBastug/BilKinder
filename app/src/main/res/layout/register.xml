@@ -82,7 +82,7 @@
         android:id="@+id/submitbtn"
         android:layout_width="98dp"
         android:layout_height="52dp"
-        android:backgroundTint="#FFFFFF"
+
         android:text="Submit"
         android:textColor="#9F9F9F"
         android:visibility="visible"

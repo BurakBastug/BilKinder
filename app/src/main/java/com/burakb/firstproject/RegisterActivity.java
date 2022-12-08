@@ -16,8 +16,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText userName, password, passwordCheck, email; //schoolName may be with scrollbar
     private Button submit;
@@ -32,64 +34,59 @@ public class RegisterActivity extends AppCompatActivity {
         email = findViewById(R.id.email);
 
         submit = findViewById(R.id.submitbtn);
-        submit.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            String name = userName.getText().toString();
-            String psw = password.getText().toString();
-            String passwordControl = passwordCheck.getText().toString();
-            String mail = email.getText().toString();
-
-            if(TextUtils.isEmpty(name)) {
-                Toast.makeText(RegisterActivity.this, "Don't forget entering your name", Toast.LENGTH_LONG).show();
-                userName.setError("Full name is required");
-                userName.requestFocus();
-            }
-            else if(TextUtils.isEmpty(psw)) {
-                Toast.makeText(RegisterActivity.this, "Don't forget entering your password", Toast.LENGTH_LONG).show();
-                password.setError("Password is required");
-                password.requestFocus();
-            }
-            else if(TextUtils.isEmpty(passwordControl)) {
-                Toast.makeText(RegisterActivity.this, "Don't forget entering your password again", Toast.LENGTH_LONG).show();
-                passwordCheck.setError("Full name is required");
-                passwordCheck.requestFocus();
-            }
-            else if(TextUtils.isEmpty(mail)) {
-                Toast.makeText(RegisterActivity.this, "Don't forget entering your school name", Toast.LENGTH_LONG).show();
-                email.setError("School name is required");
-                email.requestFocus();
-            }
-            else if(!password.equals(passwordCheck)) {
-                Toast.makeText(RegisterActivity.this, "Passwords do not match", Toast.LENGTH_LONG).show();
-                passwordCheck.setError("Different password");
-                passwordCheck.requestFocus();
-            }
-            else {
-                registerUser(name, mail, psw);
-            }
-        }
-    });
+        submit.setOnClickListener(this);
     }
 
-    private void registerUser(String name, String mail, String psw) {
+    private void registerUser() {
         //FirebaseAuth auth = FirebaseAuth.getInstance();
         /*auth.createUserWithEmailAndPassword(mail, psw)*/
 
-        User user = new User(name, mail, psw);
-        FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid().setValue(user).
-        .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()) {
-                    Toast.makeText(RegisterActivity.this, "User created successfully", Toast.LENGTH_LONG).show();
-                    FirebaseUser user = auth.getCurrentUser();
+        String mail = email.getText().toString().trim();
+        String name = userName.getText().toString();
+        String psw = password.getText().toString();
+        String pswAgain = passwordCheck.getText().toString();
+        //System.out.println(name);
 
-                    user.sendEmailVerification();
-                    //Intent intent = new Intent(RegisterActivity.this, );
-                }
-            }
 
-        });
+        if(TextUtils.isEmpty(name)) {
+            Toast.makeText(RegisterActivity.this, "Don't forget entering your name", Toast.LENGTH_LONG).show();
+            //System.out.println("asfasgasgasgasgasfg");
+            userName.setError("Full name is required");
+            //userName.requestFocus();
+        }
+        if(TextUtils.isEmpty(psw)) {
+            Toast.makeText(RegisterActivity.this, "Don't forget entering your password", Toast.LENGTH_LONG).show();
+            password.setError("Password is required");
+            //password.requestFocus();
+        }
+        if(TextUtils.isEmpty(pswAgain)) {
+            Toast.makeText(RegisterActivity.this, "Don't forget entering your password again", Toast.LENGTH_LONG).show();
+            passwordCheck.setError("Full name is required");
+            //passwordCheck.requestFocus();
+        }
+        if(TextUtils.isEmpty(mail)) {
+            Toast.makeText(RegisterActivity.this, "Don't forget entering your email", Toast.LENGTH_LONG).show();
+            email.setError("E-mail is required");
+            //email.requestFocus();
+        }
+        if(!password.getText().toString().equals(passwordCheck.getText().toString()) || TextUtils.isEmpty(psw) ) {
+            Toast.makeText(RegisterActivity.this, "Passwords do not match", Toast.LENGTH_LONG).show();
+            passwordCheck.setError("Different password");
+            //passwordCheck.requestFocus();
+        }
+        else{
+
+        }
+
+
+
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view.getId() == R.id.submitbtn){
+            registerUser();
+        }
     }
 }
