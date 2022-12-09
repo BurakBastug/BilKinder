@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
+//import com.google.firebase.database.FirebaseDatabase;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {

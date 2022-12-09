@@ -16,13 +16,16 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+//import com.google.firebase.database.DatabaseReference;
+//import com.google.firebase.database.FirebaseDatabase;
 
-public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
+public class RegisterActivity extends AppCompatActivity {
 
     private EditText userName, password, passwordCheck, email; //schoolName may be with scrollbar
     private Button submit;
+    FirebaseAuth mAuth;
+    FirebaseUser mUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,25 +35,28 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         password = findViewById(R.id.password);
         passwordCheck = findViewById(R.id.passwordagain);
         email = findViewById(R.id.email);
-
         submit = findViewById(R.id.submitbtn);
-        submit.setOnClickListener(this);
+
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                registerUser();
+            }
+        });
     }
 
     private void registerUser() {
-        //FirebaseAuth auth = FirebaseAuth.getInstance();
-        /*auth.createUserWithEmailAndPassword(mail, psw)*/
-
         String mail = email.getText().toString().trim();
         String name = userName.getText().toString();
         String psw = password.getText().toString();
         String pswAgain = passwordCheck.getText().toString();
-        //System.out.println(name);
 
 
         if(TextUtils.isEmpty(name)) {
             Toast.makeText(RegisterActivity.this, "Don't forget entering your name", Toast.LENGTH_LONG).show();
-            //System.out.println("asfasgasgasgasgasfg");
             userName.setError("Full name is required");
             //userName.requestFocus();
         }
@@ -75,18 +81,23 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             //passwordCheck.requestFocus();
         }
         else{
-
+            mAuth.createUserWithEmailAndPassword(mail, psw).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if(task.isSuccessful()) {
+                        sendUserToNextActivity();
+                        Toast.makeText(RegisterActivity.this, "User created successfully", Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
         }
-
-
-
 
     }
 
-    @Override
-    public void onClick(View view) {
-        if(view.getId() == R.id.submitbtn){
-            registerUser();
-        }
+    private void sendUserToNextActivity() {
+        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
     }
 }
