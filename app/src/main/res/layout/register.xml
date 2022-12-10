@@ -93,4 +93,38 @@
         app:layout_constraintTop_toBottomOf="@+id/email"
         app:layout_constraintVertical_bias="0.298"
         tools:visibility="visible" />
+
+    <RadioGroup
+        android:layout_width="283dp"
+        android:layout_height="57dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.687"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.729">
+
+
+        <RadioButton
+            android:id="@+id/studentradiobtn"
+            android:layout_width="149dp"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="Student"
+            android:textColor="#027981" />
+
+        <RadioButton
+            android:id="@+id/teacherradiobtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="Teacher"
+            android:textColor="#027981" />
+
+    </RadioGroup>
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
