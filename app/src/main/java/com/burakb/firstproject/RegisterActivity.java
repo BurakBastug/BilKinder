@@ -77,18 +77,11 @@ public class RegisterActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()) {
-                        sendUserToNextActivity();
+                        startActivity(new Intent(RegisterActivity.this, StartEditProfileActivity.class));
                         Toast.makeText(RegisterActivity.this, "User created successfully", Toast.LENGTH_LONG).show();
                     }
                 }
             });
         }
-    }
-
-    private void sendUserToNextActivity() {
-        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-        finish();
     }
 }
