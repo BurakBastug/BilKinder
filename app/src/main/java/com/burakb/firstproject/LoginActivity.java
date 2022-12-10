@@ -23,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText txtEMail, txtPassword;
+    private EditText txtemail, txtPassword;
     private Button loginButton, toRegisterButton;
     FirebaseAuth mAuth;
     DatabaseReference mData;
@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-        txtEMail = findViewById(R.id.email);
+        txtemail = findViewById(R.id.email);
         txtPassword = findViewById(R.id.password);
         loginButton = findViewById(R.id.loginbtn);
         toRegisterButton = findViewById(R.id.registerButton);
@@ -45,14 +45,14 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                String mail = txtEMail.getText().toString().trim();
+                String mail = txtemail.getText().toString().trim();
                 String password = txtPassword.getText().toString().trim();
 
                 if(TextUtils.isEmpty(mail)) {
-                    Toast.makeText(LoginActivity.this, "Mail is required", Toast.LENGTH_LONG).show();
+                    txtemail.setError("Mail is required");
                 }
                 if(TextUtils.isEmpty(password)) {
-                    Toast.makeText(LoginActivity.this, "Password is required", Toast.LENGTH_LONG).show();
+                    txtPassword.setError("Password is required");
                 }
                 else {
                     mAuth.signInWithEmailAndPassword(mail, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -64,7 +64,15 @@ public class LoginActivity extends AppCompatActivity {
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                                         if(snapshot.child("Students").hasChild(mAuth.getInstance().getCurrentUser().getUid())) {
                                             Toast.makeText(LoginActivity.this, "Student login", Toast.LENGTH_LONG).show();
-                                            // TODO: 10.12.2022 go to student home page if profile data is not set up, else go to starteditprofile page
+
+                                            //finds the location of current user in the database and checks whether the user was initialized or not. teacherName = "" by default
+                                            //if there is no info about the child, the app is redirected to StartEditProfileActivity.
+                                            if(snapshot.child("Students").child(mAuth.getInstance().getCurrentUser().getUid()).child("teacherName").getValue(String.class).equals("")) {
+                                                startActivity(new Intent(LoginActivity.this, StartEditProfileActivity.class));
+                                            }
+                                            else {
+                                                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                                            }
                                         }
                                         else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
                                             Toast.makeText(LoginActivity.this, "Teacher login", Toast.LENGTH_LONG).show();
@@ -77,9 +85,6 @@ public class LoginActivity extends AppCompatActivity {
 
                                     }
                                 });
-
-                                Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_LONG).show();
-                                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                             }
                             else {
                                 txtPassword.setError("User not found");
