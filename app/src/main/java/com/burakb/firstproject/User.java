@@ -7,6 +7,7 @@ public class User {
     private String password;
     private String email;
     private String telNum;
+    private String userId;
 
     public User(){
 
@@ -16,6 +17,7 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.userId = this.username + this.email;
     }
 
     public String getUsername(){
@@ -36,6 +38,7 @@ public class User {
     public String getTelNum(){
         return this.telNum;
     }
+    public String getUserId(){return this.userId;}
 
     public void setUsername(String username){
         this.username = username;

@@ -16,6 +16,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -23,6 +25,8 @@ public class RegisterActivity extends AppCompatActivity {
     private Button submit;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
+    DatabaseReference mData;
+    FirebaseDatabase rootNode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
+        mData = FirebaseDatabase.getInstance("https://bilkinderdata-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Uusers");
+
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,8 +78,11 @@ public class RegisterActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()) {
-                        startActivity(new Intent(RegisterActivity.this, StartEditProfileActivity.class));
+                        User user = new User(name,mail,psw);
+                        mData.child("Users").child(user.getUserId()).setValue(user);
+                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                         Toast.makeText(RegisterActivity.this, "User created successfully", Toast.LENGTH_LONG).show();
+
                     }
                 }
             });
