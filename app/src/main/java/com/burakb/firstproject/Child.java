@@ -68,7 +68,6 @@ public class Child extends User{
     public void setBloodType(String bloodType){
         if(isCorrectFormOfBloodType(bloodType)) {
                 this.bloodType = bloodType;
-            }
         }
     }
 
