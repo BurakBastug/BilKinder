@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Teacher extends User {
     private ArrayList<Child> studentList;
-    private int age;
+    private int age = 0;
     private ArrayList<Event> createdEvents;
 
     public Teacher(){

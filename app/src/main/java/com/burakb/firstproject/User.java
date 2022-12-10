@@ -8,6 +8,7 @@ public class User {
     private String email;
     private String telNum;
     private String userId;
+    private String type;
 
     public User(){
 
@@ -17,47 +18,75 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.userId = this.username + this.email;
+
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public String getTelNum() {
+        return telNum;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public void setTelNum(String telNum) {
+        this.telNum = telNum;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getUsername(){
         return this.username;
     }
-    public String getFirstname(){
-        return this.firstname;
-    }
-    public String getLastname(){
-        return this.lastname;
-    }
+
+
     public String getPassword(){
         return this.password;
     }
     public String getEmail(){
         return this.email;
     }
-    public String getTelNum(){
-        return this.telNum;
-    }
-    public String getUserId(){return this.userId;}
+
+
 
     public void setUsername(String username){
         this.username = username;
     }
-    public void setFirstName(String firstName){
-        this.firstname = firstName;
-    }
-    public void setLastName(String lastName){
-        this.lastname = lastName;
-    }
+
+
     public void setPassword(String password){
         this.password = password;
     }
     public void setEmail(String email){
         this.email = email;
     }
-    public void setTelNum(String telNum){
-        this.telNum = telNum;
-    }
+
 
 }
 

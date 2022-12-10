@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,6 +26,9 @@ public class RegisterActivity extends AppCompatActivity {
 
     private EditText userName, password, passwordCheck, email; //schoolName may be with scrollbar
     private Button submit;
+    private RadioButton studentRatio,teacherRatio;
+    private RadioGroup group;
+    private String type;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
     DatabaseReference mData;
@@ -38,11 +44,28 @@ public class RegisterActivity extends AppCompatActivity {
         passwordCheck = findViewById(R.id.passwordagain);
         email = findViewById(R.id.email);
         submit = findViewById(R.id.submitbtn);
+        studentRatio = findViewById(R.id.studentradiobtn);
+        teacherRatio = findViewById(R.id.teacherradiobtn);
+        group = findViewById(R.id.radioGroup);
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         mData = FirebaseDatabase.getInstance("https://bilkinderdata-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Uusers");
+        studentRatio.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b){
+                    type = "child";
+                }
+            }
+        });
 
+        teacherRatio.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                type = "teacher";
+            }
+        });
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,16 +84,19 @@ public class RegisterActivity extends AppCompatActivity {
         if(TextUtils.isEmpty(name)) {
             userName.setError("Full name is required");
         }
-        if(TextUtils.isEmpty(psw)) {
+        else if(TextUtils.isEmpty(psw)) {
             password.setError("Password is required");
         }
-        if(TextUtils.isEmpty(pswAgain)) {
+        else if(TextUtils.isEmpty(pswAgain)) {
             passwordCheck.setError("Full name is required");
         }
-        if(TextUtils.isEmpty(mail)) {
+        else if(TextUtils.isEmpty(mail)) {
             email.setError("E-mail is required");
         }
-        if(!password.getText().toString().equals(passwordCheck.getText().toString()) || TextUtils.isEmpty(psw) ) {
+        else if(TextUtils.isEmpty(type)){
+            studentRatio.setError("Please select user type");
+        }
+        else if(!password.getText().toString().equals(passwordCheck.getText().toString()) || TextUtils.isEmpty(psw) ) {
             passwordCheck.setError("Different password");
         }
         else {
@@ -79,7 +105,7 @@ public class RegisterActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()) {
                         User user = new User(name,mail,psw);
-                        mData.child("Users").child(user.getUserId()).setValue(user);
+                        mData.child("Users").child("berkin").setValue(user);
                         startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                         Toast.makeText(RegisterActivity.this, "User created successfully", Toast.LENGTH_LONG).show();
 

@@ -4,29 +4,20 @@ import java.util.ArrayList;
 
 public class Child extends User{
 
-    private String teacherName;
-    private String parentName;
-    private String bloodType;
-    private String contactNumber;
-    private String contactMail;
-    private String address;
-    private String medicalCondition;
+    private String teacherName = "";
+    private String parentName = "";
+    private String bloodType= "";
+    private String contactNumber= "";
+    private String contactMail= "";
+    private String address= "";
+    private String medicalCondition= "";
     private ArrayList<Event> allowedEvents;
 
     public Child(){
 
     }
-    public Child(String username,String password, String email, String teacherName, String parentName, String bloodType,
-                 String contactNumber, String contactMail, String address, String medicalCondition){
+    public Child(String username,String password, String email){
         super(username,password,email);
-        setTeacherName(teacherName);
-        setParentName(parentName);
-        setBloodType(bloodType);
-        setContactNumber(contactNumber);
-        setContactMail(contactMail);
-        setAddress(address);
-        setMedicalCondition(medicalCondition);
-
         this.allowedEvents = new ArrayList<>();
     }
     public String getTeacherName() { return this.teacherName; }
@@ -103,7 +94,7 @@ public class Child extends User{
     public String toString(){
         String formatted = "";
 
-        formatted += "Full Name: " + this.getFirstname() + " " + this.getLastname() + "\n";
+        //formatted += "Full Name: " + this.getFirstname() + " " + this.getLastname() + "\n";
         formatted += "Blood Type: " + this.getBloodType() + "\n";
         formatted += "Medical Condition: " + this.getMedicalCondition() + "\n";
         formatted += "Parent: " + this.parentName + "\n";
