@@ -53,23 +53,18 @@ public class RegisterActivity extends AppCompatActivity {
         String pswAgain = passwordCheck.getText().toString();
 
         if(TextUtils.isEmpty(name)) {
-            Toast.makeText(RegisterActivity.this, "Don't forget to enter your name", Toast.LENGTH_LONG).show();
             userName.setError("Full name is required");
         }
         if(TextUtils.isEmpty(psw)) {
-            Toast.makeText(RegisterActivity.this, "Don't forget to enter your password", Toast.LENGTH_LONG).show();
             password.setError("Password is required");
         }
         if(TextUtils.isEmpty(pswAgain)) {
-            Toast.makeText(RegisterActivity.this, "Don't forget to enter your password again", Toast.LENGTH_LONG).show();
             passwordCheck.setError("Full name is required");
         }
         if(TextUtils.isEmpty(mail)) {
-            Toast.makeText(RegisterActivity.this, "Don't forget to enter your email", Toast.LENGTH_LONG).show();
             email.setError("E-mail is required");
         }
         if(!password.getText().toString().equals(passwordCheck.getText().toString()) || TextUtils.isEmpty(psw) ) {
-            Toast.makeText(RegisterActivity.this, "Passwords do not match", Toast.LENGTH_LONG).show();
             passwordCheck.setError("Different password");
         }
         else {
