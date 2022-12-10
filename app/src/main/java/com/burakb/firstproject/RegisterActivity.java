@@ -32,7 +32,6 @@ public class RegisterActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseUser mUser;
     DatabaseReference mData;
-    FirebaseDatabase rootNode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +49,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
-        mData = FirebaseDatabase.getInstance("https://bilkinderdata-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Uusers");
+        mData = FirebaseDatabase.getInstance("https://bilkinderdata-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
+
         studentRatio.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -104,8 +104,14 @@ public class RegisterActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()) {
-                        User user = new User(name,mail,psw);
-                        mData.child("Users").child("berkin").setValue(user);
+                        if(studentRatio.isChecked()) {
+                            Child child = new Child(name, mail, psw);
+                            mData.child("Students").child(mAuth.getInstance().getCurrentUser().getUid()).setValue(child);
+                        }
+                        else if(teacherRatio.isChecked()) {
+                            Teacher teacher = new Teacher(name, mail, psw);
+                            mData.child("Teachers").child(mAuth.getInstance().getCurrentUser().getUid()).setValue(teacher);
+                        }
                         startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                         Toast.makeText(RegisterActivity.this, "User created successfully", Toast.LENGTH_LONG).show();
 

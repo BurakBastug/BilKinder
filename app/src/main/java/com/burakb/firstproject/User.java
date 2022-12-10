@@ -8,7 +8,6 @@ public class User {
     private String email;
     private String telNum;
     private String userId;
-    private String type;
 
     public User(){
 
@@ -33,13 +32,10 @@ public class User {
         return telNum;
     }
 
-    public String getType() {
-        return type;
-    }
 
-    public String getUserId() {
+    /*public String getUserId() {
         return userId;
-    }
+    }*/
 
     public void setFirstname(String firstname) {
         this.firstname = firstname;
@@ -53,13 +49,9 @@ public class User {
         this.telNum = telNum;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public void setUserId(String userId) {
+    /*public void setUserId(String userId) {
         this.userId = userId;
-    }
+    }*/
 
     public String getUsername(){
         return this.username;

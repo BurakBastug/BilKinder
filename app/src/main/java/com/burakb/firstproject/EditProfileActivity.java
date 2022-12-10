@@ -14,6 +14,7 @@ public class EditProfileActivity extends AppCompatActivity {
             , txtHomeAddress, txtSpecialHealthConditions;
     private Button saveButton, profileButton, homeButton, menuButton;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
