@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/post_creation"
+    android:layerType="software">
+
+    <EditText
+        android:id="@+id/postName"
+        android:layout_width="227dp"
+        android:layout_height="49dp"
+        android:ems="10"
+        android:hint="Enter The Post Name"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:rotation="0"
+        android:rotationX="0"
+        android:rotationY="0"
+        android:textColor="@color/black"
+        android:textColorHint="#9F9F9F"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.113" />
+
+    <EditText
+        android:id="@+id/postDescription"
+        android:layout_width="216dp"
+        android:layout_height="139dp"
+        android:ems="10"
+        android:hint="Enter the Post Description"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:rotation="0"
+        android:rotationX="0"
+        android:rotationY="0"
+        android:textColor="@color/black"
+        android:textColorHint="#9F9F9F"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="256dp"
+        android:layout_height="66dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/postName"
+        tools:context=".MainActivity"
+        tools:ignore="HardcodedText">
+
+        <Button
+            android:id="@+id/uploadImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:text="Upload Post Image"
+            android:textAllCaps="false"
+            android:textColor="@color/black" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="53dp"
+            android:layout_height="match_parent"
+            app:srcCompat="@android:drawable/ic_menu_crop" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/postThePost"
+        android:layout_width="252dp"
+        android:layout_height="41dp"
+        android:accessibilityLiveRegion="none"
+        android:background="@null"
+        android:text="Post"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.881" />
+
+    <Button
+        android:id="@+id/openNavigatorBar"
+        android:layout_width="77dp"
+        android:layout_height="39dp"
+        android:accessibilityLiveRegion="none"
+        android:background="@null"
+        android:textColor="#000000"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.993"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.998" />
+
+    <Button
+        android:id="@+id/navigatorBarReturnHome"
+        android:layout_width="81dp"
+        android:layout_height="38dp"
+        android:accessibilityLiveRegion="none"
+        android:background="@null"
+        android:textColor="#000000"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.998" />
+
+    <Button
+        android:id="@+id/navigatorBarMyProfile"
+        android:layout_width="76dp"
+        android:layout_height="37dp"
+        android:accessibilityLiveRegion="none"
+        android:background="@null"
+        android:textColor="#000000"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.998" />
+</androidx.constraintlayout.widget.ConstraintLayout>

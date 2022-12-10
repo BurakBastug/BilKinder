@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@drawable/parent_menu"
+    android:layerType="software">
+
+
+    <Button
+        android:id="@+id/openNavigatorBar"
+        android:layout_width="78dp"
+        android:layout_height="45dp"
+        android:accessibilityLiveRegion="none"
+        android:background="@null"
+        android:textColor="#000000"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/navigatorBarMyProfile"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/navigatorBarReturnHome"
+        android:layout_width="78dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="92dp"
+        android:accessibilityLiveRegion="none"
+        android:background="@null"
+        android:textColor="#000000"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/openNavigatorBar"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/navigatorBarMyProfile"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/navigatorBarMyProfile"
+        android:layout_width="78dp"
+        android:layout_height="45dp"
+        android:accessibilityLiveRegion="none"
+        android:background="@null"
+        android:textColor="#000000"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <Button
+        android:id="@+id/aboutUs"
+        android:layout_width="101dp"
+        android:layout_height="69dp"
+        android:accessibilityLiveRegion="none"
+        android:background="@null"
+        android:text="About Us"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        android:textSize="7pt"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.839"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/notification"
+        android:layout_width="206dp"
+        android:layout_height="37dp"
+        android:accessibilityLiveRegion="none"
+        android:background="@null"
+        android:text="Notification"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        android:textSize="8pt"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.664" />
+
+    <Button
+        android:id="@+id/weeklyMenu"
+        android:layout_width="236dp"
+        android:layout_height="38dp"
+        android:accessibilityLiveRegion="none"
+        android:background="@null"
+        android:text="Weekly Menu"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        android:textSize="8pt"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.582" />
+
+    <Button
+        android:id="@+id/weeklySchedule"
+        android:layout_width="272dp"
+        android:layout_height="39dp"
+        android:accessibilityLiveRegion="none"
+        android:background="@null"
+        android:text="Weekly Schedule"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        android:textSize="8pt"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/teacherInformation"
+        android:layout_width="301dp"
+        android:layout_height="36dp"
+        android:accessibilityLiveRegion="none"
+        android:background="@null"
+        android:text="Teacher Information"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        android:textSize="8pt"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.027"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.411" />
+
+    <Button
+        android:id="@+id/privateChat"
+        android:layout_width="251dp"
+        android:layout_height="42dp"
+        android:accessibilityLiveRegion="none"
+        android:background="@null"
+        android:text="Private Chat"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        android:textSize="8pt"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.326" />
+
+    <Button
+        android:id="@+id/myProfile"
+        android:layout_width="236dp"
+        android:layout_height="38dp"
+        android:accessibilityLiveRegion="none"
+        android:background="@null"
+        android:text="My Profile"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        android:textSize="8pt"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.24" />
+
+    <Button
+        android:id="@+id/feed"
+        android:layout_width="194dp"
+        android:layout_height="36dp"
+        android:accessibilityLiveRegion="none"
+        android:background="@null"
+        android:text="Feed"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        android:textSize="8pt"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.156" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
