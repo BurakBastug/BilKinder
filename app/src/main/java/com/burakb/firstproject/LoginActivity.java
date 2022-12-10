@@ -62,11 +62,11 @@ public class LoginActivity extends AppCompatActivity {
                                 mData.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                        if(snapshot.child("Users").child("Students").exists()) {
+                                        if(snapshot.child("Students").hasChild(mAuth.getInstance().getCurrentUser().getUid())) {
                                             Toast.makeText(LoginActivity.this, "Student login", Toast.LENGTH_LONG).show();
                                             // TODO: 10.12.2022 go to student home page if profile data is not set up, else go to starteditprofile page
                                         }
-                                        else {
+                                        else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
                                             Toast.makeText(LoginActivity.this, "Teacher login", Toast.LENGTH_LONG).show();
                                             // TODO: 10.12.2022 go to teacher home page
                                         }
