@@ -40,6 +40,18 @@ public class Child extends User{
 
     public ArrayList<Event> getAllowedEvents() { return this.allowedEvents; }
 
+    public void setAllData(String userName, String teacherName, String parentName, String bloodType, String contactNumber,
+        String contactMail, String address, String medicalCondition) {
+        setUsername(userName);
+        setTeacherName(teacherName);
+        setParentName(parentName);
+        setBloodType(bloodType);
+        setContactNumber(contactNumber);
+        setContactMail(contactMail);
+        setAddress(address);
+        setMedicalCondition(medicalCondition);
+    }
+
     public void setTeacherName(String teacherName) { this.teacherName = teacherName; }
 
     public void setParentName(String parentName){

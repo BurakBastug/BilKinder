@@ -32,11 +32,6 @@ public class User {
         return telNum;
     }
 
-
-    /*public String getUserId() {
-        return userId;
-    }*/
-
     public void setFirstname(String firstname) {
         this.firstname = firstname;
     }
@@ -48,10 +43,6 @@ public class User {
     public void setTelNum(String telNum) {
         this.telNum = telNum;
     }
-
-    /*public void setUserId(String userId) {
-        this.userId = userId;
-    }*/
 
     public String getUsername(){
         return this.username;

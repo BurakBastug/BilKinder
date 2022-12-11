@@ -25,8 +25,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText txtemail, txtPassword;
     private Button loginButton, toRegisterButton;
-    FirebaseAuth mAuth;
-    DatabaseReference mData;
+    private FirebaseAuth mAuth;
+    private DatabaseReference mData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +76,16 @@ public class LoginActivity extends AppCompatActivity {
                                         }
                                         else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
                                             Toast.makeText(LoginActivity.this, "Teacher login", Toast.LENGTH_LONG).show();
-                                            // TODO: 10.12.2022 go to teacher home page
+
+                                            //finds the location of current user in the database and checks whether the user was initialized or not. age = 0 by default
+                                            //if there is no info about the child, the app is redirected to StartEditProfileActivity.
+
+                                            if(snapshot.child("Teachers").child(mAuth.getInstance().getCurrentUser().getUid()).child("age").getValue(Integer.class) == 0) {
+                                                startActivity(new Intent(LoginActivity.this, StartEditProfileActivity.class));
+                                            }
+                                            else {
+                                                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                                            }
                                         }
                                     }
 
@@ -92,7 +101,6 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     });
                 }
-
             }
         });
 

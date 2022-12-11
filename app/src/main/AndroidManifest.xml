@@ -15,7 +15,7 @@
         <activity android:name=".RegisterActivity"></activity>
         <activity android:name=".LoginActivity"></activity>
         <activity android:name=".StartEditProfileActivity"></activity>
-        <activity android:name=".EditProfileActivity"></activity>
+        <activity android:name=".StudentEditProfileActivity"></activity>
         <activity android:name=".HomeActivity"></activity>
         <activity
             android:name=".MainActivity"

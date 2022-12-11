@@ -29,9 +29,8 @@ public class RegisterActivity extends AppCompatActivity {
     private RadioButton studentRatio,teacherRatio;
     private RadioGroup group;
     private String type;
-    FirebaseAuth mAuth;
-    FirebaseUser mUser;
-    DatabaseReference mData;
+    private FirebaseAuth mAuth;
+    private DatabaseReference mData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +47,6 @@ public class RegisterActivity extends AppCompatActivity {
         group = findViewById(R.id.radioGroup);
 
         mAuth = FirebaseAuth.getInstance();
-        mUser = mAuth.getCurrentUser();
         mData = FirebaseDatabase.getInstance("https://bilkinderdata-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
 
         studentRatio.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -114,7 +112,6 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                         startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                         Toast.makeText(RegisterActivity.this, "User created successfully", Toast.LENGTH_LONG).show();
-
                     }
                 }
             });

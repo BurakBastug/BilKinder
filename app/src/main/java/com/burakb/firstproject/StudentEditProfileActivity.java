@@ -5,15 +5,27 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class EditProfileActivity extends AppCompatActivity {
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+public class StudentEditProfileActivity extends AppCompatActivity {
 
     private EditText txtStuName, txtTeacherName, txtParentName, txtBloodType, txtContactNum, txtContactMailAddress
             , txtHomeAddress, txtSpecialHealthConditions;
     private Button saveButton, profileButton, homeButton, menuButton;
-
+    private FirebaseAuth mAuth;
+    private DatabaseReference mData;
+    private FirebaseUser mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +46,33 @@ public class EditProfileActivity extends AppCompatActivity {
         homeButton = findViewById(R.id.barhomebtn);
         menuButton = findViewById(R.id.barmenubtn);
 
+        mAuth = FirebaseAuth.getInstance();
+        mData = FirebaseDatabase.getInstance("https://bilkinderdata-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
+        mUser = mAuth.getCurrentUser();
+
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setUserInfo();
+            }
+        });
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //if current user's data is not updated
+                // TODO: 11.12.2022 implement the profile button
+            }
+        });
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO: 11.12.2022 implement the home button
+            }
+        });
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO: 11.12.2022 implement the menu button
             }
         });
     }
@@ -59,26 +94,39 @@ public class EditProfileActivity extends AppCompatActivity {
             txtTeacherName.setError("Teacher name cannot be empty");
         }
         if(TextUtils.isEmpty(parentName)) {
-            txtStuName.setError("Parent name cannot be empty");
+            txtParentName.setError("Parent name cannot be empty");
         }
         if(!Child.isCorrectFormOfBloodType(bloodType)) { // it can be optional by removing if statement
-            txtStuName.setError("Type as the form XXRh");
+            txtBloodType.setError("Type as the form XXRh");
         }
         if(!Child.isCorrectFormOfContactNumber(contactNumber)) { // it can be optional removing if statement
-            txtStuName.setError("Type as the form 0XXXXXXXXXX");
+            txtContactNum.setError("Type as the form 0XXXXXXXXXX");
         }
         if(TextUtils.isEmpty(contactMail)) { // it can be optional removing if statement
-            txtStuName.setError("Contact mail is required");
+            txtContactMailAddress.setError("Contact mail is required");
         }
         if(TextUtils.isEmpty(address)) { // it can be optional removing if statement
-            txtStuName.setError("Address is required");
+            txtHomeAddress.setError("Address is required");
         }
         if(TextUtils.isEmpty(healthConditions)) { // it can be optional removing if statement
-            txtStuName.setError("Health conditions ,s required");
+            txtSpecialHealthConditions.setError("Health conditions ,s required");
         }
-
         else {
+            //find the student and overwrite the data
+            mData.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    Child tmp = snapshot.child("Students").child(mUser.getUid()).getValue(Child.class);
+                    tmp.setAllData(studentName, teacherName,parentName, bloodType ,contactNumber, contactMail, address, healthConditions);
+                    mData.child("Students").child(mUser.getUid()).setValue(tmp);
+                    Toast.makeText(StudentEditProfileActivity.this, "Datas are updated", Toast.LENGTH_LONG).show();
+                }
 
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
         }
 
 
