@@ -50,6 +50,26 @@ public class StudentEditProfileActivity extends AppCompatActivity {
         mData = FirebaseDatabase.getInstance("https://bilkinderdata-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
         mUser = mAuth.getCurrentUser();
 
+        mData.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Child tmp = snapshot.child("Students").child(mUser.getUid()).getValue(Child.class);
+                txtStuName.setText(tmp.getUsername());
+                txtTeacherName.setText(tmp.getTeacherName());
+                txtParentName.setText(tmp.getParentName());
+                txtBloodType.setText(tmp.getBloodType());
+                txtContactNum.setText(tmp.getContactNumber());
+                txtContactMailAddress.setText(tmp.getContactMail());
+                txtHomeAddress.setText(tmp.getAddress());
+                txtSpecialHealthConditions.setText(tmp.getMedicalCondition());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -113,13 +133,13 @@ public class StudentEditProfileActivity extends AppCompatActivity {
         }
         else {
             //find the student and overwrite the data
-            mData.addListenerForSingleValueEvent(new ValueEventListener() {
+            mData.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     Child tmp = snapshot.child("Students").child(mUser.getUid()).getValue(Child.class);
                     tmp.setAllData(studentName, teacherName,parentName, bloodType ,contactNumber, contactMail, address, healthConditions);
                     mData.child("Students").child(mUser.getUid()).setValue(tmp);
-                    Toast.makeText(StudentEditProfileActivity.this, "Datas are updated", Toast.LENGTH_LONG).show();
+                    Toast.makeText(StudentEditProfileActivity.this, "Data updated", Toast.LENGTH_LONG).show();
                 }
 
                 @Override
