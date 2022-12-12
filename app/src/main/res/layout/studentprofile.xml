@@ -8,7 +8,7 @@
     android:layerType="software">
 
     <TextView
-        android:id="@+id/studentname"
+        android:id="@+id/studentName"
         android:layout_width="142dp"
         android:layout_height="35dp"
         android:text="Student Name"
@@ -35,7 +35,7 @@
         app:layout_constraintVertical_bias="0.318" />
 
     <TextView
-        android:id="@+id/parentname"
+        android:id="@+id/parentName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Parent Name (Relation)"
@@ -49,7 +49,7 @@
         app:layout_constraintVertical_bias="0.376" />
 
     <TextView
-        android:id="@+id/bloodtype"
+        android:id="@+id/bloodType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Blood Type: XXRh"
@@ -63,7 +63,7 @@
         app:layout_constraintVertical_bias="0.441" />
 
     <TextView
-        android:id="@+id/contactnumber"
+        android:id="@+id/contactNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="xxxxxxxxxxxxxxx"
@@ -77,7 +77,7 @@
         app:layout_constraintVertical_bias="0.534" />
 
     <TextView
-        android:id="@+id/contactmail"
+        android:id="@+id/contactMail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="xxxxxxxx@xxx"
@@ -91,7 +91,7 @@
         app:layout_constraintVertical_bias="0.579" />
 
     <TextView
-        android:id="@+id/adress"
+        android:id="@+id/address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Adress"
@@ -105,7 +105,7 @@
         app:layout_constraintVertical_bias="0.689" />
 
     <TextView
-        android:id="@+id/healthissues"
+        android:id="@+id/healthIssues"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="health issues"
@@ -178,7 +178,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/profilePhoto"
         android:layout_width="120dp"
         android:layout_height="118dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -193,9 +193,10 @@
         android:id="@+id/sickbtn"
         android:layout_width="319dp"
         android:layout_height="35dp"
-        android:background="#D7FDFF"
-        android:text="Currently Sick"
+        android:background="#1BF802"
+        android:text="Currently Not Sick"
         android:textColor="#000000"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.402"

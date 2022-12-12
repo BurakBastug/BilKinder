@@ -133,7 +133,7 @@ public class StudentEditProfileActivity extends AppCompatActivity {
         }
         else {
             //find the student and overwrite the data
-            mData.addValueEventListener(new ValueEventListener() {
+            mData.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     Child tmp = snapshot.child("Students").child(mUser.getUid()).getValue(Child.class);

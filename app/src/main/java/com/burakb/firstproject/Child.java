@@ -11,6 +11,7 @@ public class Child extends User{
     private String contactMail= "";
     private String address= "";
     private String medicalCondition= "";
+    private boolean isSick = false;
     private ArrayList<Event> allowedEvents;
 
     public Child(){
@@ -39,6 +40,8 @@ public class Child extends User{
     }
 
     public ArrayList<Event> getAllowedEvents() { return this.allowedEvents; }
+
+    public boolean getIsSick() { return this.isSick; }
 
     public void setAllData(String userName, String teacherName, String parentName, String bloodType, String contactNumber,
         String contactMail, String address, String medicalCondition) {
@@ -77,6 +80,8 @@ public class Child extends User{
     public void setMedicalCondition(String medicalCondition){
         this.medicalCondition = medicalCondition;
     }
+
+    public void setIsSick(boolean isSick) { this.isSick = isSick; }
 
     public void givePermission(Event event, boolean decision){
         if(decision){

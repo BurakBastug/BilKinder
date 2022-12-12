@@ -16,7 +16,9 @@
         <activity android:name=".LoginActivity"></activity>
         <activity android:name=".StartEditProfileActivity"></activity>
         <activity android:name=".StudentEditProfileActivity"></activity>
-        <activity android:name=".HomeActivity"></activity>
+        <activity android:name=".StudentHomeActivity"></activity>
+        <activity android:name=".StudentProfileActivity"></activity>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

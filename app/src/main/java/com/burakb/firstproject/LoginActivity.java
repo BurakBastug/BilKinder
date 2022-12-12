@@ -71,7 +71,8 @@ public class LoginActivity extends AppCompatActivity {
                                                 startActivity(new Intent(LoginActivity.this, StartEditProfileActivity.class));
                                             }
                                             else {
-                                                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                                                startActivity(new Intent(LoginActivity.this, StudentProfileActivity.class));
+                                                Toast.makeText(LoginActivity.this, "siktir", Toast.LENGTH_LONG).show();
                                             }
                                         }
                                         else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
@@ -84,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
                                                 startActivity(new Intent(LoginActivity.this, StartEditProfileActivity.class));
                                             }
                                             else {
-                                                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                                                startActivity(new Intent(LoginActivity.this, StudentHomeActivity.class));
                                             }
                                         }
                                     }
