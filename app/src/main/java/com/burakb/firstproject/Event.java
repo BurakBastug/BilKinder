@@ -10,6 +10,7 @@ public class Event {
     private Date date;
     private boolean isVisible;
     private Image image;
+    private int img;
 
     public Event(){
 
@@ -20,6 +21,12 @@ public class Event {
         this.description = description;
         this.image = image;
         this.isVisible = true;
+    }
+    public Event(String name, String description, int img){
+        this.name = name;
+        this.description = description;
+        this.isVisible = true;
+        this.img = img;
     }
 
     public String getName(){
@@ -37,6 +44,7 @@ public class Event {
     public Image getImage(){
         return this.image;
     }
+    public int getImg(){return  this.img;}
 
     public void setName(String name){
         this.name = name;
