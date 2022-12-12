@@ -1,5 +1,6 @@
 package com.burakb.firstproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -74,6 +75,7 @@ public class StudentEditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 setUserInfo();
+                startActivity(new Intent(StudentEditProfileActivity.this, StudentHomeActivity.class));
             }
         });
         profileButton.setOnClickListener(new View.OnClickListener() {

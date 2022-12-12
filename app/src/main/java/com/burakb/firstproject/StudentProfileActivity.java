@@ -124,7 +124,7 @@ public class StudentProfileActivity extends AppCompatActivity {
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: 12.12.2022 start activity to student home page 
+                startActivity(new Intent(StudentProfileActivity.this, StudentHomeActivity.class));
             }
         });
     }
