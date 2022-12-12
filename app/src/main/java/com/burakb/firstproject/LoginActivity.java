@@ -82,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
                                             //if there is no info about the child, the app is redirected to StartEditProfileActivity.
 
                                             if(snapshot.child("Teachers").child(mAuth.getInstance().getCurrentUser().getUid()).child("age").getValue(Integer.class) == 0) {
-                                                startActivity(new Intent(LoginActivity.this, StartEditProfileActivity.class));
+                                                startActivity(new Intent(LoginActivity.this, TeacherMenuActivity.class));
                                             }
                                             else {
                                                 // TODO: 12.12.2022 start activity to teacher edit page if teacher data is not set up, else go to TeacherHomeActivity 

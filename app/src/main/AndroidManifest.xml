@@ -12,12 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FirstProject"
         tools:targetApi="31">
+
         <activity android:name=".RegisterActivity"></activity>
         <activity android:name=".LoginActivity"></activity>
         <activity android:name=".StartEditProfileActivity"></activity>
         <activity android:name=".StudentEditProfileActivity"></activity>
         <activity android:name=".StudentHomeActivity"></activity>
         <activity android:name=".StudentProfileActivity"></activity>
+        <activity android:name=".FeedActivity"></activity>
 
         <activity
             android:name=".MainActivity"

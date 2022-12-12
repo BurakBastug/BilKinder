@@ -19,8 +19,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -30,7 +35,13 @@ public class RegisterActivity extends AppCompatActivity {
     private RadioGroup group;
     private String type;
     private FirebaseAuth mAuth;
+    private FirebaseUser current;
     private DatabaseReference mData;
+    private ArrayList<Teacher> teacherObjectList = new ArrayList<>();
+    private ArrayList<String> teacherUi = new ArrayList<>();
+    private Teacher yourTeacher = new Teacher("","","");
+    private String teacherUiNumber;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +57,30 @@ public class RegisterActivity extends AppCompatActivity {
         teacherRatio = findViewById(R.id.teacherradiobtn);
         group = findViewById(R.id.radioGroup);
 
+
+
         mAuth = FirebaseAuth.getInstance();
         mData = FirebaseDatabase.getInstance("https://bilkinderdata-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
+        current = mAuth.getCurrentUser();
+
+        DatabaseReference teacherReference = mData.child("Teachers");
+
+        teacherReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot teacherObject : snapshot.getChildren()){
+                    Teacher teacher = teacherObject.getValue(Teacher.class);
+                    teacherObjectList.add(teacher);
+                    teacherUi.add(teacherObject.getKey());
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         studentRatio.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -75,12 +108,14 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void registerUser() {
         String mail = email.getText().toString().trim();
-        String name = userName.getText().toString();
+        String name = userName.getText().toString().trim();
         String psw = password.getText().toString();
         String pswAgain = passwordCheck.getText().toString();
 
+
         if(TextUtils.isEmpty(name)) {
             userName.setError("Full name is required");
+
         }
         else if(TextUtils.isEmpty(psw)) {
             password.setError("Password is required");
@@ -98,23 +133,49 @@ public class RegisterActivity extends AppCompatActivity {
             passwordCheck.setError("Different password");
         }
         else {
-            mAuth.createUserWithEmailAndPassword(mail, psw).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful()) {
-                        if(studentRatio.isChecked()) {
-                            Child child = new Child(name, mail, psw);
-                            mData.child("Students").child(mAuth.getInstance().getCurrentUser().getUid()).setValue(child);
-                        }
-                        else if(teacherRatio.isChecked()) {
-                            Teacher teacher = new Teacher(name, mail, psw);
-                            mData.child("Teachers").child(mAuth.getInstance().getCurrentUser().getUid()).setValue(teacher);
-                        }
-                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                        Toast.makeText(RegisterActivity.this, "User created successfully", Toast.LENGTH_LONG).show();
-                    }
+            boolean flag = false;
+
+            for(int i = 0; i < teacherObjectList.size(); i++){
+                if(name.equalsIgnoreCase(teacherObjectList.get(i).getUsername())){
+                    flag = true;
+                    yourTeacher = teacherObjectList.get(i);
+                    teacherUiNumber = teacherUi.get(i);
                 }
-            });
+            }
+
+            System.out.println(teacherObjectList);
+            if(flag == false && studentRatio.isChecked()){
+                userName.setError("Teacher is not registered");
+            }
+            else{
+                mAuth.createUserWithEmailAndPassword(mail, psw).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()) {
+
+
+                            if(studentRatio.isChecked()) {
+                                Child child = new Child(name, mail, psw);
+                                yourTeacher.addStudent(mAuth.getCurrentUser().getUid().toString());
+                                mData.child("Teachers").child(teacherUiNumber).setValue(yourTeacher);
+                                mData.child("Students").child(mAuth.getInstance().getCurrentUser().getUid()).setValue(child);
+                                startActivity(new Intent(RegisterActivity.this,StartEditProfileActivity.class));
+                                Toast.makeText(RegisterActivity.this, "User created successfully", Toast.LENGTH_LONG).show();
+                            }
+
+                            else if(teacherRatio.isChecked()) {
+                                Teacher teacher = new Teacher(name, mail, psw);
+                                mData.child("Teachers").child(mAuth.getInstance().getCurrentUser().getUid()).setValue(teacher);
+                                startActivity(new Intent(RegisterActivity.this,StartEditProfileActivity.class));
+                                Toast.makeText(RegisterActivity.this, "User created successfully", Toast.LENGTH_LONG).show();
+                            }
+
+                        }
+                    }
+                });
+            }
+
+
         }
     }
 }

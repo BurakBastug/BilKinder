@@ -5,9 +5,10 @@ import android.media.Image;
 import java.util.ArrayList;
 
 public class Teacher extends User {
-    private ArrayList<Child> studentList;
+    private ArrayList<String> studentList;
     private int age = 0;
     private ArrayList<Event> createdEvents;
+
 
     public Teacher(){
 
@@ -15,11 +16,20 @@ public class Teacher extends User {
 
     public Teacher(String username, String password, String email){
         super(username,password,email);
-        this.studentList = new ArrayList<>();
-        this.createdEvents = new ArrayList<>();
+        this.studentList = new ArrayList<String>();
+        this.createdEvents = new ArrayList<Event>();
+        this.studentList.add("");
     }
 
-    public ArrayList<Child> getStudentList(){
+
+
+
+    public void setStudentList(ArrayList<String> studentList) {
+        this.studentList = studentList;
+    }
+
+
+    public ArrayList<String> getStudentList(){
         return this.studentList;
     }
     public int getAge(){
@@ -36,11 +46,13 @@ public class Teacher extends User {
         this.createdEvents.add(event);
     }
 
-    public String viewChildrenStatues(){
-        String formatted = "";
-        for(Child child : this.studentList){
-            formatted += child.toString() + "\n";
-        }
-        return formatted;
+
+
+    public String toString(){
+        return this.getUsername();
+    }
+
+    public void addStudent(String child){
+        this.studentList.add(child);
     }
 }
