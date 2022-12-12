@@ -67,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                             //finds the location of current user in the database and checks whether the user was initialized or not. teacherName = "" by default
                                             //if there is no info about the child, the app is redirected to StartEditProfileActivity.
+                                            //
                                             if(snapshot.child("Students").child(mAuth.getInstance().getCurrentUser().getUid()).child("teacherName").getValue(String.class).equals("")) {
                                                 startActivity(new Intent(LoginActivity.this, StartEditProfileActivity.class));
                                             }
