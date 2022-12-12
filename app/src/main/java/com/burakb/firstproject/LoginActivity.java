@@ -71,8 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                                                 startActivity(new Intent(LoginActivity.this, StartEditProfileActivity.class));
                                             }
                                             else {
-                                                startActivity(new Intent(LoginActivity.this, StudentProfileActivity.class));
-                                                Toast.makeText(LoginActivity.this, "siktir", Toast.LENGTH_LONG).show();
+                                                startActivity(new Intent(LoginActivity.this, StudentHomeActivity.class));
                                             }
                                         }
                                         else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
@@ -85,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                                                 startActivity(new Intent(LoginActivity.this, StartEditProfileActivity.class));
                                             }
                                             else {
-                                                startActivity(new Intent(LoginActivity.this, StudentHomeActivity.class));
+                                                // TODO: 12.12.2022 start activity to teacher edit page if teacher data is not set up, else go to TeacherHomeActivity 
                                             }
                                         }
                                     }
