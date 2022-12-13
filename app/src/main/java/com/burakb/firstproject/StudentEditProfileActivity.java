@@ -6,8 +6,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,11 +21,9 @@ import com.google.firebase.database.ValueEventListener;
 
 public class StudentEditProfileActivity extends AppCompatActivity {
 
-    private TextView txtTeacherName;
-    private EditText txtStuName, txtParentName, txtBloodType, txtContactNum, txtContactMailAddress
+    private EditText txtStuName, txtTeacherName, txtParentName, txtBloodType, txtContactNum, txtContactMailAddress
             , txtHomeAddress, txtSpecialHealthConditions;
     private Button saveButton, profileButton, homeButton, menuButton;
-    private ImageView image;
     private FirebaseAuth mAuth;
     private DatabaseReference mData;
     private FirebaseUser mUser;
@@ -46,8 +42,6 @@ public class StudentEditProfileActivity extends AppCompatActivity {
         txtHomeAddress = findViewById(R.id.address);
         txtSpecialHealthConditions = findViewById(R.id.healthissues);
 
-        image = findViewById(R.id.studentPhoto);
-
         saveButton = findViewById(R.id.saveButton);
         profileButton = findViewById(R.id.barprofilebtn);
         homeButton = findViewById(R.id.barhomebtn);
@@ -61,7 +55,6 @@ public class StudentEditProfileActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Child tmp = snapshot.child("Students").child(mUser.getUid()).getValue(Child.class);
-                // TODO: 13.12.2022 get profile image
                 txtStuName.setText(tmp.getUsername());
                 txtTeacherName.setText(tmp.getTeacherName());
                 txtParentName.setText(tmp.getParentName());
@@ -81,21 +74,21 @@ public class StudentEditProfileActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setChildInfo();
+                setUserInfo();
                 startActivity(new Intent(StudentEditProfileActivity.this, StudentHomeActivity.class));
             }
         });
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //if current user's data is not updated;
+                //if current user's data is not updated
                 // TODO: 11.12.2022 implement the profile button
             }
         });
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(StudentEditProfileActivity.this, StudentHomeActivity.class));
+                // TODO: 11.12.2022 implement the home button
             }
         });
         menuButton.setOnClickListener(new View.OnClickListener() {
@@ -106,7 +99,7 @@ public class StudentEditProfileActivity extends AppCompatActivity {
         });
     }
 
-    private void setChildInfo() {
+    private void setUserInfo() {
         String studentName = txtStuName.getText().toString();
         String teacherName = txtTeacherName.getText().toString();
         String parentName = txtParentName.getText().toString();
@@ -128,7 +121,7 @@ public class StudentEditProfileActivity extends AppCompatActivity {
         if(!Child.isCorrectFormOfBloodType(bloodType)) { // it can be optional by removing if statement
             txtBloodType.setError("Type as the form XXRh");
         }
-        if(!User.isCorrectFormOfContactNumber(contactNumber)) { // it can be optional removing if statement
+        if(!Child.isCorrectFormOfContactNumber(contactNumber)) { // it can be optional removing if statement
             txtContactNum.setError("Type as the form 0XXXXXXXXXX");
         }
         if(TextUtils.isEmpty(contactMail)) { // it can be optional removing if statement
@@ -138,7 +131,7 @@ public class StudentEditProfileActivity extends AppCompatActivity {
             txtHomeAddress.setError("Address is required");
         }
         if(TextUtils.isEmpty(healthConditions)) { // it can be optional removing if statement
-            txtSpecialHealthConditions.setError("Health conditions are required");
+            txtSpecialHealthConditions.setError("Health conditions ,s required");
         }
         else {
             //find the student and overwrite the data
