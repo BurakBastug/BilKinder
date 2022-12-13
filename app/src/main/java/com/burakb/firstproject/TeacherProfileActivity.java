@@ -43,9 +43,9 @@ public class TeacherProfileActivity extends AppCompatActivity {
         txtTeacherContactMail = findViewById(R.id.teacherContactMail);
 
         editButton = findViewById(R.id.editButton);
-        profileButton = findViewById(R.id.profilebtn);
-        homeButton = findViewById(R.id.homebtn);
-        menuButton = findViewById(R.id.menubtn);
+        //profileButton = findViewById(R.id.profilebtn);
+        //homeButton = findViewById(R.id.homebtn);
+        //menuButton = findViewById(R.id.menubtn);
 
         mAuth = FirebaseAuth.getInstance();
         mData = FirebaseDatabase.getInstance("https://bilkinderdata-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");

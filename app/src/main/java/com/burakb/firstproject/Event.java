@@ -9,25 +9,20 @@ public class Event {
     private String description;
     private Date date;
     private boolean isVisible;
-    private Image image;
-    private int img;
+    //private Image image;
+    //private int img;
 
     public Event(){
 
     }
 
-    public Event(String name, String description, Image image){
-        this.name = name;
-        this.description = description;
-        this.image = image;
-        this.isVisible = true;
-    }
-    public Event(String name, String description, int img){
+
+    public Event(String name, String description){
         this.name = name;
         this.description = description;
         this.isVisible = true;
-        this.img = img;
     }
+
 
     public String getName(){
         return this.name;
@@ -41,10 +36,8 @@ public class Event {
     public boolean getVisibility(){
         return this.isVisible;
     }
-    public Image getImage(){
-        return this.image;
-    }
-    public int getImg(){return  this.img;}
+
+
 
     public void setName(String name){
         this.name = name;
@@ -58,16 +51,13 @@ public class Event {
     public void setVisible(boolean visible){
         this.isVisible = visible;
     }
-    public void setImage(Image image){
-        this.image = image;
-    }
 
     public String toString(){
         String formatted = "";
         formatted += "Event Name: " + this.name + "\n";
         formatted += "Event Description: " + this.description + "\n";
-        formatted += "Event Date: " + this.date.toString() + "\n";
-        formatted += "Event Visibility: " + this.isVisible + "\n";
+        //formatted += "Event Date: " + this.date.toString() + "\n";
+        //formatted += "Event Visibility: " + this.isVisible + "\n";
 
         return formatted;
     }

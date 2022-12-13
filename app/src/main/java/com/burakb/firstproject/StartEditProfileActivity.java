@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,11 +44,7 @@ public class StartEditProfileActivity extends AppCompatActivity {
                             startActivity(new Intent(StartEditProfileActivity.this, StudentEditProfileActivity.class));
                         }
                         else if(snapshot.child("Teachers").hasChild(mUser.getUid())) {
-                            startActivity(new Intent(StartEditProfileActivity.this, TeacherEditProfileActivity.class));
-                        }
-                        else {
-                            //not supposed to enter here
-                            Toast.makeText(StartEditProfileActivity.this, "error", Toast.LENGTH_SHORT).show();
+                            //startActivity(new Intent(StartEditProfileActivity.this, TeacherEditProfileActivity.class));
                         }
                     }
 

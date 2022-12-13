@@ -66,13 +66,13 @@ public class StudentHomeActivity extends AppCompatActivity {
         weeklyMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(StudentHomeActivity.this, WeeklyMenuActivity.class));
             }
         });
         weeklySchedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(StudentHomeActivity.this, WeeklyScheduleActivity.class));
             }
         });
         notification.setOnClickListener(new View.OnClickListener() {
@@ -87,18 +87,7 @@ public class StudentHomeActivity extends AppCompatActivity {
 
             }
         });
-        navigationBarHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-            }
-        });
-        navigationBarProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
 
     }
 }

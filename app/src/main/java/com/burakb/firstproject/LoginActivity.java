@@ -68,12 +68,15 @@ public class LoginActivity extends AppCompatActivity {
                                             //finds the location of current user in the database and checks whether the user was initialized or not. teacherName = "" by default
                                             //if there is no info about the child, the app is redirected to StartEditProfileActivity.
                                             //
-                                            if(snapshot.child("Students").child(mAuth.getInstance().getCurrentUser().getUid()).child("userName").getValue(String.class).equals("")) {
+                                            /*if(snapshot.child("Students").child(mAuth.getInstance().getCurrentUser().getUid()).child("userName").getValue(String.class).equals("")) {
+
                                                 startActivity(new Intent(LoginActivity.this, StartEditProfileActivity.class));
                                             }
                                             else {
+
                                                 startActivity(new Intent(LoginActivity.this, StudentHomeActivity.class));
-                                            }
+                                            }*/
+                                            startActivity(new Intent(LoginActivity.this, StudentHomeActivity.class));
                                         }
                                         else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
                                             Toast.makeText(LoginActivity.this, "Teacher login", Toast.LENGTH_LONG).show();
@@ -85,7 +88,8 @@ public class LoginActivity extends AppCompatActivity {
                                                 startActivity(new Intent(LoginActivity.this, StartEditProfileActivity.class));
                                             }
                                             else {
-                                                // TODO: 12.12.2022 start activity to teacher edit page if teacher data is not set up, else go to TeacherHomeActivity 
+                                                //Toast.makeText(LoginActivity.this, "123123124", Toast.LENGTH_LONG).show();
+                                                startActivity(new Intent(LoginActivity.this, TeacherHomeActivity.class));
                                             }
                                         }
                                     }

@@ -86,26 +86,7 @@ public class StudentEditProfileActivity extends AppCompatActivity {
                     startActivity(new Intent(StudentEditProfileActivity.this, StudentHomeActivity.class));
             }
         });
-        profileButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(checkData())
-                    startActivity(new Intent(StudentEditProfileActivity.this, StudentProfileActivity.class));
-            }
-        });
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(checkData())
-                    startActivity(new Intent(StudentEditProfileActivity.this, StudentHomeActivity.class));
-            }
-        });
-        menuButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: 11.12.2022 implement the menu button
-            }
-        });
+
     }
 
     private boolean checkData() {
@@ -154,6 +135,7 @@ public class StudentEditProfileActivity extends AppCompatActivity {
                     tmp.setAllData(studentName, parentName, bloodType ,contactNumber, contactMail, address, healthConditions);
                     mData.child("Students").child(mUser.getUid()).setValue(tmp);
                     Toast.makeText(StudentEditProfileActivity.this, "Data updated", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(StudentEditProfileActivity.this,StudentHomeActivity.class));
                 }
 
                 @Override

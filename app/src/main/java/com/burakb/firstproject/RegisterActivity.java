@@ -104,6 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
                 registerUser();
             }
         });
+
     }
 
     private void registerUser() {

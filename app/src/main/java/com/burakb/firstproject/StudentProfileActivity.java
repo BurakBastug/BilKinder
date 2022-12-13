@@ -109,23 +109,6 @@ public class StudentProfileActivity extends AppCompatActivity {
                 });
             }
         });
-        profileButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(StudentProfileActivity.this, "Already in profile page", Toast.LENGTH_SHORT).show();
-            }
-        });
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(StudentProfileActivity.this, StudentHomeActivity.class));
-            }
-        });
-        menuButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(StudentProfileActivity.this, StudentHomeActivity.class));
-            }
-        });
+
     }
 }

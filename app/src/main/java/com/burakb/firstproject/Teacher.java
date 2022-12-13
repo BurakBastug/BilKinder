@@ -44,7 +44,7 @@ public class Teacher extends User {
     }
 
     public void createEvent(String name, String description, Image image){
-        Event event = new Event(name,description,image);
+        Event event = new Event(name,description);
         this.createdEvents.add(event);
     }
 
