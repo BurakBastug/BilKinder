@@ -24,7 +24,7 @@
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
-    <EditText
+    <TextView
         android:id="@+id/teacherName"
         android:layout_width="249dp"
         android:layout_height="47dp"
@@ -38,7 +38,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.223" />
 
-    <EditText
+    <TextView
         android:id="@+id/classAndNumberOfStudent"
         android:layout_width="354dp"
         android:layout_height="46dp"
@@ -67,7 +67,7 @@
         app:layout_constraintVertical_bias="0.377" />
 
     <EditText
-        android:id="@+id/textView5"
+        android:id="@+id/teacherAddress"
         android:layout_width="351dp"
         android:layout_height="46dp"
         android:text="Address"
@@ -82,7 +82,6 @@
 
     <EditText
         android:id="@+id/teacherContactNumber"
-
         android:layout_width="259dp"
         android:layout_height="40dp"
         android:text="Teacher Contact Number"
@@ -97,18 +96,15 @@
 
     <EditText
         android:id="@+id/teacherContactNumber2"
-
         android:layout_width="258dp"
         android:layout_height="39dp"
         android:text="Teacher Contact Number"
         android:textColor="@color/black"
         android:textSize="7pt"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.039"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.585" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/teacherMail"
@@ -119,13 +115,13 @@
         android:textSize="7pt"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.038"
+        app:layout_constraintHorizontal_bias="0.019"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.627" />
+        app:layout_constraintVertical_bias="0.598" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/teacherProfilePicture"
         android:layout_width="111dp"
         android:layout_height="108dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -135,5 +131,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.025"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/saveButton"
+        android:textAllCaps="false"
+        android:textColor="#9F9F9F"
+        android:backgroundTint="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/teacherMail" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
