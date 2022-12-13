@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                                             //finds the location of current user in the database and checks whether the user was initialized or not. teacherName = "" by default
                                             //if there is no info about the child, the app is redirected to StartEditProfileActivity.
                                             //
-                                            if(snapshot.child("Students").child(mAuth.getInstance().getCurrentUser().getUid()).child("teacherName").getValue(String.class).equals("")) {
+                                            if(snapshot.child("Students").child(mAuth.getInstance().getCurrentUser().getUid()).child("bloodTyp").getValue(String.class).equals("")) {
                                                 startActivity(new Intent(LoginActivity.this, StartEditProfileActivity.class));
                                             }
                                             else {
@@ -85,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
                                                 startActivity(new Intent(LoginActivity.this, TeacherMenuActivity.class));
                                             }
                                             else {
-                                                // TODO: 12.12.2022 start activity to teacher edit page if teacher data is not set up, else go to TeacherHomeActivity 
+                                                // TODO: 12.12.2022 start activity to teacher edit page if teacher data is not set up, else go to TeacherHomeActivity
                                             }
                                         }
                                     }
