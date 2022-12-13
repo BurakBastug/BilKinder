@@ -10,64 +10,19 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
 
         android:id="@+id/bottomNavigationView"
-        android:layout_width="410dp"
-        android:layout_height="58dp"
-        android:background="@drawable/toolbar"
-
-        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
-        app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
-        app:layout_constraintStart_toStartOf="@+id/constraintLayout">
-
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="match_parent"
-        android:layout_height="59dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#D7FDFF"
+        app:itemTextColor="@color/black"
+        app:itemIconTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:menu="@menu/bottom_nav">
 
-        <Button
-            android:id="@+id/profilebtn"
-            android:layout_width="65dp"
-            android:layout_height="57dp"
-            android:backgroundTint="#00FFFFFF"
-            android:text=""
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.002"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/homebtn"
-            android:layout_width="65dp"
-            android:layout_height="57dp"
-            android:backgroundTint="#00FFFFFF"
-            android:text=""
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/menubtn"
-            app:layout_constraintStart_toEndOf="@+id/profilebtn"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/menubtn"
-
-            android:layout_width="60dp"
-            android:layout_height="57dp"
-            android:backgroundTint="#00FFFFFF"
-            android:text=""
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     <EditText
         android:id="@+id/teacherName"
