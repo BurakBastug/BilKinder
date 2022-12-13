@@ -149,7 +149,6 @@ public class StudentEditProfileActivity extends AppCompatActivity {
                     tmp.setAllData(studentName, teacherName,parentName, bloodType ,contactNumber, contactMail, address, healthConditions);
                     mData.child("Students").child(mUser.getUid()).setValue(tmp);
                     Toast.makeText(StudentEditProfileActivity.this, "Data updated", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(StudentEditProfileActivity.this, StudentHomeActivity.class));
                 }
 
                 @Override

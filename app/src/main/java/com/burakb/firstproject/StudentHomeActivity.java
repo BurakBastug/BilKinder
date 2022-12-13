@@ -96,7 +96,7 @@ public class StudentHomeActivity extends AppCompatActivity {
         navigationBarProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(StudentHomeActivity.this, StudentProfileActivity.class));
+
             }
         });
 

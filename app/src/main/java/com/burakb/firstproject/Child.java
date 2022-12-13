@@ -12,7 +12,6 @@ public class Child extends User{
     private String medicalCondition= "";
     private boolean isSick = false;
     private ArrayList<Event> allowedEvents;
-    private Teacher teacher;
 
     public Child(){
 
@@ -52,14 +51,6 @@ public class Child extends User{
         setAddress(address);
         setMedicalCondition(medicalCondition);
     }
-
-    public void setTeacher(Teacher teacher){
-        this.teacher = teacher;
-    }
-    public Teacher getTeacher(){
-        return this.teacher;
-    }
-
 
     public void setTeacherName(String teacherName) { this.teacherName = teacherName; }
 
