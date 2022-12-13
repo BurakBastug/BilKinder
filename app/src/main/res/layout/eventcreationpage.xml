@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/eventcreationpage"
+    android:background="@color/white"
     android:layerType="software">
 
     <EditText
@@ -27,10 +27,13 @@
 
     <EditText
         android:id="@+id/eventdetails"
-        android:layout_width="193dp"
-        android:layout_height="63dp"
+        android:layout_width="401dp"
+        android:layout_height="297dp"
+        android:background="@drawable/input_area"
         android:ems="10"
         android:hint="Enter event details"
+        android:paddingRight="50dp"
+        android:paddingBottom="200dp"
         android:inputType="text"
         android:minHeight="48dp"
         android:textAlignment="center"
@@ -55,48 +58,47 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.868" />
-    <Button
-        android:id="@+id/barprofilebtn"
-        android:layout_width="65dp"
-        android:layout_height="57dp"
-        android:backgroundTint="#00A39C9C"
-        android:text=""
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.008"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        tools:ignore="SpeakableTextPresentCheck" />
+    <com.google.android.material.bottomnavigation.BottomNavigationView
 
-    <Button
-        android:id="@+id/barhomebtn"
-        android:layout_width="65dp"
-        android:layout_height="57dp"
-        android:backgroundTint="#00A39C9C"
-        android:text=""
-        android:visibility="visible"
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#D7FDFF"
+        app:itemTextColor="@color/black"
+        app:itemIconTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:menu="@menu/bottom_nav">
 
-    <Button
-        android:id="@+id/barmenubtn"
-        android:layout_width="65dp"
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
         android:layout_height="57dp"
-        android:backgroundTint="#00A39C9C"
-        android:text=""
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/feed"
+        android:backgroundTint="#D7FDFF"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Event Creation"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="12dp"
+            android:paddingLeft="110dp"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
