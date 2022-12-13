@@ -32,8 +32,8 @@ public class StudentHomeActivity extends AppCompatActivity {
         weeklyMenu = findViewById(R.id.weeklyMenu);
         notification = findViewById(R.id.notification);
         aboutUs = findViewById(R.id.aboutUs);
-        navigationBarProfile = findViewById(R.id.navigatorBarMyProfile);
-        navigationBarHome = findViewById(R.id.navigatorBarReturnHome);
+        //navigationBarProfile = findViewById(R.id.navigatorBarMyProfile);
+        //navigationBarHome = findViewById(R.id.navigatorBarReturnHome);
 
         mAuth = FirebaseAuth.getInstance();
         mData = FirebaseDatabase.getInstance("https://bilkinderdata-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");

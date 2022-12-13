@@ -45,9 +45,9 @@ public class StudentEditProfileActivity extends AppCompatActivity {
         txtSpecialHealthConditions = findViewById(R.id.healthissues);
 
         saveButton = findViewById(R.id.saveButton);
-        profileButton = findViewById(R.id.barprofilebtn);
-        homeButton = findViewById(R.id.barhomebtn);
-        menuButton = findViewById(R.id.barmenubtn);
+        //profileButton = findViewById(R.id.profile);
+        //homeButton = findViewById(R.id.home);
+        //menuButton = findViewById(R.id.menu);
 
         mAuth = FirebaseAuth.getInstance();
         mData = FirebaseDatabase.getInstance("https://bilkinderdata-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");

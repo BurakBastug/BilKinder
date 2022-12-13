@@ -24,7 +24,6 @@ public class FeedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.feed);
         recyclerView = findViewById(R.id.rec_view);
-        image = R.drawable.memati;
         event = new Event("Memati","Usta sen ne dedin",image);
         list.add(event);
         event = new Event("Polat","Ameliyatla Ali olsana",image);

@@ -49,9 +49,9 @@ public class StudentProfileActivity extends AppCompatActivity {
         
         editButton = findViewById(R.id.editbtn);
         currentlySickButton = findViewById(R.id.sickbtn);
-        profileButton = findViewById(R.id.barprofilebtn);
-        homeButton = findViewById(R.id.barhomebtn);
-        menuButton = findViewById(R.id.barmenubtn);
+        //profileButton = findViewById(R.id.barprofilebtn);
+        //homeButton = findViewById(R.id.barhomebtn);
+        //menuButton = findViewById(R.id.barmenubtn);
 
         mAuth = FirebaseAuth.getInstance();
         mData = FirebaseDatabase.getInstance("https://bilkinderdata-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
