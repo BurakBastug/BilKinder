@@ -7,7 +7,6 @@ public class User {
     private String password;
     private String email;
     private String telNum;
-    private String userId;
 
     public User(){
 

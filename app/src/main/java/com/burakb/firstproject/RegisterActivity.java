@@ -117,8 +117,8 @@ public class RegisterActivity extends AppCompatActivity {
             userName.setError("Full name is required");
 
         }
-        else if(TextUtils.isEmpty(psw)) {
-            password.setError("Password is required");
+        else if(TextUtils.isEmpty(psw) || psw.length() < 6) {
+            password.setError("Password is too short");
         }
         else if(TextUtils.isEmpty(pswAgain)) {
             passwordCheck.setError("Full name is required");
@@ -156,7 +156,8 @@ public class RegisterActivity extends AppCompatActivity {
 
                             if(studentRatio.isChecked()) {
                                 Child child = new Child("", mail, psw);
-                                yourTeacher.addStudent(mAuth.getCurrentUser().getUid().toString());
+                                child.setTeacherName(name);
+                                yourTeacher.addStudent(mAuth.getCurrentUser().getUid());
                                 mData.child("Teachers").child(teacherUiNumber).setValue(yourTeacher);
                                 mData.child("Students").child(mAuth.getInstance().getCurrentUser().getUid()).setValue(child);
                                 startActivity(new Intent(RegisterActivity.this,StartEditProfileActivity.class));

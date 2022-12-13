@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,8 +22,9 @@ import com.google.firebase.database.ValueEventListener;
 
 public class StudentEditProfileActivity extends AppCompatActivity {
 
-    private EditText txtStuName, txtTeacherName, txtParentName, txtBloodType, txtContactNum, txtContactMailAddress
+    private EditText txtStuName, txtParentName, txtBloodType, txtContactNum, txtContactMailAddress
             , txtHomeAddress, txtSpecialHealthConditions;
+    private TextView txtTeacherName;
     private Button saveButton, profileButton, homeButton, menuButton;
     private FirebaseAuth mAuth;
     private DatabaseReference mData;
@@ -56,7 +58,7 @@ public class StudentEditProfileActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Child tmp = snapshot.child("Students").child(mUser.getUid()).getValue(Child.class);
                 txtStuName.setText(tmp.getUsername());
-                txtTeacherName.setText(tmp.getTeacherName());
+                txtTeacherName.setText("Teacher name: " + tmp.getTeacherName());
                 txtParentName.setText(tmp.getParentName());
                 txtBloodType.setText(tmp.getBloodType());
                 txtContactNum.setText(tmp.getContactNumber());
@@ -74,21 +76,22 @@ public class StudentEditProfileActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setUserInfo();
-                startActivity(new Intent(StudentEditProfileActivity.this, StudentHomeActivity.class));
+                if(checkData())
+                    startActivity(new Intent(StudentEditProfileActivity.this, StudentHomeActivity.class));
             }
         });
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //if current user's data is not updated
-                // TODO: 11.12.2022 implement the profile button
+                if(checkData())
+                    startActivity(new Intent(StudentEditProfileActivity.this, StudentProfileActivity.class));
             }
         });
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: 11.12.2022 implement the home button
+                if(checkData())
+                    startActivity(new Intent(StudentEditProfileActivity.this, StudentHomeActivity.class));
             }
         });
         menuButton.setOnClickListener(new View.OnClickListener() {
@@ -99,9 +102,8 @@ public class StudentEditProfileActivity extends AppCompatActivity {
         });
     }
 
-    private void setUserInfo() {
+    private boolean checkData() {
         String studentName = txtStuName.getText().toString();
-        String teacherName = txtTeacherName.getText().toString();
         String parentName = txtParentName.getText().toString();
         String bloodType = txtBloodType.getText().toString();
         String contactNumber = txtContactNum.getText().toString();
@@ -111,35 +113,38 @@ public class StudentEditProfileActivity extends AppCompatActivity {
 
         if(TextUtils.isEmpty(studentName)) {
             txtStuName.setError("Student name cannot be empty");
-        }
-        if(TextUtils.isEmpty(teacherName)) {
-            txtTeacherName.setError("Teacher name cannot be empty");
+            return false;
         }
         if(TextUtils.isEmpty(parentName)) {
             txtParentName.setError("Parent name cannot be empty");
+            return false;
         }
         if(!Child.isCorrectFormOfBloodType(bloodType)) { // it can be optional by removing if statement
-            txtBloodType.setError("Type as the form XXRh");
+            txtBloodType.setError("Type like the form ABRh+");
+            return false;
         }
         if(!Child.isCorrectFormOfContactNumber(contactNumber)) { // it can be optional removing if statement
             txtContactNum.setError("Type as the form 0XXXXXXXXXX");
+            return false;
         }
         if(TextUtils.isEmpty(contactMail)) { // it can be optional removing if statement
             txtContactMailAddress.setError("Contact mail is required");
+            return false;
         }
         if(TextUtils.isEmpty(address)) { // it can be optional removing if statement
             txtHomeAddress.setError("Address is required");
+            return false;
         }
         if(TextUtils.isEmpty(healthConditions)) { // it can be optional removing if statement
             txtSpecialHealthConditions.setError("Health conditions ,s required");
+            return false;
         }
         else {
-            //find the student and overwrite the data
             mData.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     Child tmp = snapshot.child("Students").child(mUser.getUid()).getValue(Child.class);
-                    tmp.setAllData(studentName, teacherName,parentName, bloodType ,contactNumber, contactMail, address, healthConditions);
+                    tmp.setAllData(studentName, parentName, bloodType ,contactNumber, contactMail, address, healthConditions);
                     mData.child("Students").child(mUser.getUid()).setValue(tmp);
                     Toast.makeText(StudentEditProfileActivity.this, "Data updated", Toast.LENGTH_LONG).show();
                 }
@@ -149,10 +154,7 @@ public class StudentEditProfileActivity extends AppCompatActivity {
 
                 }
             });
+            return true;
         }
-
-
     }
-
-
 }

@@ -43,10 +43,9 @@ public class Child extends User{
 
     public boolean getIsSick() { return this.isSick; }
 
-    public void setAllData(String userName, String teacherName, String parentName, String bloodType, String contactNumber,
+    public void setAllData(String userName, String parentName, String bloodType, String contactNumber,
         String contactMail, String address, String medicalCondition) {
         setUsername(userName);
-        setTeacherName(teacherName);
         setParentName(parentName);
         setBloodType(bloodType);
         setContactNumber(contactNumber);
@@ -98,9 +97,9 @@ public class Child extends User{
     }
 
     public static boolean isCorrectFormOfBloodType(String bloodType) {
-        return bloodType.length() == 4 && (bloodType.charAt(0) == 'A'|| bloodType.charAt(0) == 'B' || bloodType.charAt(0) == '0'
+        return bloodType.length() == 5 && (bloodType.charAt(0) == 'A'|| bloodType.charAt(0) == 'B' || bloodType.charAt(0) == '0'
                     || bloodType.charAt(1) == 'A'|| bloodType.charAt(1) == 'B' || bloodType.charAt(1) == '0'
-                    && bloodType.substring(2).equalsIgnoreCase("rh"));
+                    && bloodType.substring(2).equalsIgnoreCase("rh") && bloodType.charAt(4) == '+' || bloodType.charAt(4) == '-');
     }
 
     public static boolean isCorrectFormOfContactNumber(String contactNumber) {
