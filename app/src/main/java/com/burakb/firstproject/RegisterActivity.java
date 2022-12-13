@@ -24,7 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText userName, password, passwordCheck, email; //schoolName may be with scrollbar
+    private EditText userName, password, passwordCheck, email;
     private Button submit;
     private RadioButton studentRatio,teacherRatio;
     private RadioGroup group;
@@ -107,7 +107,7 @@ public class RegisterActivity extends AppCompatActivity {
                             mData.child("Students").child(mAuth.getInstance().getCurrentUser().getUid()).setValue(child);
                         }
                         else if(teacherRatio.isChecked()) {
-                            Teacher teacher = new Teacher(name, mail, psw);
+                            Teacher teacher = new Teacher(name, mail, psw, "");
                             mData.child("Teachers").child(mAuth.getInstance().getCurrentUser().getUid()).setValue(teacher);
                         }
                         startActivity(new Intent(RegisterActivity.this, LoginActivity.class));

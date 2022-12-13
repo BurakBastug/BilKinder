@@ -19,6 +19,8 @@
         <activity android:name=".StudentEditProfileActivity"></activity>
         <activity android:name=".StudentHomeActivity"></activity>
         <activity android:name=".StudentProfileActivity"></activity>
+        <activity android:name=".TeacherProfileActivity"></activity>
+        <activity android:name=".TeacherEditProfileActivityProfileActivity"></activity>
 
         <activity
             android:name=".MainActivity"
