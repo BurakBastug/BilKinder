@@ -2,7 +2,9 @@ package com.burakb.firstproject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
+import android.text.method.DigitsKeyListener;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -52,6 +54,10 @@ public class StudentEditProfileActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mData = FirebaseDatabase.getInstance("https://bilkinderdata-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
         mUser = mAuth.getCurrentUser();
+
+        txtContactNum.setInputType(InputType.TYPE_CLASS_NUMBER );
+        txtContactNum.setKeyListener(DigitsKeyListener.getInstance("0123456789"));
+        txtContactNum.setSingleLine(true);
 
         mData.addValueEventListener(new ValueEventListener() {
             @Override
@@ -110,34 +116,35 @@ public class StudentEditProfileActivity extends AppCompatActivity {
         String contactMail = txtContactMailAddress.getText().toString();
         String address = txtHomeAddress.getText().toString();
         String healthConditions = txtSpecialHealthConditions.getText().toString();
+        boolean isEnoughData = true;
 
         if(TextUtils.isEmpty(studentName)) {
             txtStuName.setError("Student name cannot be empty");
-            return false;
+            isEnoughData = false;
         }
         if(TextUtils.isEmpty(parentName)) {
             txtParentName.setError("Parent name cannot be empty");
-            return false;
+            isEnoughData = false;
         }
         if(!Child.isCorrectFormOfBloodType(bloodType)) { // it can be optional by removing if statement
             txtBloodType.setError("Type like the form ABRh+");
-            return false;
+            isEnoughData = false;
         }
-        if(!Child.isCorrectFormOfContactNumber(contactNumber)) { // it can be optional removing if statement
+        if(!User.isCorrectFormOfContactNumber(contactNumber)) { // it can be optional removing if statement
             txtContactNum.setError("Type as the form 0XXXXXXXXXX");
-            return false;
+            isEnoughData = false;
         }
         if(TextUtils.isEmpty(contactMail)) { // it can be optional removing if statement
             txtContactMailAddress.setError("Contact mail is required");
-            return false;
+            isEnoughData = false;
         }
         if(TextUtils.isEmpty(address)) { // it can be optional removing if statement
             txtHomeAddress.setError("Address is required");
-            return false;
+            isEnoughData = false;
         }
         if(TextUtils.isEmpty(healthConditions)) { // it can be optional removing if statement
             txtSpecialHealthConditions.setError("Health conditions ,s required");
-            return false;
+            isEnoughData = false;
         }
         else {
             mData.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -154,7 +161,7 @@ public class StudentEditProfileActivity extends AppCompatActivity {
 
                 }
             });
-            return true;
         }
+        return isEnoughData;
     }
 }

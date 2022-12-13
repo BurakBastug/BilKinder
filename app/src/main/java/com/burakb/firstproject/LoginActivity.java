@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                                             //finds the location of current user in the database and checks whether the user was initialized or not. teacherName = "" by default
                                             //if there is no info about the child, the app is redirected to StartEditProfileActivity.
                                             //
-                                            if(snapshot.child("Students").child(mAuth.getInstance().getCurrentUser().getUid()).child("teacherName").getValue(String.class).equals("")) {
+                                            if(snapshot.child("Students").child(mAuth.getInstance().getCurrentUser().getUid()).child("userName").getValue(String.class).equals("")) {
                                                 startActivity(new Intent(LoginActivity.this, StartEditProfileActivity.class));
                                             }
                                             else {
@@ -81,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                                             //finds the location of current user in the database and checks whether the user was initialized or not. age = 0 by default
                                             //if there is no info about the child, the app is redirected to StartEditProfileActivity.
 
-                                            if(snapshot.child("Teachers").child(mAuth.getInstance().getCurrentUser().getUid()).child("age").getValue(Integer.class) == 0) {
+                                            if(snapshot.child("Teachers").child(mAuth.getInstance().getCurrentUser().getUid()).child("address").getValue(String.class).equals("") ) {
                                                 startActivity(new Intent(LoginActivity.this, StartEditProfileActivity.class));
                                             }
                                             else {

@@ -5,10 +5,10 @@ import android.media.Image;
 import java.util.ArrayList;
 
 public class Teacher extends User {
-    private ArrayList<String> studentList;
-    private int age = 0;
-    private ArrayList<Event> createdEvents;
 
+    private String age;
+    private ArrayList<String> studentList;
+    private ArrayList<Event> createdEvents;
 
     public Teacher(){
 
@@ -19,25 +19,27 @@ public class Teacher extends User {
         this.studentList = new ArrayList<String>();
         this.createdEvents = new ArrayList<Event>();
         this.studentList.add("");
+        this.age = "";
     }
 
-
-
+    public void setTeacherData(String age, String address, String contactNum, String contactMail) {
+        setAge(age);
+        setAddress(address);
+        setTelNum(contactNum);
+        setEmail(contactMail);
+    }
 
     public void setStudentList(ArrayList<String> studentList) {
         this.studentList = studentList;
     }
 
-
     public ArrayList<String> getStudentList(){
         return this.studentList;
     }
-    public int getAge(){
-        return this.age;
-    }
 
+    public String getAge(){return this.age;}
 
-    public void setAge(int age){
+    public void setAge(String age) {
         this.age = age;
     }
 
@@ -45,8 +47,6 @@ public class Teacher extends User {
         Event event = new Event(name,description,image);
         this.createdEvents.add(event);
     }
-
-
 
     public String toString(){
         return this.getUsername();

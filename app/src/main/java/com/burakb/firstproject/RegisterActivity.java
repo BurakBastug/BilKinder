@@ -48,7 +48,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
 
-        userName = findViewById(R.id.fullname);
+        userName = findViewById(R.id.teacherName);
         password = findViewById(R.id.password);
         passwordCheck = findViewById(R.id.passwordagain);
         email = findViewById(R.id.email);

@@ -4,14 +4,13 @@ import java.util.ArrayList;
 
 public class Child extends User{
 
-    private String teacherName = "";
-    private String parentName = "";
-    private String bloodType= "";
-    private String contactNumber= "";
-    private String contactMail= "";
-    private String address= "";
-    private String medicalCondition= "";
-    private boolean isSick = false;
+    private String teacherName;
+    private String parentName;
+    private String bloodType;
+    private String contactNumber;
+    private String contactMail;
+    private String medicalCondition;
+    private boolean isSick;
     private ArrayList<Event> allowedEvents;
 
     public Child(){
@@ -20,6 +19,13 @@ public class Child extends User{
     public Child(String username,String password, String email){
         super(username,password,email);
         this.allowedEvents = new ArrayList<>();
+        teacherName = "";
+        parentName = "";
+        bloodType = "";
+        contactNumber = "";
+        contactMail = "";
+        medicalCondition = "";
+        isSick = false;
     }
     public String getTeacherName() { return this.teacherName; }
 
@@ -32,8 +38,6 @@ public class Child extends User{
     public String getContactNumber() { return this.contactNumber; }
 
     public String getContactMail() { return this.contactMail; }
-
-    public String getAddress() { return this.address; }
 
     public String getMedicalCondition(){
         return this.medicalCondition;
@@ -68,8 +72,6 @@ public class Child extends User{
 
     public void setContactMail(String contactMail) { this.contactMail = contactMail; }
 
-    public void setAddress(String address) { this.address = address; }
-
     public void setBloodType(String bloodType){
         if(isCorrectFormOfBloodType(bloodType)) {
                 this.bloodType = bloodType;
@@ -100,11 +102,6 @@ public class Child extends User{
         return bloodType.length() == 5 && (bloodType.charAt(0) == 'A'|| bloodType.charAt(0) == 'B' || bloodType.charAt(0) == '0'
                     || bloodType.charAt(1) == 'A'|| bloodType.charAt(1) == 'B' || bloodType.charAt(1) == '0'
                     && bloodType.substring(2).equalsIgnoreCase("rh") && bloodType.charAt(4) == '+' || bloodType.charAt(4) == '-');
-    }
-
-    public static boolean isCorrectFormOfContactNumber(String contactNumber) {
-        return (contactNumber.length() == 10 && contactNumber.charAt(0) != '0') ||
-                (contactNumber.length() == 11 && contactNumber.charAt(0) == '0');
     }
 
     public String toString(){
