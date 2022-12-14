@@ -82,7 +82,7 @@ public class StudentProfileActivity extends AppCompatActivity {
                 startActivity(new Intent(StudentProfileActivity.this, StudentEditProfileActivity.class));
             }
         });
-        currentlySickButton.setOnClickListener(new View.OnClickListener() {
+        /**currentlySickButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mData.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -95,16 +95,37 @@ public class StudentProfileActivity extends AppCompatActivity {
                         else if (tmp.getIsSick()==true) {
                             tmp.setIsSick(false);
                         }
-                        if(tmp.getIsSick()) {
-                            currentlySickButton.setBackgroundColor(getResources().getColor(R.color.purple_200));
-                            currentlySickButton.setText("Currently Sick");
-                            System.out.println("kırmızı");
 
+                        mData.child("Students").child(mUser.getUid()).setValue(tmp);
+
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        return;
+                    }
+
+
+                });
+            }
+        });*/
+
+    }
+    public void btn_click (View view){
+        switch (view.getId()) {
+
+            case R.id.sickbtn:
+                mData.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        Child tmp = snapshot.child("Students").child(mUser.getUid()).getValue(Child.class);
+                        if (tmp.getIsSick()==false){
+                            tmp.setIsSick(true);
                         }
-                        else {
-                            currentlySickButton.setBackgroundColor(getResources().getColor(R.color.teal_200));
-                            currentlySickButton.setText("Currently Not Sick");
-                            System.out.println("yeşil");
+                        else if (tmp.getIsSick()==true) {
+                            tmp.setIsSick(false);
                         }
 
                         mData.child("Students").child(mUser.getUid()).setValue(tmp);
@@ -113,14 +134,27 @@ public class StudentProfileActivity extends AppCompatActivity {
 
                     }
 
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-
+                        return;
                     }
-                });
-            }
-        });
 
+
+                });
+
+                if (currentlySickButton.getText().equals("Currently Not Sick")){
+                    currentlySickButton.setBackgroundColor(Color.RED);
+                    currentlySickButton.setText("Currently Sick");
+                }
+                else if(currentlySickButton.getText().equals("Currently Sick")) {
+                    currentlySickButton.setBackgroundColor(Color.GREEN);
+                    currentlySickButton.setText("Currently Not Sick");
+                }
+                break;
+
+
+        }
     }
+
+
 }
