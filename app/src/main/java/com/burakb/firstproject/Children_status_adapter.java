@@ -1,11 +1,13 @@
 package com.burakb.firstproject;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,10 +33,16 @@ public class Children_status_adapter extends RecyclerView.Adapter<Children_statu
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         //holder.image.setImageResource(list.get(position).getImg());
         holder.name.setText(list.get(position).getUsername());
         holder.condition.setText(list.get(position).getSickOrNot());
+        holder.parent_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, list.get(position).getUsername(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
