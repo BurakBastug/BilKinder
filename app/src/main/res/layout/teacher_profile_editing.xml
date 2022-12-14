@@ -95,18 +95,6 @@
         app:layout_constraintVertical_bias="0.539" />
 
     <EditText
-        android:id="@+id/teacherContactNumber2"
-        android:layout_width="258dp"
-        android:layout_height="39dp"
-        android:text="Teacher Contact Number"
-        android:textColor="@color/black"
-        android:textSize="7pt"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.039"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
         android:id="@+id/teacherMail"
         android:layout_width="256dp"
         android:layout_height="41dp"
