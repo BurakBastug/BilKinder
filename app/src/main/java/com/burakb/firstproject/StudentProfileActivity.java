@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +36,7 @@ public class StudentProfileActivity extends AppCompatActivity implements BottomN
     private DatabaseReference mData;
     private FirebaseUser mUser;
     BottomNavigationView bottomNavigationView;
+    private CheckBox checkIsSick;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,6 +52,7 @@ public class StudentProfileActivity extends AppCompatActivity implements BottomN
         txtContactMail = findViewById(R.id.contactMail);
         txtAddress = findViewById(R.id.address);
         txtMedicalCondition = findViewById(R.id.healthIssues);
+        checkIsSick = findViewById(R.id.checkBox);
         
         editButton = findViewById(R.id.editbtn);
 
@@ -59,6 +62,36 @@ public class StudentProfileActivity extends AppCompatActivity implements BottomN
         mAuth = FirebaseAuth.getInstance();
         mData = FirebaseDatabase.getInstance("https://bilkinderdata-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
         mUser = mAuth.getCurrentUser();
+        mData.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Child tmp = snapshot.child("Students").child(mUser.getUid()).getValue(Child.class);
+                checkIsSick.setChecked(tmp.getIsSick());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        checkIsSick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mData.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        Child tmp = snapshot.child("Students").child(mUser.getUid()).getValue(Child.class);
+                        tmp.setIsSick(checkIsSick.isChecked());
+                        mData.child("Students").child(mUser.getUid()).setValue(tmp);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
 
         mData.addValueEventListener(new ValueEventListener() {
             @Override
