@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+        startActivity(new Intent(MainActivity.this, ChildrenStatusActivity.class));
 
     }
 

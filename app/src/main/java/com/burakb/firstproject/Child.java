@@ -11,6 +11,7 @@ public class Child extends User{
     private String contactMail;
     private String medicalCondition;
     private boolean isSick;
+    private String sickOrNot;
     private ArrayList<Event> allowedEvents;
 
     public Child(){
@@ -26,6 +27,7 @@ public class Child extends User{
         contactMail = "";
         medicalCondition = "";
         isSick = false;
+        sickOrNot = "We don't know yet";
     }
     public String getTeacherName() { return this.teacherName; }
 
@@ -47,8 +49,12 @@ public class Child extends User{
 
     public boolean getIsSick() { return this.isSick; }
 
+    public String getSickOrNot() {
+        return this.sickOrNot;
+    }
+
     public void setAllData(String userName, String parentName, String bloodType, String contactNumber,
-        String contactMail, String address, String medicalCondition) {
+                           String contactMail, String address, String medicalCondition) {
         setUsername(userName);
         setParentName(parentName);
         setBloodType(bloodType);
