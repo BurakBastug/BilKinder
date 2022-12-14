@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     android:id="@+id/parent_layout"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+    android:background="@drawable/row_area"
     android:orientation="horizontal"
-    android:padding="5dp">
+    android:padding="5dp"
+    android:rotationX="-14">
 
     <ImageView
         android:id="@+id/event_image"
@@ -16,11 +17,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:background="@drawable/row_area"
+        android:orientation="vertical"
+        android:paddingLeft="40dp">
+
 
         <TextView
             android:id="@+id/event_name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="2dp"
             android:textColor="@color/black"
@@ -29,15 +33,13 @@
 
         <TextView
             android:id="@+id/event_desc"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="2dp"
             android:textColor="@color/black"
             android:textSize="14sp" />
 
     </LinearLayout>
-
-
 
 
 </LinearLayout>
