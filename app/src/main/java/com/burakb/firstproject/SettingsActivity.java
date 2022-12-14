@@ -44,7 +44,7 @@ public class SettingsActivity extends AppCompatActivity implements BottomNavigat
         mData = FirebaseDatabase.getInstance("https://bilkinderdata-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
         nData = FirebaseDatabase.getInstance("https://bilkinderdata-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Events");
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        bottomNavigationView.setOnNavigationItemSelectedListener((BottomNavigationView.OnNavigationItemSelectedListener) this);
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
 
 
@@ -115,7 +115,7 @@ public class SettingsActivity extends AppCompatActivity implements BottomNavigat
                     }
                 });
                 break;
-            case R.id.home:
+            case R.id.homee:
                 mData.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {

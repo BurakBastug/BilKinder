@@ -110,7 +110,7 @@ public class FeedActivity extends AppCompatActivity implements BottomNavigationV
                     }
                 });
                 break;
-            case R.id.home:
+            case R.id.homee:
                 nData.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {

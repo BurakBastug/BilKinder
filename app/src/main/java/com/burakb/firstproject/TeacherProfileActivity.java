@@ -2,6 +2,7 @@ package com.burakb.firstproject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -20,8 +22,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class TeacherProfileActivity extends AppCompatActivity {
-
+public class TeacherProfileActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+    BottomNavigationView bottomNavigationView;
     private ImageView profileImage;
     private TextView txtTeacherName, txtClassAndNumOfStu, txtTeacherAge, txtAddress, txtTeacherContactNum, txtTeacherContactMail;
     private Button editButton, profileButton, homeButton, menuButton;
@@ -41,11 +43,14 @@ public class TeacherProfileActivity extends AppCompatActivity {
         txtAddress = findViewById(R.id.teacherAddress);
         txtTeacherContactNum = findViewById(R.id.teacherContactNumber);
         txtTeacherContactMail = findViewById(R.id.teacherContactMail);
-
+        //bottomNavigationView = findViewById(R.id.bottomNavigationView);
         editButton = findViewById(R.id.editButton);
         //profileButton = findViewById(R.id.profilebtn);
         //homeButton = findViewById(R.id.homebtn);
         //menuButton = findViewById(R.id.menubtn);
+
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
         mAuth = FirebaseAuth.getInstance();
         mData = FirebaseDatabase.getInstance("https://bilkinderdata-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
@@ -76,24 +81,26 @@ public class TeacherProfileActivity extends AppCompatActivity {
                 startActivity(new Intent(TeacherProfileActivity.this, TeacherEditProfileActivity.class));
             }
         });
-        profileButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(TeacherProfileActivity.this, "Already in profile page", Toast.LENGTH_SHORT).show();
-            }
-        });
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: 13.12.2022 uncomment following code when TeacherHomeActivity class is ready
-                //startActivity(new Intent(TeacherProfileActivity.this, TeacherHomeActivity.class));
-            }
-        });
-        menuButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: 13.12.2022 implement menu button
-            }
-        });
+
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case R.id.homee:
+                mData.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        startActivity(new Intent(TeacherProfileActivity.this, TeacherHomeActivity.class));
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+        }
+        return false;
     }
 }
