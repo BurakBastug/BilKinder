@@ -2,26 +2,34 @@ package com.burakb.firstproject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-public class TeacherHomeActivity extends AppCompatActivity {
+public class TeacherHomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     Button openNavBar, navBarReturnHome, navBarProfile, aboutUs, askForPermission,
         viewWeeklyMenu, viewWeeklySchedule, viewStudent, privateChat, myProfile,feed,
         startaPoll;
 
+
+
     FirebaseAuth mAuth;
     FirebaseUser mUser;
     DatabaseReference mData;
-
+    BottomNavigationView bottomNavigationView;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
@@ -40,6 +48,8 @@ public class TeacherHomeActivity extends AppCompatActivity {
         myProfile = findViewById(R.id.announce);
         feed = findViewById(R.id.feed);
         startaPoll = findViewById(R.id.startAPoll);
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
@@ -100,5 +110,28 @@ public class TeacherHomeActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case R.id.profile:
+                mData.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        startActivity(new Intent(TeacherHomeActivity.this, TeacherProfileActivity.class));
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                break;
+        }
+        return false;
     }
 }

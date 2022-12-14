@@ -44,7 +44,7 @@ public class StartEditProfileActivity extends AppCompatActivity {
                             startActivity(new Intent(StartEditProfileActivity.this, StudentEditProfileActivity.class));
                         }
                         else if(snapshot.child("Teachers").hasChild(mUser.getUid())) {
-                            //startActivity(new Intent(StartEditProfileActivity.this, TeacherEditProfileActivity.class));
+                            startActivity(new Intent(StartEditProfileActivity.this, TeacherEditProfileActivity.class));
                         }
                     }
 

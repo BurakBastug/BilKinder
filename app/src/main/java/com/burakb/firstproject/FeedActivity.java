@@ -109,6 +109,31 @@ public class FeedActivity extends AppCompatActivity implements BottomNavigationV
 
                     }
                 });
+                break;
+            case R.id.home:
+                nData.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.child("Students").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
+                            startActivity(new Intent(FeedActivity.this, StudentHomeActivity.class));
+                            System.out.println("öğrenci");
+
+                        }
+                        else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
+                            startActivity(new Intent(FeedActivity.this, TeacherHomeActivity.class));
+                            System.out.println("hoca");
+                        }
+                        System.out.println("method");
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                break;
+
 
         }
     }
