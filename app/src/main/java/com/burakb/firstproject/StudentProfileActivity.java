@@ -50,7 +50,7 @@ public class StudentProfileActivity extends AppCompatActivity {
         txtMedicalCondition = findViewById(R.id.healthIssues);
         
         editButton = findViewById(R.id.editbtn);
-        currentlySickButton = findViewById(R.id.sickbtn);
+        //currentlySickButton = findViewById(R.id.sickbtn);
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -113,7 +113,7 @@ public class StudentProfileActivity extends AppCompatActivity {
         });*/
 
     }
-    public void btn_click (View view){
+    /**public void btn_click (View view){
         switch (view.getId()) {
 
             case R.id.sickbtn:
@@ -123,12 +123,14 @@ public class StudentProfileActivity extends AppCompatActivity {
                         Child tmp = snapshot.child("Students").child(mUser.getUid()).getValue(Child.class);
                         if (tmp.getIsSick()==false){
                             tmp.setIsSick(true);
+                            mData.child("Students").child(mUser.getUid()).setValue(tmp);
                         }
                         else if (tmp.getIsSick()==true) {
                             tmp.setIsSick(false);
+                            mData.child("Students").child(mUser.getUid()).setValue(tmp);
+
                         }
 
-                        mData.child("Students").child(mUser.getUid()).setValue(tmp);
 
 
 
@@ -154,7 +156,7 @@ public class StudentProfileActivity extends AppCompatActivity {
 
 
         }
-    }
+    }*/
 
 
 }
