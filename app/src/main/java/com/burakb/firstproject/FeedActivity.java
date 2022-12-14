@@ -1,7 +1,10 @@
 package com.burakb.firstproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -9,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,8 +22,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class FeedActivity extends AppCompatActivity {
-
+public class FeedActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemReselectedListener{
+    BottomNavigationView bottomNavigationView;
     ArrayList<Event> list = new ArrayList<>();
     //Event event;
     Context context = this;
@@ -28,6 +32,11 @@ public class FeedActivity extends AppCompatActivity {
     FeedAdaptor adaptor;
     private FirebaseAuth mAuth;
     private DatabaseReference mData;
+    private DatabaseReference nData;
+
+
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,8 +46,11 @@ public class FeedActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         mData = FirebaseDatabase.getInstance("https://bilkinderdata-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Events");
+        nData = FirebaseDatabase.getInstance("https://bilkinderdata-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
 
 
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemReselectedListener(this);
 
         mData.addValueEventListener(new ValueEventListener() {
             @Override
@@ -57,6 +69,10 @@ public class FeedActivity extends AppCompatActivity {
         });
 
 
+
+
+
+
     }
 
     public void createFeed(){
@@ -64,5 +80,36 @@ public class FeedActivity extends AppCompatActivity {
         adaptor = new FeedAdaptor(context,list);
         recyclerView.setAdapter(adaptor);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
+    }
+
+    @Override
+    public void onNavigationItemReselected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.profile:
+                System.out.println("basıldı");
+                nData.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.child("Students").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
+                            startActivity(new Intent(FeedActivity.this, StudentProfileActivity.class));
+                            System.out.println("öğrenci");
+
+                        }
+                        else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
+                            startActivity(new Intent(FeedActivity.this, TeacherProfileActivity.class));
+                            System.out.println("hoca");
+                        }
+                        System.out.println("method");
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+        }
     }
 }

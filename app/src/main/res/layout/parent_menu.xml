@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
 
-    android:background="@drawable/parent_menu"
+
     android:layerType="software">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -27,29 +28,29 @@
 
     <Button
         android:id="@+id/aboutUs"
-        android:layout_width="101dp"
-        android:layout_height="69dp"
+        android:layout_width="123dp"
+        android:layout_height="93dp"
         android:accessibilityLiveRegion="none"
-        android:background="@null"
-        android:text="About Us"
+        android:background="@drawable/about_us_btn"
+        android:text="About Us ?"
         android:textAllCaps="false"
         android:textColor="#000000"
-        android:textSize="7pt"
+        android:textSize="20sp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.839"
+        app:layout_constraintVertical_bias="0.895"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/notification"
         android:layout_width="206dp"
-        android:layout_height="37dp"
+        android:layout_height="48dp"
         android:accessibilityLiveRegion="none"
-        android:background="@null"
+        android:background="@drawable/half_circular_btn_left"
         android:text="Notification"
         android:textAllCaps="false"
         android:textColor="#000000"
@@ -65,9 +66,9 @@
     <Button
         android:id="@+id/weeklyMenu"
         android:layout_width="236dp"
-        android:layout_height="38dp"
+        android:layout_height="48dp"
         android:accessibilityLiveRegion="none"
-        android:background="@null"
+        android:background="@drawable/half_circular_btn_left"
         android:text="Weekly Menu"
         android:textAllCaps="false"
         android:textColor="#000000"
@@ -83,9 +84,9 @@
     <Button
         android:id="@+id/weeklySchedule"
         android:layout_width="272dp"
-        android:layout_height="39dp"
+        android:layout_height="48dp"
         android:accessibilityLiveRegion="none"
-        android:background="@null"
+        android:background="@drawable/half_circular_btn_left"
         android:text="Weekly Schedule"
         android:textAllCaps="false"
         android:textColor="#000000"
@@ -100,9 +101,9 @@
     <Button
         android:id="@+id/teacherInformation"
         android:layout_width="301dp"
-        android:layout_height="36dp"
+        android:layout_height="48dp"
         android:accessibilityLiveRegion="none"
-        android:background="@null"
+        android:background="@drawable/half_circular_btn_left"
         android:text="Teacher Information"
         android:textAllCaps="false"
         android:textColor="#000000"
@@ -118,9 +119,9 @@
     <Button
         android:id="@+id/privateChat"
         android:layout_width="251dp"
-        android:layout_height="42dp"
+        android:layout_height="48dp"
         android:accessibilityLiveRegion="none"
-        android:background="@null"
+        android:background="@drawable/half_circular_btn_left"
         android:text="Private Chat"
         android:textAllCaps="false"
         android:textColor="#000000"
@@ -136,9 +137,9 @@
     <Button
         android:id="@+id/myProfile"
         android:layout_width="236dp"
-        android:layout_height="38dp"
+        android:layout_height="48dp"
         android:accessibilityLiveRegion="none"
-        android:background="@null"
+        android:background="@drawable/half_circular_btn_left"
         android:text="My Profile"
         android:textAllCaps="false"
         android:textColor="#000000"
@@ -154,9 +155,9 @@
     <Button
         android:id="@+id/feed"
         android:layout_width="194dp"
-        android:layout_height="36dp"
+        android:layout_height="48dp"
         android:accessibilityLiveRegion="none"
-        android:background="@null"
+        android:background="@drawable/half_circular_btn_left"
         android:text="Feed"
         android:textAllCaps="false"
         android:textColor="#000000"
@@ -168,5 +169,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.156" />
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="57dp"
+        android:background="@drawable/feed"
+        android:backgroundTint="#D7FDFF"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Home"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="12dp"
+            android:paddingLeft="160dp"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

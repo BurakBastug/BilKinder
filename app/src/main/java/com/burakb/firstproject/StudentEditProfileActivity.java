@@ -82,7 +82,7 @@ public class StudentEditProfileActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(checkData())
+                if(checkData());
                     startActivity(new Intent(StudentEditProfileActivity.this, StudentHomeActivity.class));
             }
         });

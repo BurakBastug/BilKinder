@@ -6,12 +6,13 @@
         android:color="#BF66F9"/>
 
     <corners
-
-        android:radius="200dp" />
+        android:bottomLeftRadius="400dp"
+        android:topLeftRadius="400dp"
+        />
 
     <gradient
         android:type="linear"
-        android:endColor="#69CCF6"
+        android:startColor="#69CCF6"
 
 
         />

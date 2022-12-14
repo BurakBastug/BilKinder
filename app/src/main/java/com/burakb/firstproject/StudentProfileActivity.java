@@ -2,6 +2,7 @@ package com.burakb.firstproject;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,18 +21,19 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.collection.LLRBNode;
 
 public class StudentProfileActivity extends AppCompatActivity {
 
     private ImageView profileImage;
     private TextView txtStudentName, txtTeacherName, txtParentName, txtBloodType, txtContactNumber,
             txtContactMail, txtAddress, txtMedicalCondition;
-    private Button editButton, currentlySickButton, profileButton, homeButton, menuButton;
+    private Button editButton, currentlySickButton;
     private FirebaseAuth mAuth;
     private DatabaseReference mData;
     private FirebaseUser mUser;
 
-    @SuppressLint("WrongViewCast")
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,9 +51,7 @@ public class StudentProfileActivity extends AppCompatActivity {
         
         editButton = findViewById(R.id.editbtn);
         currentlySickButton = findViewById(R.id.sickbtn);
-        //profileButton = findViewById(R.id.barprofilebtn);
-        //homeButton = findViewById(R.id.barhomebtn);
-        //menuButton = findViewById(R.id.barmenubtn);
+
 
         mAuth = FirebaseAuth.getInstance();
         mData = FirebaseDatabase.getInstance("https://bilkinderdata-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
@@ -89,18 +89,30 @@ public class StudentProfileActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         Child tmp = snapshot.child("Students").child(mUser.getUid()).getValue(Child.class);
-                        tmp.setIsSick(!tmp.getIsSick());
-
+                        if (tmp.getIsSick()==false){
+                            tmp.setIsSick(true);
+                        }
+                        else if (tmp.getIsSick()==true) {
+                            tmp.setIsSick(false);
+                        }
                         if(tmp.getIsSick()) {
-                            currentlySickButton.setBackgroundColor(Color.RED);
+                            currentlySickButton.setBackgroundColor(getResources().getColor(R.color.purple_200));
                             currentlySickButton.setText("Currently Sick");
+                            System.out.println("kırmızı");
+
                         }
                         else {
-                            currentlySickButton.setBackgroundColor(Color.GREEN);
+                            currentlySickButton.setBackgroundColor(getResources().getColor(R.color.teal_200));
                             currentlySickButton.setText("Currently Not Sick");
+                            System.out.println("yeşil");
                         }
+
                         mData.child("Students").child(mUser.getUid()).setValue(tmp);
+
+
+
                     }
+
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {

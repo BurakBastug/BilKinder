@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_centerInParent="true"
     android:layout_centerHorizontal="true"
-    android:background="@drawable/register"
+    android:background="@color/white"
     android:fadingEdgeLength="50dp"
     android:layerType="software">
 
@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Teacher name"
+        android:background="@drawable/input_area"
         android:inputType="text"
         android:minHeight="48dp"
         android:textColor="@color/black"
@@ -33,6 +34,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="password"
+        android:background="@drawable/input_area"
         android:inputType="textPassword"
         android:minHeight="48dp"
         android:textColor="@color/black"
@@ -50,6 +52,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="password again"
+        android:background="@drawable/input_area"
         android:inputType="textPassword"
         android:minHeight="48dp"
         android:textColor="@color/black"
@@ -67,6 +70,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="E-mail"
+        android:background="@drawable/input_area"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:textColor="@color/black"
@@ -82,8 +86,8 @@
         android:id="@+id/submitbtn"
         android:layout_width="98dp"
         android:layout_height="52dp"
-        android:backgroundTint="@color/white"
         android:text="Submit"
+        android:background="@drawable/submit_btn"
         android:textColor="#9F9F9F"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -136,6 +140,62 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="invisible" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="180dp"
+        android:layout_height="136dp"
+        android:background="@drawable/left_top_btn"
+        android:backgroundTint="#D7FDFF"
+        android:text="Register"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0" />
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="134dp"
+        android:layout_height="136dp"
+        android:background="@drawable/right_bottom_btn"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="123dp"
+        android:layout_height="47dp"
+        android:text="Powered by Insomnia Inc."
+        android:textColor="#9F9F9F"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.055"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.981" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="238dp"
+        android:layout_height="63dp"
+        android:text="Bilkinder"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.252" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
