@@ -77,13 +77,7 @@ public class StudentProfileActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         Child tmp = snapshot.child("Students").child(mUser.getUid()).getValue(Child.class);
-
-                        if(!checkIsSick.isChecked()) {
-                            tmp.setIsSick(false);
-                        }
-                        else {
-                            tmp.setIsSick(true);
-                        }
+                        tmp.setIsSick(checkIsSick.isChecked());
                         mData.child("Students").child(mUser.getUid()).setValue(tmp);
                     }
 
