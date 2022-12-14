@@ -57,6 +57,19 @@ public class StudentProfileActivity extends AppCompatActivity {
         mData = FirebaseDatabase.getInstance("https://bilkinderdata-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
         mUser = mAuth.getCurrentUser();
 
+        mData.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Child tmp = snapshot.child("Students").child(mUser.getUid()).getValue(Child.class);
+                checkIsSick.setChecked(tmp.getIsSick());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         checkIsSick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,7 +84,6 @@ public class StudentProfileActivity extends AppCompatActivity {
                         else {
                             tmp.setIsSick(true);
                         }
-                        System.out.println(tmp.getIsSick());
                         mData.child("Students").child(mUser.getUid()).setValue(tmp);
                     }
 

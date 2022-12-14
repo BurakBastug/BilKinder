@@ -107,7 +107,6 @@ public class Child extends User{
     public String toString(){
         String formatted = "";
 
-        //formatted += "Full Name: " + this.getFirstname() + " " + this.getLastname() + "\n";
         formatted += "Blood Type: " + this.getBloodType() + "\n";
         formatted += "Medical Condition: " + this.getMedicalCondition() + "\n";
         formatted += "Parent: " + this.parentName + "\n";

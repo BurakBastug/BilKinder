@@ -28,7 +28,7 @@ public class TeacherEditProfileActivity extends AppCompatActivity {
     private ImageView image;
     private TextView txtTeacherName, txtClassAndNumberOfStudent;
     private EditText txtAge, txtAddress, txtContactNum, txtContactMail;
-    private Button saveButton, profileButton, homeButton, menuButton;
+    private Button saveButton;
 
     private DatabaseReference mData;
     private FirebaseAuth mAuth;
@@ -67,7 +67,7 @@ public class TeacherEditProfileActivity extends AppCompatActivity {
                 Teacher teacher = snapshot.child("Teachers").child(mUser.getUid()).getValue(Teacher.class);
                 // TODO: 13.12.2022 get profile image
                 txtTeacherName.setText(teacher.getUsername());
-                txtClassAndNumberOfStudent.setText(teacher.getUsername() + " " + teacher.getStudentList().size());
+                txtClassAndNumberOfStudent.setText(teacher.getUsername() + " " + (teacher.getStudentList().size()-1));
                 txtAge.setText(teacher.getAge());
                 txtAddress.setText(teacher.getAddress());
                 txtContactNum.setText(teacher.getTelNum());
@@ -83,27 +83,6 @@ public class TeacherEditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 checkTeacherData();
-            }
-        });
-        profileButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(checkTeacherData())
-                    startActivity(new Intent(TeacherEditProfileActivity.this, TeacherProfileActivity.class));
-            }
-        });
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: 13.12.2022 uncomment following codes 
-                //if(checkTeacherData())
-                    //startActivity(new Intent(TeacherEditProfileActivity.this, TeacherHomeActivity.class));
-            }
-        });
-        menuButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: 13.12.2022 implement menu button
             }
         });
     }

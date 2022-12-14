@@ -72,7 +72,6 @@ public class RegisterActivity extends AppCompatActivity {
                     Teacher teacher = teacherObject.getValue(Teacher.class);
                     teacherObjectList.add(teacher);
                     teacherUi.add(teacherObject.getKey());
-
                 }
             }
 

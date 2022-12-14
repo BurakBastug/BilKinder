@@ -5,12 +5,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class StudentHomeActivity extends AppCompatActivity {
 
@@ -60,7 +66,34 @@ public class StudentHomeActivity extends AppCompatActivity {
         teacherInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // TODO: 14.12.2022 go to its teacher
+                /*mData.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        ArrayList<Teacher> list = new ArrayList<Teacher>();
+                        ArrayList<String> teacherUI = new ArrayList<String>();
+                        Child current = snapshot.child("Students").child(mUser.getUid()).getValue(Child.class);
 
+                        for(DataSnapshot teacherObject : snapshot.getChildren()){
+                            Teacher teacher = teacherObject.getValue(Teacher.class);
+                            list.add(teacher);
+                            teacherUI.add(teacherObject.getKey());
+                        }
+
+                        for(int i=0; i<list.size(); i++) {
+                            if(current.getTeacherName().equals(list.get(i).getUsername())) {
+                                startActivity(new Intent(StudentHomeActivity.this, TeacherProfileActivity.class));
+                                break;
+                            }
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });*/
             }
         });
         weeklyMenu.setOnClickListener(new View.OnClickListener() {
