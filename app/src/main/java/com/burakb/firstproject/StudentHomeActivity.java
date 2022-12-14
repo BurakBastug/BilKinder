@@ -70,7 +70,7 @@ public class StudentHomeActivity extends AppCompatActivity implements BottomNavi
         teacherInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(StudentHomeActivity.this, TeacherProfileForStudentsActivity.class));
             }
         });
         weeklyMenu.setOnClickListener(new View.OnClickListener() {

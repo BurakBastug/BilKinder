@@ -26,6 +26,7 @@
         <activity android:name=".TeacherEditProfileActivity"></activity>
         <activity android:name=".EventCreationActivity"></activity>
         <activity android:name=".FeedActivity"></activity>
+        <activity android:name=".TeacherProfileForStudentsActivity"></activity>
 
         <activity
             android:name=".MainActivity"
