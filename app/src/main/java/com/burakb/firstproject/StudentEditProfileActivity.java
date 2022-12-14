@@ -27,7 +27,7 @@ public class StudentEditProfileActivity extends AppCompatActivity {
     private EditText txtStuName, txtParentName, txtBloodType, txtContactNum, txtContactMailAddress
             , txtHomeAddress, txtSpecialHealthConditions;
     private TextView txtTeacherName;
-    private Button saveButton, profileButton, homeButton, menuButton;
+    private Button saveButton;
     private FirebaseAuth mAuth;
     private DatabaseReference mData;
     private FirebaseUser mUser;
@@ -47,9 +47,6 @@ public class StudentEditProfileActivity extends AppCompatActivity {
         txtSpecialHealthConditions = findViewById(R.id.healthissues);
 
         saveButton = findViewById(R.id.saveButton);
-        //profileButton = findViewById(R.id.profile);
-        //homeButton = findViewById(R.id.home);
-        //menuButton = findViewById(R.id.menu);
 
         mAuth = FirebaseAuth.getInstance();
         mData = FirebaseDatabase.getInstance("https://bilkinderdata-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");

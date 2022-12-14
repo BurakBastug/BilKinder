@@ -88,8 +88,27 @@ public class TeacherEditProfileActivity extends AppCompatActivity {
                 checkTeacherData();
             }
         });
-
-
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(checkTeacherData())
+                    startActivity(new Intent(TeacherEditProfileActivity.this, TeacherProfileActivity.class));
+            }
+        });
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO: 13.12.2022 uncomment following codes 
+                //if(checkTeacherData())
+                    //startActivity(new Intent(TeacherEditProfileActivity.this, TeacherHomeActivity.class));
+            }
+        });
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO: 13.12.2022 implement menu button
+            }
+        });
     }
 
     private boolean checkTeacherData() {
@@ -128,7 +147,6 @@ public class TeacherEditProfileActivity extends AppCompatActivity {
                     teacher.setTeacherData(age, address, contactNum, contactMail);
                     mData.child("Teachers").child(mUser.getUid()).setValue(teacher);
                     Toast.makeText(TeacherEditProfileActivity.this, "Data updated", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(TeacherEditProfileActivity.this, TeacherHomeActivity.class));
                 }
 
                 @Override

@@ -72,7 +72,6 @@ public class RegisterActivity extends AppCompatActivity {
                     Teacher teacher = teacherObject.getValue(Teacher.class);
                     teacherObjectList.add(teacher);
                     teacherUi.add(teacherObject.getKey());
-
                 }
             }
 
@@ -153,8 +152,6 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
-
-
                             if(studentRatio.isChecked()) {
                                 Child child = new Child("", mail, psw);
                                 child.setTeacherName(name);
@@ -171,7 +168,6 @@ public class RegisterActivity extends AppCompatActivity {
                                 startActivity(new Intent(RegisterActivity.this,StartEditProfileActivity.class));
                                 Toast.makeText(RegisterActivity.this, "User created successfully", Toast.LENGTH_LONG).show();
                             }
-
                         }
                     }
                 });
