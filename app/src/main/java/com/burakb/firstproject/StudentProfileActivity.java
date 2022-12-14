@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,14 +22,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.database.collection.LLRBNode;
 
 public class StudentProfileActivity extends AppCompatActivity {
 
     private ImageView profileImage;
     private TextView txtStudentName, txtTeacherName, txtParentName, txtBloodType, txtContactNumber,
             txtContactMail, txtAddress, txtMedicalCondition;
-    private Button editButton, currentlySickButton;
+    private Button editButton;
+    private CheckBox checkIsSick;
     private FirebaseAuth mAuth;
     private DatabaseReference mData;
     private FirebaseUser mUser;
@@ -50,12 +51,37 @@ public class StudentProfileActivity extends AppCompatActivity {
         txtMedicalCondition = findViewById(R.id.healthIssues);
         
         editButton = findViewById(R.id.editbtn);
-        //currentlySickButton = findViewById(R.id.sickbtn);
-
+        checkIsSick = findViewById(R.id.checkBox);
 
         mAuth = FirebaseAuth.getInstance();
         mData = FirebaseDatabase.getInstance("https://bilkinderdata-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
         mUser = mAuth.getCurrentUser();
+
+        checkIsSick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mData.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        Child tmp = snapshot.child("Students").child(mUser.getUid()).getValue(Child.class);
+
+                        if(!checkIsSick.isChecked()) {
+                            tmp.setIsSick(false);
+                        }
+                        else {
+                            tmp.setIsSick(true);
+                        }
+                        System.out.println(tmp.getIsSick());
+                        mData.child("Students").child(mUser.getUid()).setValue(tmp);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
 
         mData.addValueEventListener(new ValueEventListener() {
             @Override
@@ -82,81 +108,7 @@ public class StudentProfileActivity extends AppCompatActivity {
                 startActivity(new Intent(StudentProfileActivity.this, StudentEditProfileActivity.class));
             }
         });
-        /**currentlySickButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mData.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        Child tmp = snapshot.child("Students").child(mUser.getUid()).getValue(Child.class);
-                        if (tmp.getIsSick()==false){
-                            tmp.setIsSick(true);
-                        }
-                        else if (tmp.getIsSick()==true) {
-                            tmp.setIsSick(false);
-                        }
-
-                        mData.child("Students").child(mUser.getUid()).setValue(tmp);
-
-
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        return;
-                    }
-
-
-                });
-            }
-        });*/
-
     }
-    /**public void btn_click (View view){
-        switch (view.getId()) {
-
-            case R.id.sickbtn:
-                mData.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        Child tmp = snapshot.child("Students").child(mUser.getUid()).getValue(Child.class);
-                        if (tmp.getIsSick()==false){
-                            tmp.setIsSick(true);
-                            mData.child("Students").child(mUser.getUid()).setValue(tmp);
-                        }
-                        else if (tmp.getIsSick()==true) {
-                            tmp.setIsSick(false);
-                            mData.child("Students").child(mUser.getUid()).setValue(tmp);
-
-                        }
-
-
-
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        return;
-                    }
-
-
-                });
-
-                if (currentlySickButton.getText().equals("Currently Not Sick")){
-                    currentlySickButton.setBackgroundColor(Color.RED);
-                    currentlySickButton.setText("Currently Sick");
-                }
-                else if(currentlySickButton.getText().equals("Currently Sick")) {
-                    currentlySickButton.setBackgroundColor(Color.GREEN);
-                    currentlySickButton.setText("Currently Not Sick");
-                }
-                break;
-
-
-        }
-    }*/
-
-
 }
+
+
