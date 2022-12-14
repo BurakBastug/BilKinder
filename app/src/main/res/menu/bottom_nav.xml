@@ -9,7 +9,7 @@
 
 
         />
-    <item android:id="@+id/home"
+    <item android:id="@+id/homee"
         android:title="Home"
         android:icon="@drawable/ic_baseline_home_24"
         />
