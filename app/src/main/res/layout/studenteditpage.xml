@@ -173,7 +173,7 @@
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/student_edit_photo"
         android:layout_width="120dp"
         android:layout_height="118dp"
         android:layout_marginTop="16dp"
