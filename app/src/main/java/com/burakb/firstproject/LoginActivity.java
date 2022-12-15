@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         toRegisterButton = findViewById(R.id.registerButton);
 
         mAuth = FirebaseAuth.getInstance();
-        mData = FirebaseDatabase.getInstance("https://bilkinderdata-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
+        mData = FirebaseDatabase.getInstance("https://bilkinder2data-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
 
         loginButton.setOnClickListener(new View.OnClickListener() {
 

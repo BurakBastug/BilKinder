@@ -45,8 +45,8 @@ public class FeedActivity extends AppCompatActivity implements BottomNavigationV
         recyclerView = findViewById(R.id.rec_view);
 
         mAuth = FirebaseAuth.getInstance();
-        mData = FirebaseDatabase.getInstance("https://bilkinderdata-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Events");
-        nData = FirebaseDatabase.getInstance("https://bilkinderdata-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
+        mData = FirebaseDatabase.getInstance("https://bilkinder2data-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Events");
+        nData = FirebaseDatabase.getInstance("https://bilkinder2data-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
 
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);

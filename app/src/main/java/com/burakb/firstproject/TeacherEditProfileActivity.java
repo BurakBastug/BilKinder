@@ -50,7 +50,7 @@ public class TeacherEditProfileActivity extends AppCompatActivity {
         saveButton = findViewById(R.id.saveButton);
 
         mAuth = FirebaseAuth.getInstance();
-        mData = FirebaseDatabase.getInstance("https://bilkinderdata-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
+        mData = FirebaseDatabase.getInstance("https://bilkinder2data-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
         mUser = mAuth.getCurrentUser();
 
         txtAge.setInputType(InputType.TYPE_CLASS_NUMBER );

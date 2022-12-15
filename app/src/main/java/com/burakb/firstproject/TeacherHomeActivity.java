@@ -53,7 +53,7 @@ public class TeacherHomeActivity extends AppCompatActivity implements BottomNavi
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
-        mData = FirebaseDatabase.getInstance("https://bilkinderdata-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
+        mData = FirebaseDatabase.getInstance("https://bilkinder2data-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
 
 
         aboutUs.setOnClickListener(new View.OnClickListener() {
