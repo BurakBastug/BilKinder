@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class SettingsActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
-    Button openNavBar, navBarReturnHome, navBarProfile,notifPref,edit,changePsw;
+    Button openNavBar, navBarReturnHome, navBarProfile,notifPref,edit,changePsw,logOut;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
     DatabaseReference mData, nData;
@@ -38,6 +39,7 @@ public class SettingsActivity extends AppCompatActivity implements BottomNavigat
         notifPref = findViewById(R.id.notificationPreferences);
         edit = findViewById(R.id.editProfile);
         changePsw = findViewById(R.id.changePassword);
+        logOut = findViewById(R.id.logoutBtn);
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
@@ -46,6 +48,15 @@ public class SettingsActivity extends AppCompatActivity implements BottomNavigat
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
+
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mAuth.signOut();
+                Toast.makeText(SettingsActivity.this, "User logout", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(new Intent(SettingsActivity.this, LoginActivity.class)));
+            }
+        });
 
 
         notifPref.setOnClickListener(new View.OnClickListener() {
@@ -135,6 +146,20 @@ public class SettingsActivity extends AppCompatActivity implements BottomNavigat
 
                     }
                 });
+                break;
+            case R.id.settings:
+                mData.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        startActivity(new Intent(SettingsActivity.this, SettingsActivity.class));
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                break;
         }
 
         return false;

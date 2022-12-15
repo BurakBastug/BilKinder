@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.text.method.DigitsKeyListener;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -23,7 +25,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class TeacherEditProfileActivity extends AppCompatActivity {
+public class TeacherEditProfileActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     private ImageView image;
     private TextView txtTeacherName, txtClassAndNumberOfStudent;
@@ -33,6 +35,7 @@ public class TeacherEditProfileActivity extends AppCompatActivity {
     private DatabaseReference mData;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +59,9 @@ public class TeacherEditProfileActivity extends AppCompatActivity {
         txtAge.setInputType(InputType.TYPE_CLASS_NUMBER );
         txtAge.setKeyListener(DigitsKeyListener.getInstance("0123456789"));
         txtAge.setSingleLine(true);
+
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
         txtContactNum.setInputType(InputType.TYPE_CLASS_NUMBER );
         txtContactNum.setKeyListener(DigitsKeyListener.getInstance("0123456789"));
@@ -133,5 +139,52 @@ public class TeacherEditProfileActivity extends AppCompatActivity {
             });
         }
         return isEnoughData;
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case R.id.settings:
+                mData.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        startActivity(new Intent(TeacherEditProfileActivity.this, SettingsActivity.class));
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                break;
+            case R.id.homee:
+                mData.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        startActivity(new Intent(TeacherEditProfileActivity.this, TeacherHomeActivity.class));
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                break;
+            case R.id.profile:
+                mData.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        startActivity(new Intent(TeacherEditProfileActivity.this, TeacherProfileActivity.class));
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                break;
+        }
+        return false;
     }
 }
