@@ -133,7 +133,19 @@ public class FeedActivity extends AppCompatActivity implements BottomNavigationV
                     }
                 });
                 break;
+            case R.id.settings:
+                nData.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        startActivity(new Intent(FeedActivity.this, SettingsActivity.class));
+                    }
 
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                break;
 
         }
     }

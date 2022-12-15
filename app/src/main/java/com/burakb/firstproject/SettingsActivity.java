@@ -92,7 +92,7 @@ public class SettingsActivity extends AppCompatActivity implements BottomNavigat
         changePsw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(SettingsActivity.this, ChangePasswordActivity.class));
             }
         });
 

@@ -29,6 +29,7 @@
         <activity android:name=".EventCreationActivity"></activity>
         <activity android:name=".FeedActivity"></activity>
         <activity android:name=".TeacherProfileForStudentsActivity"></activity>
+        <activity android:name=".ChangePasswordActivity"></activity>
 
         <activity
             android:name=".MainActivity"
