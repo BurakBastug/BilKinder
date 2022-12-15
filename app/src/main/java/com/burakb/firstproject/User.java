@@ -1,5 +1,7 @@
 package com.burakb.firstproject;
 
+import android.net.Uri;
+
 public class User {
     private String username;
     private String firstname;
@@ -8,7 +10,8 @@ public class User {
     private String email;
     private String telNum;
     private String address;
-    private String imageUrl;
+    private Uri imageUrl;
+    private String imageDestination;
 
     public User(){
 
@@ -22,7 +25,8 @@ public class User {
         lastname = "";
         telNum = "";
         address = "";
-        imageUrl = "";
+        imageUrl = null;
+        imageDestination = "";
     }
 
     public static boolean isCorrectFormOfContactNumber(String contactNumber) {
@@ -69,7 +73,9 @@ public class User {
 
     public String getAddress() { return this.address;}
 
-    public String getImageUrl() { return this.imageUrl; }
+    public Uri getImageUrl() { return this.imageUrl; }
+
+    public String getImageDestination() { return this.imageDestination; }
 
     public void setUsername(String username){
         this.username = username;
@@ -85,6 +91,8 @@ public class User {
 
     public void setAddress(String address) { this.address = address; }
 
-    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+    public void setImageUrl(Uri imageUrl) { this.imageUrl = imageUrl; }
+
+    public void setImageDestination(String dest) { this.imageDestination = dest; }
 }
 

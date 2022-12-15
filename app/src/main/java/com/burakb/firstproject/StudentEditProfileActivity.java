@@ -30,6 +30,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -77,7 +78,6 @@ public class StudentEditProfileActivity extends AppCompatActivity implements Bot
         mAuth = FirebaseAuth.getInstance();
         mData = FirebaseDatabase.getInstance("https://bilkinder2data-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
         mUser = mAuth.getCurrentUser();
-
         //for photo
         storage = FirebaseStorage.getInstance();
         ref = storage.getReference();
@@ -106,6 +106,13 @@ public class StudentEditProfileActivity extends AppCompatActivity implements Bot
                 txtContactMailAddress.setText(tmp.getContactMail());
                 txtHomeAddress.setText(tmp.getAddress());
                 txtSpecialHealthConditions.setText(tmp.getMedicalCondition());
+
+                ref.getFile(tmp.getImageUrl()).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                        profileImg.setImageURI(tmp.getImageUrl());
+                    }
+                });
             }
 
             @Override
@@ -121,7 +128,6 @@ public class StudentEditProfileActivity extends AppCompatActivity implements Bot
                     startActivity(new Intent(StudentEditProfileActivity.this, StudentHomeActivity.class));
             }
         });
-
     }
 
     private void choosePicture() {
@@ -134,7 +140,7 @@ public class StudentEditProfileActivity extends AppCompatActivity implements Bot
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 1 && requestCode == RESULT_OK && data != null && data.getData() != null) {
+        if(requestCode == 1 /*&& requestCode == RESULT_OK && data != null && data.getData() != null*/) {
             imageUri = data.getData();
             profileImg.setImageURI(imageUri);
             uploadPicture();
@@ -148,6 +154,20 @@ public class StudentEditProfileActivity extends AppCompatActivity implements Bot
 
         final String randomKey = UUID.randomUUID().toString();
         StorageReference r = ref.child("Images/" + randomKey);
+        mData.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User tmp = snapshot.child("Students").child(mUser.getUid()).getValue(User.class);
+                tmp.setImageDestination(randomKey);
+                tmp.setImageUrl(imageUri);
+                mData.child("Students").child(mUser.getUid()).setValue(tmp);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         r.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
