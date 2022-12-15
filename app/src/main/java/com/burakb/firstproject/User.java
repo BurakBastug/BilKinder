@@ -8,6 +8,7 @@ public class User {
     private String email;
     private String telNum;
     private String address;
+    private String imageUrl;
 
     public User(){
 
@@ -21,6 +22,7 @@ public class User {
         lastname = "";
         telNum = "";
         address = "";
+        imageUrl = "";
     }
 
     public static boolean isCorrectFormOfContactNumber(String contactNumber) {
@@ -67,6 +69,8 @@ public class User {
 
     public String getAddress() { return this.address;}
 
+    public String getImageUrl() { return this.imageUrl; }
+
     public void setUsername(String username){
         this.username = username;
     }
@@ -74,10 +78,13 @@ public class User {
     public void setPassword(String password){
         this.password = password;
     }
+
     public void setEmail(String email){
         this.email = email;
     }
 
     public void setAddress(String address) { this.address = address; }
+
+    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
 }
 
