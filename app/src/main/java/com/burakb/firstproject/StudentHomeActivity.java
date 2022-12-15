@@ -43,7 +43,7 @@ public class StudentHomeActivity extends AppCompatActivity implements BottomNavi
         //navigationBarHome = findViewById(R.id.navigatorBarReturnHome);
 
         mAuth = FirebaseAuth.getInstance();
-        mData = FirebaseDatabase.getInstance("https://bilkinderdata-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
+        mData = FirebaseDatabase.getInstance("https://bilkinder2data-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
         mUser = mAuth.getCurrentUser();
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);

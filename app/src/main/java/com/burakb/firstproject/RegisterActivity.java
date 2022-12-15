@@ -60,7 +60,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         mAuth = FirebaseAuth.getInstance();
-        mData = FirebaseDatabase.getInstance("https://bilkinderdata-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
+        mData = FirebaseDatabase.getInstance("https://bilkinder2data-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
         current = mAuth.getCurrentUser();
 
         DatabaseReference teacherReference = mData.child("Teachers");

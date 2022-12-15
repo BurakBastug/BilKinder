@@ -42,7 +42,7 @@ public class TeacherProfileForStudentsActivity extends AppCompatActivity impleme
         teacherContactMail = findViewById(R.id.teacherContactMail);
 
         mAuth = FirebaseAuth.getInstance();
-        mData = FirebaseDatabase.getInstance("https://bilkinderdata-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
+        mData = FirebaseDatabase.getInstance("https://bilkinder2data-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
         mUser = mAuth.getCurrentUser();
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
