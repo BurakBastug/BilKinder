@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "259877209741",
+    "project_id": "bilkinder2data",
+    "storage_bucket": "bilkinder2data.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:259877209741:android:434ce3c11d7b0abc9484c4",
+        "android_client_info": {
+          "package_name": "com.burakb.firstproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "259877209741-uesmhv4q4vrc60lv7dphj0gpmucsslba.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAX-6qc1GauZEbDQqq5yqjRVKSqxm939ZQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "259877209741-uesmhv4q4vrc60lv7dphj0gpmucsslba.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
