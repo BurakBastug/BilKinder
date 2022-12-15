@@ -41,20 +41,23 @@
         app:layout_constraintVertical_bias="0.200" />
 
     <Button
-        android:id="@+id/bugReport"
+        android:id="@+id/logoutBtn"
         android:layout_width="341dp"
         android:layout_height="77dp"
-        android:background="@drawable/half_circular_btn_right"
-        android:text="Bug Report"
+        android:background="@drawable/submit_btn"
+        android:text="Log Out"
+        android:drawableEnd="@drawable/ic_baseline_logout_24"
+        android:paddingRight="120dp"
+        android:drawablePadding="-110dp"
+        android:textAlignment="center"
         android:textAllCaps="false"
-        android:textColor="@color/black"
+        android:textColor="@color/red"
         android:textSize="7pt"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.430" />
+        app:layout_constraintVertical_bias="0.788" />
 
     <Button
         android:id="@+id/editProfile"
@@ -87,6 +90,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.085" />
+    <Button
+        android:id="@+id/bugReport"
+        android:layout_width="341dp"
+        android:layout_height="77dp"
+        android:background="@drawable/half_circular_btn_right"
+        android:text="Bug Report"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="7pt"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.430" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -113,4 +131,5 @@
             android:paddingLeft="140dp"/>
 
     </androidx.appcompat.widget.Toolbar>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
