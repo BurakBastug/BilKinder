@@ -70,7 +70,7 @@
     <Button
         android:id="@+id/askForPermission"
         android:layout_width="239dp"
-        android:layout_height="45dp"
+        android:layout_height="48dp"
         android:accessibilityLiveRegion="none"
         android:background="@drawable/half_circular_btn_left"
         android:text="Ask For Permission"
@@ -88,7 +88,7 @@
     <Button
         android:id="@+id/viewWeeklyMenu"
         android:layout_width="245dp"
-        android:layout_height="46dp"
+        android:layout_height="48dp"
         android:accessibilityLiveRegion="none"
         android:background="@drawable/half_circular_btn_left"
         android:text="Edit Weekly Menu"
@@ -106,7 +106,7 @@
     <Button
         android:id="@+id/viewWeeklySchedule"
         android:layout_width="275dp"
-        android:layout_height="46dp"
+        android:layout_height="48dp"
         android:accessibilityLiveRegion="none"
         android:background="@drawable/half_circular_btn_left"
         android:text="Edit Weekly Schedule"
@@ -142,7 +142,7 @@
     <Button
         android:id="@+id/privateChat"
         android:layout_width="202dp"
-        android:layout_height="43dp"
+        android:layout_height="48dp"
         android:accessibilityLiveRegion="none"
         android:background="@drawable/half_circular_btn_left"
         android:text="Private Chat"
@@ -178,7 +178,7 @@
     <Button
         android:id="@+id/feed"
         android:layout_width="100dp"
-        android:layout_height="44dp"
+        android:layout_height="48dp"
         android:accessibilityLiveRegion="none"
         android:background="@drawable/half_circular_btn_right"
         android:text="Feed"
@@ -196,7 +196,7 @@
     <Button
         android:id="@+id/startAPoll"
         android:layout_width="211dp"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:accessibilityLiveRegion="none"
         android:background="@drawable/half_circular_btn_left"
         android:text="Start A Poll"
