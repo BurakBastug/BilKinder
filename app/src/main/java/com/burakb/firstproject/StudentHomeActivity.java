@@ -117,6 +117,20 @@ public class StudentHomeActivity extends AppCompatActivity implements BottomNavi
 
                     }
                 });
+                break;
+            case R.id.settings:
+                mData.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        startActivity(new Intent(StudentHomeActivity.this, SettingsActivity.class));
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                break;
         }
         return false;
     }

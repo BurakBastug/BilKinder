@@ -102,6 +102,19 @@ public class TeacherProfileForStudentsActivity extends AppCompatActivity impleme
 
                 });
                 break;
+            case R.id.settings:
+                mData.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        startActivity(new Intent(TeacherProfileForStudentsActivity.this, SettingsActivity.class));
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                break;
         }
 
         return false;

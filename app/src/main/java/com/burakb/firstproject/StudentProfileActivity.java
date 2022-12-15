@@ -139,6 +139,20 @@ public class StudentProfileActivity extends AppCompatActivity implements BottomN
 
                     }
                 });
+                break;
+            case R.id.settings:
+                mData.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        startActivity(new Intent(StudentProfileActivity.this, SettingsActivity.class));
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                break;
         }
         return false;
     }

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.text.method.DigitsKeyListener;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,7 +38,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.UUID;
 
-public class StudentEditProfileActivity extends AppCompatActivity {
+public class StudentEditProfileActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     private EditText txtStuName, txtParentName, txtBloodType, txtContactNum, txtContactMailAddress
             , txtHomeAddress, txtSpecialHealthConditions;
@@ -52,6 +54,7 @@ public class StudentEditProfileActivity extends AppCompatActivity {
     public Uri imageUri;
     private FirebaseStorage storage;
     private StorageReference ref;
+    BottomNavigationView bottomNavigationView;
 
 
     @Override
@@ -67,6 +70,8 @@ public class StudentEditProfileActivity extends AppCompatActivity {
         txtContactMailAddress = findViewById(R.id.contactmail);
         txtHomeAddress = findViewById(R.id.address);
         txtSpecialHealthConditions = findViewById(R.id.healthissues);
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
         saveButton = findViewById(R.id.saveButton);
 
@@ -239,5 +244,68 @@ public class StudentEditProfileActivity extends AppCompatActivity {
             });
         }
         return isEnoughData;
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case R.id.profile:
+                mData.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.child("Students").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
+                            startActivity(new Intent(StudentEditProfileActivity.this, StudentProfileActivity.class));
+                            System.out.println("öğrenci");
+
+                        }
+                        else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
+                            startActivity(new Intent(StudentEditProfileActivity.this, TeacherProfileActivity.class));
+                            System.out.println("hoca");
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                break;
+            case R.id.homee:
+                mData.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.child("Students").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
+                            startActivity(new Intent(StudentEditProfileActivity.this, StudentHomeActivity.class));
+                            System.out.println("öğrenci");
+
+                        }
+                        else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
+                            startActivity(new Intent(StudentEditProfileActivity.this, TeacherHomeActivity.class));
+                            System.out.println("hoca");
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                break;
+            case R.id.settings:
+                mData.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        startActivity(new Intent(StudentEditProfileActivity.this, SettingsActivity.class));
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                break;
+        }
+        return false;
     }
 }
