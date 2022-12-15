@@ -79,7 +79,7 @@ public class StudentEditProfileActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(checkData());
+                if(checkData())
                     startActivity(new Intent(StudentEditProfileActivity.this, StudentHomeActivity.class));
             }
         });
@@ -132,7 +132,6 @@ public class StudentEditProfileActivity extends AppCompatActivity {
                     tmp.setAllData(studentName, parentName, bloodType ,contactNumber, contactMail, address, healthConditions);
                     mData.child("Students").child(mUser.getUid()).setValue(tmp);
                     Toast.makeText(StudentEditProfileActivity.this, "Data updated", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(StudentEditProfileActivity.this,StudentHomeActivity.class));
                 }
 
                 @Override

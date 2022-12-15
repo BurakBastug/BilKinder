@@ -26,7 +26,7 @@ public class TeacherProfileActivity extends AppCompatActivity implements BottomN
     BottomNavigationView bottomNavigationView;
     private ImageView profileImage;
     private TextView txtTeacherName, txtClassAndNumOfStu, txtTeacherAge, txtAddress, txtTeacherContactNum, txtTeacherContactMail;
-    private Button editButton, profileButton, homeButton, menuButton;
+    private Button editButton;
     private FirebaseAuth mAuth;
     private DatabaseReference mData;
     private FirebaseUser mUser;
@@ -43,11 +43,7 @@ public class TeacherProfileActivity extends AppCompatActivity implements BottomN
         txtAddress = findViewById(R.id.teacherAddress);
         txtTeacherContactNum = findViewById(R.id.teacherContactNumber);
         txtTeacherContactMail = findViewById(R.id.teacherContactMail);
-        //bottomNavigationView = findViewById(R.id.bottomNavigationView);
         editButton = findViewById(R.id.editButton);
-        //profileButton = findViewById(R.id.profilebtn);
-        //homeButton = findViewById(R.id.homebtn);
-        //menuButton = findViewById(R.id.menubtn);
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
@@ -62,7 +58,7 @@ public class TeacherProfileActivity extends AppCompatActivity implements BottomN
                 Teacher tmp = snapshot.child("Teachers").child(mUser.getUid()).getValue(Teacher.class);
                 // TODO: 13.12.2022 Get profile image
                 txtTeacherName.setText(tmp.getUsername());
-                txtClassAndNumOfStu.setText("Class and Number of Students: " + tmp.getUsername() + " " + tmp.getStudentList().size());
+                txtClassAndNumOfStu.setText("Class and Number of Students: " + tmp.getUsername() + " " + (tmp.getStudentList().size()-1));
                 txtTeacherAge.setText("Age: " + tmp.getAge());
                 txtAddress.setText("Address: " + tmp.getAddress());
                 txtTeacherContactNum.setText("Contact Number: " + tmp.getTelNum());

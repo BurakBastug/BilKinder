@@ -108,9 +108,8 @@ public class TeacherProfileForStudentsActivity extends AppCompatActivity impleme
     }
 
     public void setData(){
-        //System.out.println(searched.getStudentList());
         teacherName.setText(searched.getUsername());
-        classAndNumberOfSudents.setText("Student Count: " + Integer.toString(searched.getStudentList().size() - 1));
+        classAndNumberOfSudents.setText("Student Count: " + (searched.getStudentList().size() - 1));
         teacherAge.setText("Age: " + searched.getAge());
         teacherAdress.setText("Adress: " + searched.getAddress());
         teacherContactNumber.setText(searched.getTelNum());
