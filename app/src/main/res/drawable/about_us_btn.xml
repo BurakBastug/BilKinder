@@ -16,6 +16,9 @@
 
 
         />
+    <stroke
+        android:width="3dp"
+        android:color="#D9D9D9"/>
 
     <padding
         />
