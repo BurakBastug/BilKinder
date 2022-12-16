@@ -82,7 +82,7 @@ public class StudentHomeActivity extends AppCompatActivity implements BottomNavi
         weeklySchedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(StudentHomeActivity.this, WeeklyScheduleActivity.class));
+                startActivity(new Intent(StudentHomeActivity.this, WeeklyMenuActivity.class));
             }
         });
         notification.setOnClickListener(new View.OnClickListener() {

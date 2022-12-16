@@ -23,13 +23,13 @@
         <activity android:name=".SettingsActivity"></activity>
         <activity android:name=".TeacherHomeActivity"></activity>
         <activity android:name=".WeeklyMenuActivity"></activity>
-        <activity android:name=".WeeklyScheduleActivity"></activity>
         <activity android:name=".TeacherProfileActivity"></activity>
         <activity android:name=".TeacherEditProfileActivity"></activity>
         <activity android:name=".EventCreationActivity"></activity>
         <activity android:name=".FeedActivity"></activity>
         <activity android:name=".TeacherProfileForStudentsActivity"></activity>
         <activity android:name=".ChangePasswordActivity"></activity>
+        <activity android:name=".WeeklyMenuEditActivity"></activity>
 
         <activity
             android:name=".MainActivity"

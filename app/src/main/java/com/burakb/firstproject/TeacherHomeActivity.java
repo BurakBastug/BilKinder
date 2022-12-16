@@ -71,7 +71,7 @@ public class TeacherHomeActivity extends AppCompatActivity implements BottomNavi
         viewWeeklyMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(TeacherHomeActivity.this,WeeklyMenuEditActivity.class));
             }
         });
         viewWeeklySchedule.setOnClickListener(new View.OnClickListener() {
