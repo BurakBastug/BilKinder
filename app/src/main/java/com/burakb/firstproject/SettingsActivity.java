@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class SettingsActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
-    Button openNavBar, navBarReturnHome, navBarProfile,notifPref,edit,changePsw,logOut;
+    Button openNavBar, navBarReturnHome, navBarProfile,notifPref,edit,changePsw,logOut,bugReport;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
     DatabaseReference mData, nData;
@@ -40,6 +40,7 @@ public class SettingsActivity extends AppCompatActivity implements BottomNavigat
         edit = findViewById(R.id.editProfile);
         changePsw = findViewById(R.id.changePassword);
         logOut = findViewById(R.id.logoutBtn);
+        bugReport = findViewById(R.id.bugReport);
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
@@ -48,6 +49,13 @@ public class SettingsActivity extends AppCompatActivity implements BottomNavigat
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
+
+        bugReport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SettingsActivity.this,ReportActivity.class));
+            }
+        });
 
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override

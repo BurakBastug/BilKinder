@@ -3,7 +3,10 @@ package com.burakb.firstproject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +28,7 @@ public class WeeklyMenuEditActivity extends AppCompatActivity implements BottomN
     private DatabaseReference mData;
     private FirebaseUser mUser;
     private EditText meal1,meal2,meal3,meal4,meal5;
+    private Button save;
     private Teacher teacher;
     BottomNavigationView bottomNavigationView;
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,15 +51,38 @@ public class WeeklyMenuEditActivity extends AppCompatActivity implements BottomN
         meal3 = findViewById(R.id.editMeal3);
         meal4 = findViewById(R.id.editMeal4);
         meal5 = findViewById(R.id.editMeal5);
+        save = findViewById(R.id.save_btn);
 
-        String mealOne = meal1.getText().toString();
-        String mealTwo = meal2.getText().toString();
-        String mealThree =meal3.getText().toString();
-        String mealFour = meal4.getText().toString();
-        String mealFive = meal5.getText().toString();
+        mData.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                teacher = snapshot.child("Teachers").child(mUser.getUid()).getValue(Teacher.class);
+                meal1.setText(teacher.getWeeklyMenu().get("Monday"));
+                meal2.setText(teacher.getWeeklyMenu().get("Tuesday"));
+                meal3.setText(teacher.getWeeklyMenu().get("Wednesday"));
+                meal4.setText(teacher.getWeeklyMenu().get("Thursday"));
+                meal5.setText(teacher.getWeeklyMenu().get("Friday"));
+            }
 
-        setData(mealOne,mealTwo,mealThree,mealFour,mealFive);
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String mealOne = meal1.getText().toString();
+                String mealTwo = meal2.getText().toString();
+                String mealThree =meal3.getText().toString();
+                String mealFour = meal4.getText().toString();
+                String mealFive = meal5.getText().toString();
+
+                setData(mealOne,mealTwo,mealThree,mealFour,mealFive);
+
+            }
+        });
 
 
     }
@@ -73,7 +100,8 @@ public class WeeklyMenuEditActivity extends AppCompatActivity implements BottomN
                 menu.put("Friday",meal5);
                 teacher.setWeeklyMenu(menu);
                 mData.child("Teachers").child(mUser.getUid()).setValue(teacher);
-
+                Toast.makeText(WeeklyMenuEditActivity.this, "Menu saved", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(WeeklyMenuEditActivity.this,TeacherHomeActivity.class));
             }
 
             @Override

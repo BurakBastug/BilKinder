@@ -30,6 +30,7 @@
         <activity android:name=".TeacherProfileForStudentsActivity"></activity>
         <activity android:name=".ChangePasswordActivity"></activity>
         <activity android:name=".WeeklyMenuEditActivity"></activity>
+        <activity android:name=".ReportActivity"></activity>
 
         <activity
             android:name=".MainActivity"
