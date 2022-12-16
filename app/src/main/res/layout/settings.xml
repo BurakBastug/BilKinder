@@ -28,83 +28,82 @@
         android:id="@+id/notificationPreferences"
         android:layout_width="341dp"
         android:layout_height="77dp"
+        android:layout_marginBottom="36dp"
         android:background="@drawable/half_circular_btn_right"
         android:text="Notification Preferences"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="7pt"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/editProfile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.200" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/logoutBtn"
         android:layout_width="341dp"
         android:layout_height="77dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/submit_btn"
-        android:text="Log Out"
         android:drawableEnd="@drawable/ic_baseline_logout_24"
-        android:paddingRight="120dp"
         android:drawablePadding="-110dp"
+        android:paddingRight="120dp"
+        android:text="Log Out"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/red"
         android:textSize="7pt"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.788" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/editProfile"
         android:layout_width="341dp"
         android:layout_height="77dp"
+        android:layout_marginBottom="28dp"
         android:background="@drawable/half_circular_btn_left"
         android:text="Edit Profile"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="7pt"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bugReport"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.315" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/changePassword"
         android:layout_width="341dp"
         android:layout_height="77dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginBottom="50dp"
         android:background="@drawable/half_circular_btn_left"
         android:text="Change Password"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="7pt"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/notificationPreferences"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.085" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="1.0" />
+
     <Button
         android:id="@+id/bugReport"
         android:layout_width="341dp"
         android:layout_height="77dp"
+        android:layout_marginBottom="52dp"
         android:background="@drawable/half_circular_btn_right"
         android:text="Bug Report"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="7pt"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/logoutBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.430" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -122,13 +121,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingLeft="140dp"
             android:text="Settings"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="25dp"
             tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="12dp"
-            android:paddingLeft="140dp"/>
+            tools:layout_editor_absoluteY="12dp" />
 
     </androidx.appcompat.widget.Toolbar>
 
