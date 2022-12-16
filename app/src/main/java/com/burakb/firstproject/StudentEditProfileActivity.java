@@ -2,8 +2,11 @@ package com.burakb.firstproject;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.text.method.DigitsKeyListener;
@@ -19,8 +22,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,6 +40,8 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.UUID;
 
 public class StudentEditProfileActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -51,7 +57,7 @@ public class StudentEditProfileActivity extends AppCompatActivity implements Bot
 
     //for photo
     private ImageView profileImg;
-    public Uri imageUri;
+    public Uri imagePath;
     private FirebaseStorage storage;
     private StorageReference ref;
     BottomNavigationView bottomNavigationView;
@@ -78,9 +84,9 @@ public class StudentEditProfileActivity extends AppCompatActivity implements Bot
         mAuth = FirebaseAuth.getInstance();
         mData = FirebaseDatabase.getInstance("https://bilkinder2data-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
         mUser = mAuth.getCurrentUser();
+
         //for photo
         storage = FirebaseStorage.getInstance();
-        ref = storage.getReference();
 
         profileImg = findViewById(R.id.profilePic);
         profileImg.setOnClickListener(new View.OnClickListener() {
@@ -89,12 +95,11 @@ public class StudentEditProfileActivity extends AppCompatActivity implements Bot
                 choosePicture();
             }
         });
-
         txtContactNum.setInputType(InputType.TYPE_CLASS_NUMBER );
         txtContactNum.setKeyListener(DigitsKeyListener.getInstance("0123456789"));
         txtContactNum.setSingleLine(true);
 
-        mData.addValueEventListener(new ValueEventListener() {
+        mData.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Child tmp = snapshot.child("Students").child(mUser.getUid()).getValue(Child.class);
@@ -107,12 +112,23 @@ public class StudentEditProfileActivity extends AppCompatActivity implements Bot
                 txtHomeAddress.setText(tmp.getAddress());
                 txtSpecialHealthConditions.setText(tmp.getMedicalCondition());
 
-                ref.getFile(tmp.getImageUrl()).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                        profileImg.setImageURI(tmp.getImageUrl());
+                System.out.println(tmp.getImageDestination());
+                ref = storage.getReference().child("images/" + tmp.getImageDestination() + ".jpg");
+
+                if(!tmp.getImageDestination().equals("")) {
+                    try {
+                        final File localFile = File.createTempFile(tmp.getImageDestination(), "jpg");
+                        ref.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                                Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                                profileImg.setImageBitmap(bitmap);
+                            }
+                        });
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-                });
+                }
             }
 
             @Override
@@ -140,51 +156,79 @@ public class StudentEditProfileActivity extends AppCompatActivity implements Bot
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 1 /*&& requestCode == RESULT_OK && data != null && data.getData() != null*/) {
-            imageUri = data.getData();
-            profileImg.setImageURI(imageUri);
+        if(requestCode == 1 && resultCode == RESULT_OK && data != null) {
+            imagePath = data.getData();
+            getImageInImageView();
             uploadPicture();
+        }
+        else {
+            Toast.makeText(this, "Error occurred, please try again", Toast.LENGTH_SHORT).show();
         }
     }
 
+    private void getImageInImageView() {
+        Bitmap bitmap = null;
+        try {
+            bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imagePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        profileImg.setImageBitmap(bitmap);
+    }
+
     private void uploadPicture() {
-        final ProgressDialog pd = new ProgressDialog(this);
+        ProgressDialog pd = new ProgressDialog(this);
         pd.setTitle("Uploading image");
         pd.show();
-
         final String randomKey = UUID.randomUUID().toString();
-        StorageReference r = ref.child("Images/" + randomKey);
+
+        FirebaseStorage.getInstance().getReference("images/" + (randomKey + ".jpg")).putFile(imagePath).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                pd.dismiss();
+                if(task.isSuccessful()) {
+                    task.getResult().getStorage().getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Uri> task) {
+                            if(task.isSuccessful()) {
+                                updateProfilePicture(randomKey);
+                            }
+                        }
+                    });
+                    Snackbar.make(findViewById(android.R.id.content), "Image uploaded", Snackbar.LENGTH_LONG).show();
+                }
+                else {
+                    Toast.makeText(StudentEditProfileActivity.this, "Error occurred", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                double progressPercent = (100 * snapshot.getBytesTransferred()) / snapshot.getTotalByteCount();
+                pd.setMessage("Progress percent: " + (int) progressPercent + "%");
+            }
+        });
+    }
+
+    private void updateProfilePicture(String key) {
         mData.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User tmp = snapshot.child("Students").child(mUser.getUid()).getValue(User.class);
-                tmp.setImageDestination(randomKey);
-                tmp.setImageUrl(imageUri);
-                mData.child("Students").child(mUser.getUid()).setValue(tmp);
+                if(snapshot.child("Students").hasChild(mUser.getUid())) {
+                    Child tmp = snapshot.child("Students").child(mUser.getUid()).getValue(Child.class);
+                    tmp.setImageDestination(key);
+                    mData.child("Students").child(mUser.getUid()).setValue(tmp);
+                }
+                else if(snapshot.child("Teachers").hasChild(mUser.getUid())) {
+                    Teacher tmp = snapshot.child("Students").child(mUser.getUid()).getValue(Teacher.class);
+                    tmp.setImageDestination(key);
+                    mData.child("Students").child(mUser.getUid()).setValue(tmp);
+                }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
-        r.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                pd.dismiss();
-                Snackbar.make(findViewById(android.R.id.content), "Image uploaded", Snackbar.LENGTH_LONG).show();
-            }
-        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                pd.dismiss();
-                double progressPercent = (100.0 * snapshot.getBytesTransferred()) / snapshot.getTotalByteCount();
-                pd.setMessage("Progress: " + (int) progressPercent);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(StudentEditProfileActivity.this, "Failed to upload", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -256,12 +300,9 @@ public class StudentEditProfileActivity extends AppCompatActivity implements Bot
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.child("Students").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
                             startActivity(new Intent(StudentEditProfileActivity.this, StudentProfileActivity.class));
-                            System.out.println("öğrenci");
-
                         }
                         else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
                             startActivity(new Intent(StudentEditProfileActivity.this, TeacherProfileActivity.class));
-                            System.out.println("hoca");
                         }
                     }
 

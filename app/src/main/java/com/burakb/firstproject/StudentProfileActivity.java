@@ -3,6 +3,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,7 +32,7 @@ public class StudentProfileActivity extends AppCompatActivity implements BottomN
     private ImageView profileImage;
     private TextView txtStudentName, txtTeacherName, txtParentName, txtBloodType, txtContactNumber,
             txtContactMail, txtAddress, txtMedicalCondition;
-    private Button editButton, currentlySickButton;
+    private Button editButton;
     private FirebaseAuth mAuth;
     private DatabaseReference mData;
     private FirebaseUser mUser;
@@ -66,6 +67,7 @@ public class StudentProfileActivity extends AppCompatActivity implements BottomN
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Child tmp = snapshot.child("Students").child(mUser.getUid()).getValue(Child.class);
+                //profileImage.setImageURI(Uri.parse(tmp.getImageDestination()));
                 checkIsSick.setChecked(tmp.getIsSick());
             }
 
