@@ -1,12 +1,5 @@
 package com.burakb.firstproject;
 
-import android.net.Uri;
-import android.net.UrlQuerySanitizer;
-import android.widget.ImageView;
-
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-
 public class User {
     private String username;
     private String firstname;

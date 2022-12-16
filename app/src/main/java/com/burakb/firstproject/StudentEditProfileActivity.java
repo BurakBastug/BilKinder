@@ -56,10 +56,9 @@ public class StudentEditProfileActivity extends AppCompatActivity implements Bot
     private FirebaseUser mUser;
 
     //for photo
-    private ImageView profileImg;
-    public Uri imagePath;
+    private ImageView profileImage;
+    private Uri imagePath;
     private FirebaseStorage storage;
-    private StorageReference ref;
     BottomNavigationView bottomNavigationView;
 
 
@@ -88,8 +87,8 @@ public class StudentEditProfileActivity extends AppCompatActivity implements Bot
         //for photo
         storage = FirebaseStorage.getInstance();
 
-        profileImg = findViewById(R.id.profilePic);
-        profileImg.setOnClickListener(new View.OnClickListener() {
+        profileImage = findViewById(R.id.profilePic);
+        profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 choosePicture();
@@ -112,8 +111,7 @@ public class StudentEditProfileActivity extends AppCompatActivity implements Bot
                 txtHomeAddress.setText(tmp.getAddress());
                 txtSpecialHealthConditions.setText(tmp.getMedicalCondition());
 
-                System.out.println(tmp.getImageDestination());
-                ref = storage.getReference().child("images/" + tmp.getImageDestination() + ".jpg");
+                StorageReference ref = storage.getReference().child("images/" + tmp.getImageDestination() + ".jpg");
 
                 if(!tmp.getImageDestination().equals("")) {
                     try {
@@ -122,7 +120,7 @@ public class StudentEditProfileActivity extends AppCompatActivity implements Bot
                             @Override
                             public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                                 Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                                profileImg.setImageBitmap(bitmap);
+                                profileImage.setImageBitmap(bitmap);
                             }
                         });
                     } catch (IOException e) {
@@ -140,7 +138,7 @@ public class StudentEditProfileActivity extends AppCompatActivity implements Bot
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(checkData())
+                if(checkStudentData())
                     startActivity(new Intent(StudentEditProfileActivity.this, StudentHomeActivity.class));
             }
         });
@@ -173,7 +171,7 @@ public class StudentEditProfileActivity extends AppCompatActivity implements Bot
         } catch (IOException e) {
             e.printStackTrace();
         }
-        profileImg.setImageBitmap(bitmap);
+        profileImage.setImageBitmap(bitmap);
     }
 
     private void uploadPicture() {
@@ -214,16 +212,9 @@ public class StudentEditProfileActivity extends AppCompatActivity implements Bot
         mData.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.child("Students").hasChild(mUser.getUid())) {
-                    Child tmp = snapshot.child("Students").child(mUser.getUid()).getValue(Child.class);
-                    tmp.setImageDestination(key);
-                    mData.child("Students").child(mUser.getUid()).setValue(tmp);
-                }
-                else if(snapshot.child("Teachers").hasChild(mUser.getUid())) {
-                    Teacher tmp = snapshot.child("Students").child(mUser.getUid()).getValue(Teacher.class);
-                    tmp.setImageDestination(key);
-                    mData.child("Students").child(mUser.getUid()).setValue(tmp);
-                }
+                Child tmp = snapshot.child("Students").child(mUser.getUid()).getValue(Child.class);
+                tmp.setImageDestination(key);
+                mData.child("Students").child(mUser.getUid()).setValue(tmp);
             }
 
             @Override
@@ -233,7 +224,7 @@ public class StudentEditProfileActivity extends AppCompatActivity implements Bot
         });
     }
 
-    private boolean checkData() {
+    private boolean checkStudentData() {
         String studentName = txtStuName.getText().toString();
         String parentName = txtParentName.getText().toString();
         String bloodType = txtBloodType.getText().toString();
@@ -295,56 +286,59 @@ public class StudentEditProfileActivity extends AppCompatActivity implements Bot
         int id = item.getItemId();
         switch (id){
             case R.id.profile:
-                mData.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if(snapshot.child("Students").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
-                            startActivity(new Intent(StudentEditProfileActivity.this, StudentProfileActivity.class));
+                if(checkStudentData()) {
+                    mData.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if(snapshot.child("Students").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
+                                startActivity(new Intent(StudentEditProfileActivity.this, StudentProfileActivity.class));
+                            }
+                            else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
+                                startActivity(new Intent(StudentEditProfileActivity.this, TeacherProfileActivity.class));
+                            }
                         }
-                        else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
-                            startActivity(new Intent(StudentEditProfileActivity.this, TeacherProfileActivity.class));
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
                         }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                    });
+                }
                 break;
             case R.id.homee:
-                mData.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if(snapshot.child("Students").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
-                            startActivity(new Intent(StudentEditProfileActivity.this, StudentHomeActivity.class));
-                            System.out.println("öğrenci");
+                if(checkStudentData()) {
+                    mData.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if(snapshot.child("Students").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
+                                startActivity(new Intent(StudentEditProfileActivity.this, StudentHomeActivity.class));
+                            }
+                            else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
+                                startActivity(new Intent(StudentEditProfileActivity.this, TeacherHomeActivity.class));
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
 
                         }
-                        else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
-                            startActivity(new Intent(StudentEditProfileActivity.this, TeacherHomeActivity.class));
-                            System.out.println("hoca");
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                    });
+                }
                 break;
             case R.id.settings:
-                mData.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        startActivity(new Intent(StudentEditProfileActivity.this, SettingsActivity.class));
-                    }
+                if(checkStudentData()) {
+                    mData.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            startActivity(new Intent(StudentEditProfileActivity.this, SettingsActivity.class));
+                        }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
 
-                    }
-                });
+                        }
+                    });
+                }
                 break;
         }
         return false;

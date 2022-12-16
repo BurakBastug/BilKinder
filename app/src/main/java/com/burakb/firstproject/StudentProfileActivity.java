@@ -1,9 +1,8 @@
 package com.burakb.firstproject;
-import android.annotation.SuppressLint;
+
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,12 +10,12 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,7 +24,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.database.collection.LLRBNode;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.io.File;
+import java.io.IOException;
 
 public class StudentProfileActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -36,6 +40,7 @@ public class StudentProfileActivity extends AppCompatActivity implements BottomN
     private FirebaseAuth mAuth;
     private DatabaseReference mData;
     private FirebaseUser mUser;
+    private FirebaseStorage storage;
     BottomNavigationView bottomNavigationView;
     private CheckBox checkIsSick;
 
@@ -63,11 +68,29 @@ public class StudentProfileActivity extends AppCompatActivity implements BottomN
         mAuth = FirebaseAuth.getInstance();
         mData = FirebaseDatabase.getInstance("https://bilkinder2data-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
         mUser = mAuth.getCurrentUser();
+        storage = FirebaseStorage.getInstance();
+
         mData.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Child tmp = snapshot.child("Students").child(mUser.getUid()).getValue(Child.class);
-                //profileImage.setImageURI(Uri.parse(tmp.getImageDestination()));
+                StorageReference ref = storage.getReference().child("images/" + tmp.getImageDestination() + ".jpg");
+
+                //for getting profile image from storage and set the ImageView object
+                if(!tmp.getImageDestination().equals("")) {
+                    try {
+                        final File localFile = File.createTempFile(tmp.getImageDestination(), "jpg");
+                        ref.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                                Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                                profileImage.setImageBitmap(bitmap);
+                            }
+                        });
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
                 checkIsSick.setChecked(tmp.getIsSick());
             }
 

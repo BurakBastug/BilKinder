@@ -1,18 +1,20 @@
 package com.burakb.firstproject;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,6 +23,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.io.File;
+import java.io.IOException;
 
 public class TeacherProfileActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     BottomNavigationView bottomNavigationView;
@@ -30,6 +38,7 @@ public class TeacherProfileActivity extends AppCompatActivity implements BottomN
     private FirebaseAuth mAuth;
     private DatabaseReference mData;
     private FirebaseUser mUser;
+    FirebaseStorage storage;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,18 +60,34 @@ public class TeacherProfileActivity extends AppCompatActivity implements BottomN
         mAuth = FirebaseAuth.getInstance();
         mData = FirebaseDatabase.getInstance("https://bilkinder2data-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
         mUser = mAuth.getCurrentUser();
+        storage = FirebaseStorage.getInstance();
 
         mData.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Teacher tmp = snapshot.child("Teachers").child(mUser.getUid()).getValue(Teacher.class);
-                // TODO: 13.12.2022 Get profile image
                 txtTeacherName.setText(tmp.getUsername());
                 txtClassAndNumOfStu.setText("Class and Number of Students: " + tmp.getUsername() + " " + (tmp.getStudentList().size()-1));
                 txtTeacherAge.setText("Age: " + tmp.getAge());
                 txtAddress.setText("Address: " + tmp.getAddress());
                 txtTeacherContactNum.setText("Contact Number: " + tmp.getTelNum());
                 txtTeacherContactMail.setText("Contact Mail:" + tmp.getEmail());
+
+                StorageReference ref = storage.getReference().child("images/" + tmp.getImageDestination() + ".jpg");
+                if(!tmp.getImageDestination().equals("")) {
+                    try {
+                        final File localFile = File.createTempFile(tmp.getImageDestination(), "jpg");
+                        ref.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                                Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                                profileImage.setImageBitmap(bitmap);
+                            }
+                        });
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
 
             @Override
