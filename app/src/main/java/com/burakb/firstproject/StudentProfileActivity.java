@@ -82,6 +82,13 @@ public class StudentProfileActivity extends AppCompatActivity implements BottomN
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         Child tmp = snapshot.child("Students").child(mUser.getUid()).getValue(Child.class);
                         tmp.setIsSick(checkIsSick.isChecked());
+                        if(checkIsSick.isChecked()){
+                            tmp.setMedicalCondition("Currently sick");
+                        }
+                        else{
+                            tmp.setMedicalCondition("Not sick");
+                        }
+
                         mData.child("Students").child(mUser.getUid()).setValue(tmp);
                     }
 

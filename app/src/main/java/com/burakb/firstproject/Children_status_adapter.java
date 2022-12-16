@@ -36,11 +36,12 @@ public class Children_status_adapter extends RecyclerView.Adapter<Children_statu
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         //holder.image.setImageResource(list.get(position).getImg());
         holder.name.setText(list.get(position).getUsername());
-        holder.condition.setText(list.get(position).getSickOrNot());
+        holder.condition.setText(list.get(position).getMedicalCondition());
         holder.parent_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, list.get(position).getUsername(), Toast.LENGTH_SHORT).show();
+
             }
         });
     }

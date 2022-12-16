@@ -83,7 +83,7 @@ public class TeacherHomeActivity extends AppCompatActivity implements BottomNavi
         viewStudent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(TeacherHomeActivity.this, ChildrenStatusActivity.class));
             }
         });
         privateChat.setOnClickListener(new View.OnClickListener() {
