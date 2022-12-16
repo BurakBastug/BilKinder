@@ -24,7 +24,7 @@ public class WeeklyMenuEditActivity extends AppCompatActivity implements BottomN
     private FirebaseAuth mAuth;
     private DatabaseReference mData;
     private FirebaseUser mUser;
-    private EditText edit1,edit2,edit3,edit4,edit5,meal1,meal2,meal3,meal4,meal5;
+    private EditText meal1,meal2,meal3,meal4,meal5;
     private Teacher teacher;
     BottomNavigationView bottomNavigationView;
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,17 +38,9 @@ public class WeeklyMenuEditActivity extends AppCompatActivity implements BottomN
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
-        edit1 = findViewById(R.id.editDate);
-        edit2 = findViewById(R.id.editDate2);
-        edit3 = findViewById(R.id.editDate3);
-        edit4 = findViewById(R.id.editDate4);
-        edit5 = findViewById(R.id.editDate5);
 
-        edit1.setText("Monday");
-        edit1.setText("Tuesday");
-        edit1.setText("Wednesday");
-        edit1.setText("Thursday");
-        edit1.setText("Friday");
+
+
 
         meal1 = findViewById(R.id.editMeal1);
         meal2 = findViewById(R.id.editMeal2);
