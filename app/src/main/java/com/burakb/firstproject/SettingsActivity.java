@@ -70,7 +70,7 @@ public class SettingsActivity extends AppCompatActivity implements BottomNavigat
         notifPref.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(SettingsActivity.this, NotificationActivity.class));
             }
         });
         edit.setOnClickListener(new View.OnClickListener() {

@@ -98,10 +98,11 @@ public class TeacherEditProfileActivity extends AppCompatActivity implements Bot
             }
         });
 
-        mData.addValueEventListener(new ValueEventListener() {
+        mData.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Teacher tmp = snapshot.child("Teachers").child(mUser.getUid()).getValue(Teacher.class);
+
                 txtTeacherName.setText(tmp.getUsername());
                 txtClassAndNumberOfStudent.setText("Class Name: " + tmp.getUsername() + "\nNumber of Students: " + (tmp.getStudentList().size()-1));
                 txtAge.setText(tmp.getAge());
@@ -135,6 +136,7 @@ public class TeacherEditProfileActivity extends AppCompatActivity implements Bot
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if(checkTeacherData())
                     startActivity(new Intent(TeacherEditProfileActivity.this, TeacherHomeActivity.class));
             }

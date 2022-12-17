@@ -164,6 +164,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                             else if(teacherRatio.isChecked()) {
                                 Teacher teacher = new Teacher(name, mail, psw);
+                                System.out.println(teacher.getCreatedEvents().size());
                                 mData.child("Teachers").child(mAuth.getInstance().getCurrentUser().getUid()).setValue(teacher);
                                 startActivity(new Intent(RegisterActivity.this,StartEditProfileActivity.class));
                                 Toast.makeText(RegisterActivity.this, "User created successfully", Toast.LENGTH_LONG).show();

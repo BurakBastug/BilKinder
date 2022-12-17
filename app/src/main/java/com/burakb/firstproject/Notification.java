@@ -5,33 +5,30 @@ import java.util.ArrayList;
 public class Notification {
     private String notifName;
     private String notifDetails;
-    private ArrayList<Child> allowedList;
-    private ArrayList<Child> notAllowedList;
-    private Teacher teacher;
+    private ArrayList<String> allowedList;
+    private ArrayList<String> notAllowedList;
+    private String teacher;
 
     public Notification(){
 
     }
 
-    public Notification(String name, String details, Teacher teacher){
-        allowedList = new ArrayList<>();
-        notAllowedList = new ArrayList<>();
+    public Notification(String name, String details, String teacher){
+        allowedList = new ArrayList<String>();
+        notAllowedList = new ArrayList<String>();
+        allowedList.add("");
+        notAllowedList.add("");
         this.notifName = name;
         this.notifDetails = details;
         this.teacher = teacher;
     }
-    public Notification(String name, String details){
-        allowedList = new ArrayList<>();
-        notAllowedList = new ArrayList<>();
-        this.notifName = name;
-        this.notifDetails = details;
-    }
 
-    public ArrayList<Child> getAllowedList() {
+
+    public ArrayList<String> getAllowedList() {
         return allowedList;
     }
 
-    public ArrayList<Child> getNotAllowedList() {
+    public ArrayList<String> getNotAllowedList() {
         return notAllowedList;
     }
 
@@ -43,15 +40,15 @@ public class Notification {
         return notifName;
     }
 
-    public Teacher getTeacher() {
+    public String getTeacher() {
         return teacher;
     }
 
-    public void setAllowedList(ArrayList<Child> allowedList) {
+    public void setAllowedList(ArrayList<String> allowedList) {
         this.allowedList = allowedList;
     }
 
-    public void setNotAllowedList(ArrayList<Child> notAllowedList) {
+    public void setNotAllowedList(ArrayList<String> notAllowedList) {
         this.notAllowedList = notAllowedList;
     }
 
@@ -63,7 +60,7 @@ public class Notification {
         this.notifName = notifName;
     }
 
-    public void setTeacher(Teacher teacher) {
+    public void setTeacher(String teacher) {
         this.teacher = teacher;
     }
 }

@@ -109,7 +109,7 @@
         android:layout_height="48dp"
         android:accessibilityLiveRegion="none"
         android:background="@drawable/half_circular_btn_left"
-        android:text="Edit Weekly Schedule"
+        android:text="Notification"
         android:textAllCaps="false"
         android:textColor="#000000"
         android:textSize="8pt"

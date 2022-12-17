@@ -7,7 +7,7 @@ import java.util.Date;
 public class Event {
     private String name;
     private String description;
-    private Date date;
+
     private boolean isVisible;
     //private Image image;
     //private int img;
@@ -30,9 +30,7 @@ public class Event {
     public String getDescription(){
         return this.description;
     }
-    public Date getDate(){
-        return this.date;
-    }
+
     public boolean getVisibility(){
         return this.isVisible;
     }
@@ -45,9 +43,7 @@ public class Event {
     public void setDescription(String description){
         this.description =description;
     }
-    public void setDate(Date date){
-        this.date = date;
-    }
+
     public void setVisible(boolean visible){
         this.isVisible = visible;
     }

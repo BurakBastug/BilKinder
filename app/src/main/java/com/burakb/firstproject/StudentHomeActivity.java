@@ -88,7 +88,7 @@ public class StudentHomeActivity extends AppCompatActivity implements BottomNavi
         notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(StudentHomeActivity.this,NotificationActivity.class));
             }
         });
         aboutUs.setOnClickListener(new View.OnClickListener() {

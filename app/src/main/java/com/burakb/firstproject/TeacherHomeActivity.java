@@ -65,7 +65,7 @@ public class TeacherHomeActivity extends AppCompatActivity implements BottomNavi
         askForPermission.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(TeacherHomeActivity.this, NotifCreationActivity.class));
             }
         });
         viewWeeklyMenu.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +77,7 @@ public class TeacherHomeActivity extends AppCompatActivity implements BottomNavi
         viewWeeklySchedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(TeacherHomeActivity.this, NotificationActivity.class));
             }
         });
         viewStudent.setOnClickListener(new View.OnClickListener() {

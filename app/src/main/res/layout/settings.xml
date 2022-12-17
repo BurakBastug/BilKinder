@@ -30,7 +30,7 @@
         android:layout_height="77dp"
         android:layout_marginBottom="36dp"
         android:background="@drawable/half_circular_btn_right"
-        android:text="Notification Preferences"
+        android:text="Notification"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="7pt"
