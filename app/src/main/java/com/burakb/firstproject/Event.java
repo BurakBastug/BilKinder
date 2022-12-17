@@ -9,6 +9,7 @@ public class Event {
     private String description;
 
     private boolean isVisible;
+    private String teacherName;
     //private Image image;
     //private int img;
 
@@ -17,12 +18,16 @@ public class Event {
     }
 
 
-    public Event(String name, String description){
+    public Event(String name, String description, String teacherName){
         this.name = name;
         this.description = description;
         this.isVisible = true;
+        this.teacherName = teacherName;
     }
 
+    public String getTeacherName() {
+        return teacherName;
+    }
 
     public String getName(){
         return this.name;

@@ -45,9 +45,20 @@ public class EventCreationActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         mData = FirebaseDatabase.getInstance("https://bilkinder2data-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Events");
+        mData2 = FirebaseDatabase.getInstance("https://bilkinder2data-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
 
 
+        mData2.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                current = snapshot.child("Teachers").child(mUser.getUid()).getValue(Teacher.class);
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
         submit.setOnClickListener(new View.OnClickListener() {
@@ -62,8 +73,9 @@ public class EventCreationActivity extends AppCompatActivity {
                     title.setError("Please enter the description");
                 }
                 else{
-                    Event event = new Event(eventName,eventDetails);
+                    Event event = new Event(eventName,eventDetails,current.getUsername());
                     mData.child(event.getName()).setValue(event);
+                    mData2.child("Teachers").child(mUser.getUid()).child("EventsOfTeacher").child(event.getName()).setValue(event);
                     startActivity(new Intent(EventCreationActivity.this, TeacherHomeActivity.class));
                     Toast.makeText(EventCreationActivity.this, "Event created successfully", Toast.LENGTH_LONG).show();
                 }

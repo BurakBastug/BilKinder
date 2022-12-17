@@ -9,11 +9,10 @@ public class Teacher extends User {
 
     private String age;
     private ArrayList<String> studentList;
-    private ArrayList<Event> createdEvents;
     private HashMap<String,String> weeklySchedule;
     private HashMap<String,String> weeklyMenu;
     private Notification firstNotif = new Notification("","","");
-    private  Event firstEvent = new Event("","");
+    private  Event firstEvent = new Event("","","");
 
     public Teacher(){
 
@@ -22,8 +21,6 @@ public class Teacher extends User {
     public Teacher(String username, String password, String email){
         super(username,password,email);
         this.studentList = new ArrayList<String>();
-        this.createdEvents = new ArrayList<Event>();
-        this.createdEvents.add(firstEvent);
         this.studentList.add("");
         this.age = "";
         this.weeklySchedule = new HashMap<>();
@@ -74,10 +71,7 @@ public class Teacher extends User {
         this.age = age;
     }
 
-    public void createEvent(String name, String description, Image image){
-        Event event = new Event(name,description);
-        this.createdEvents.add(event);
-    }
+
 
     public String toString(){
         return this.getUsername();
@@ -87,9 +81,7 @@ public class Teacher extends User {
         this.studentList.add(child);
     }
 
-    public ArrayList<Event> getCreatedEvents(){
-        return this.createdEvents;
-    }
+
 
 
 }

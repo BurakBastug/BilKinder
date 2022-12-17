@@ -35,6 +35,7 @@ public class NotificationActivity extends AppCompatActivity implements BottomNav
     Teacher t;
     Child c;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +46,9 @@ public class NotificationActivity extends AppCompatActivity implements BottomNav
         mUser = mAuth.getCurrentUser();
         mData = FirebaseDatabase.getInstance("https://bilkinder2data-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
         nData = FirebaseDatabase.getInstance("https://bilkinder2data-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Notifications");
+
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
         mData.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -104,6 +108,64 @@ public class NotificationActivity extends AppCompatActivity implements BottomNav
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case R.id.profile:
+                mData.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.child("Students").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
+                            startActivity(new Intent(NotificationActivity.this, StudentProfileActivity.class));
+                            System.out.println("öğrenci");
+
+                        }
+                        else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
+                            startActivity(new Intent(NotificationActivity.this, TeacherProfileActivity.class));
+                            System.out.println("hoca");
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                break;
+            case R.id.homee:
+                mData.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.child("Students").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
+                            startActivity(new Intent(NotificationActivity.this, StudentHomeActivity.class));
+                            System.out.println("öğrenci");
+
+                        }
+                        else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
+                            startActivity(new Intent(NotificationActivity.this, TeacherHomeActivity.class));
+                            System.out.println("hoca");
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                break;
+            case R.id.settings:
+                mData.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        startActivity(new Intent(NotificationActivity.this, SettingsActivity.class));
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                break;
+        }
         return false;
     }
 }
