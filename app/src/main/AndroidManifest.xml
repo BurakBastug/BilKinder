@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FirstProject"
         tools:targetApi="31">
+        <activity android:name=".NotifDetailsActivity"></activity>
         <activity android:name=".ChatListActivity"></activity>
         <activity android:name=".NotificationActivity"></activity>
         <activity android:name=".ChildrenStatusActivity"></activity>
