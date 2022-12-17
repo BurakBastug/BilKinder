@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class ChildrenStatusActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class ChildrenStatusActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, Children_status_adapter.RecyclerViewInterface {
 
     Context context = this;
     RecyclerView recyclerView;
@@ -69,7 +70,23 @@ public class ChildrenStatusActivity extends AppCompatActivity implements BottomN
     }
 
     public void create(){
-        adapter = new Children_status_adapter(context,list);
+        adapter = new Children_status_adapter(context, list, new ChildrenStatusItemListener() {
+            @Override
+            public void onItemClick(Child child) {
+                Toast.makeText(ChildrenStatusActivity.this, child.getUsername(), Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(ChildrenStatusActivity.this,StudentProfileForTeachersActivity.class);
+                intent.putExtra("username", child.getUsername());
+                intent.putExtra("parentName",child.getParentName());
+                intent.putExtra("contactNumber",child.getContactNumber());
+                intent.putExtra("bloodType",child.getBloodType());
+                intent.putExtra("address",child.getAddress());
+                intent.putExtra("healthIssues",child.getMedicalCondition());
+                intent.putExtra("contactMail",child.getContactMail());
+                intent.putExtra("teacherName",child.getTeacherName());
+
+                startActivity(intent);
+            }
+        });
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
     }
@@ -119,5 +136,17 @@ public class ChildrenStatusActivity extends AppCompatActivity implements BottomN
 
         }
         return false;
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(ChildrenStatusActivity.this,StudentProfileActivity.class);
+        intent.putExtra("Name",list.get(position).getUsername());
+        intent.putExtra("Contact Number",list.get(position).getContactNumber());
+        intent.putExtra("Parent Name:",list.get(position).getParentName());
+        //intent.putExtra("Name",list.get(position).getUsername());
+        //intent.putExtra("Name",list.get(position).getUsername());
+        startActivity(intent);
+
     }
 }
