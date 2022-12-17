@@ -24,18 +24,22 @@ public class NotificationActivity extends AppCompatActivity implements BottomNav
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.notification);
         recyclerView = findViewById(R.id.notification_recycler_view);
 
-        //implement the list of notifications
-
-
-
-    }
-    public void create(){
+        //implement the list of notifications this is sample list with the simple constructor(not original constructor)
+        Notification notif = new Notification("gezi","ankara pavyon");
+        list.add(notif);
+        notif = new Notification("yemek","konya etli pide");
+        list.add(notif);
         adapter = new Notification_adapter(context,list);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
+
+
+
     }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         return false;

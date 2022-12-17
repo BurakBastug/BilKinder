@@ -20,6 +20,12 @@ public class Notification {
         this.notifDetails = details;
         this.teacher = teacher;
     }
+    public Notification(String name, String details){
+        allowedList = new ArrayList<>();
+        notAllowedList = new ArrayList<>();
+        this.notifName = name;
+        this.notifDetails = details;
+    }
 
     public ArrayList<Child> getAllowedList() {
         return allowedList;
