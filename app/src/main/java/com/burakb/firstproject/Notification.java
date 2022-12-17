@@ -5,8 +5,7 @@ import java.util.ArrayList;
 public class Notification {
     private String notifName;
     private String notifDetails;
-    private ArrayList<String> allowedList;
-    private ArrayList<String> notAllowedList;
+    private ArrayList<Child> allowedList;
     private String teacher;
 
     public Notification(){
@@ -14,23 +13,21 @@ public class Notification {
     }
 
     public Notification(String name, String details, String teacher){
-        allowedList = new ArrayList<String>();
-        notAllowedList = new ArrayList<String>();
-        allowedList.add("");
-        notAllowedList.add("");
+        allowedList = new ArrayList<Child>();
+
+        allowedList.add(new Child("","",""));
+
         this.notifName = name;
         this.notifDetails = details;
         this.teacher = teacher;
     }
 
 
-    public ArrayList<String> getAllowedList() {
+    public ArrayList<Child> getAllowedList() {
         return allowedList;
     }
 
-    public ArrayList<String> getNotAllowedList() {
-        return notAllowedList;
-    }
+
 
     public String getNotifDetails() {
         return notifDetails;
@@ -44,13 +41,6 @@ public class Notification {
         return teacher;
     }
 
-    public void setAllowedList(ArrayList<String> allowedList) {
-        this.allowedList = allowedList;
-    }
-
-    public void setNotAllowedList(ArrayList<String> notAllowedList) {
-        this.notAllowedList = notAllowedList;
-    }
 
     public void setNotifDetails(String notifDetails) {
         this.notifDetails = notifDetails;

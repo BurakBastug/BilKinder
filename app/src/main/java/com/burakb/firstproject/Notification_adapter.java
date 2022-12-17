@@ -14,13 +14,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class Notification_adapter extends RecyclerView.Adapter<Notification_adapter.ViewHolder>{
+public class Notification_adapter extends RecyclerView.Adapter<Notification_adapter.ViewHolder> implements NotificationItemListener{
     Context context;
     ArrayList<Notification> list = new ArrayList<>();
+    private final NotificationItemListener itemListener;
 
-    public Notification_adapter(Context context, ArrayList<Notification> list) {
+    public Notification_adapter(Context context, ArrayList<Notification> list,NotificationItemListener itemListener) {
         this.context=context;
         this.list = list;
+        this.itemListener = itemListener;
+
     }
 
     @NonNull
@@ -37,18 +40,19 @@ public class Notification_adapter extends RecyclerView.Adapter<Notification_adap
         //holder.image.setImageResource(list.get(position).getImg());
         holder.notifName.setText(list.get(position).getNotifName());
         holder.notifDesc.setText(list.get(position).getNotifDetails());
-        holder.parent_layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, list.get(position).getNotifName(), Toast.LENGTH_SHORT).show();
-
-            }
+        holder.itemView.setOnClickListener(view -> {
+            itemListener.onItemClick(list.get(position));
         });
     }
 
     @Override
     public int getItemCount() {
         return list.size();
+    }
+
+    @Override
+    public void onItemClick(Notification notif) {
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

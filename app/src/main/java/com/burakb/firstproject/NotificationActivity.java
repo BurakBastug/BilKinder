@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class NotificationActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class NotificationActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, NotificationItemListener {
     Context context = this;
     RecyclerView recyclerView;
     Notification_adapter adapter;
@@ -101,7 +102,17 @@ public class NotificationActivity extends AppCompatActivity implements BottomNav
     }
 
     public void createFeed(){
-        adapter = new Notification_adapter(context,list);
+        adapter = new Notification_adapter(context, list, new NotificationItemListener() {
+            @Override
+            public void onItemClick(Notification notification) {
+
+                Intent intent = new Intent(NotificationActivity.this, NotifDetailsActivity.class);
+                intent.putExtra("notifName",notification.getNotifName());
+                startActivity(intent);
+
+            }
+        });
+
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
     }
@@ -167,5 +178,10 @@ public class NotificationActivity extends AppCompatActivity implements BottomNav
                 break;
         }
         return false;
+    }
+
+    @Override
+    public void onItemClick(Notification notification) {
+
     }
 }

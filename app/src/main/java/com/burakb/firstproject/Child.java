@@ -119,4 +119,13 @@ public class Child extends User{
 
         return formatted;
     }
+
+    public boolean equals(Child child){
+        if(this.getEmail().equals(child.getEmail())){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }
