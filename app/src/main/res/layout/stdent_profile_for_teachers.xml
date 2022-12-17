@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:layerType="software">
+
+    <ScrollView
+        android:layout_width="392dp"
+        android:layout_height="631dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingTop="90dp"
+        app:layout_constraintHorizontal_bias="0.355"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button6"
+        app:layout_constraintVertical_bias="0.797">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/studentName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:background="@drawable/input_area"
+                android:ems="10"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="clip_vertical|center_vertical"
+                android:minHeight="48dp"
+                android:paddingLeft="131dp"
+                android:text="Student Name"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/teacherandclass"
+                android:layout_width="251dp"
+                android:layout_height="39dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/half_circular_btn_left"
+                android:gravity="center_vertical"
+                android:text="Teacher and Class"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/parentName"
+                android:layout_width="257dp"
+                android:layout_height="47dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/half_circular_btn_left"
+                android:gravity="center_vertical"
+                android:text="Parent Name (Relation)"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/bloodType"
+                android:layout_width="223dp"
+                android:layout_height="39dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/half_circular_btn_left"
+                android:gravity="center_vertical"
+                android:text="Blood Type: XXRh"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/contactNumber"
+                android:layout_width="223dp"
+                android:layout_height="44dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/half_circular_btn_left"
+                android:gravity="center_vertical"
+                android:text="xxxxxxxxxxxxxxx"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/contactMail"
+                android:layout_width="217dp"
+                android:layout_height="35dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/half_circular_btn_left"
+                android:gravity="center_vertical"
+                android:text="xxxxxxxx@xxx"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="208dp"
+                android:layout_height="77dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/half_circular_btn_left"
+                android:gravity="center_vertical"
+                android:text="Adress"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/healthIssues"
+                android:layout_width="214dp"
+                android:layout_height="63dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/half_circular_btn_left"
+                android:gravity="center_vertical"
+                android:text="health issues"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/profilePhoto"
+        android:layout_width="120dp"
+        android:layout_height="118dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.731"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_foreground" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="161dp"
+        android:layout_height="130dp"
+        android:background="@drawable/left_top_btn"
+        android:backgroundTint="#D7FDFF"
+        android:text="Profile"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#D7FDFF"
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav">
+
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
