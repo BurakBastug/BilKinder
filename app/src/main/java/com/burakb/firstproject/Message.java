@@ -1,5 +1,9 @@
 package com.burakb.firstproject;
 
+import android.os.Build;
+
+import java.time.LocalDate;
+
 public class Message {
     private String senderUid;
     private String message;
@@ -9,10 +13,15 @@ public class Message {
 
     }
 
-    public Message(String senderUid, String message, String dateTime){
+    public Message(String senderUid, String message){
         this.senderUid = senderUid;
         this.message = message;
-        this.dateTime = dateTime;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            this.dateTime = LocalDate.now().toString();
+        }
+    }
+    public Message (String message){
+        this.message=message;
     }
 
     public String getSenderUid(){

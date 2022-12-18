@@ -62,7 +62,7 @@ public class StudentHomeActivity extends AppCompatActivity implements BottomNavi
         chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: 17.12.2022 start activity to chat 
+                startActivity(new Intent(StudentHomeActivity.this, ChatActivity.class));
             }
         });
         teacherInfo.setOnClickListener(new View.OnClickListener() {
