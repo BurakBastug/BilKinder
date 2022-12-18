@@ -47,7 +47,7 @@ public class MessageAdaptor extends RecyclerView.Adapter<MessageAdaptor.ViewHold
             holder.myMessageTextView.setText(list.get(position).getMessage());
             holder.myMessageTextView.setBackground(Drawable.createFromPath("app/src/main/res/drawable/my_message_background.xml"));
         }
-        else if(mAuth.getCurrentUser().getUid().equals(list.get(position).getReceiverUid())) {
+        else {
             holder.otherMessageTextView.setText(list.get(position).getMessage());
             holder.myMessageTextView.setBackground(Drawable.createFromPath("app/src/main/res/drawable/other_message_background.xml"));
         }
