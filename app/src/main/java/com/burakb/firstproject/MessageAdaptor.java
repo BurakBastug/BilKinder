@@ -47,12 +47,14 @@ public class MessageAdaptor extends RecyclerView.Adapter<MessageAdaptor.ViewHold
         if(mAuth.getCurrentUser().getEmail().equals(list.get(position).getSenderMail())) {
             holder.myMessageTextView.setText(list.get(position).getMessage());
             holder.myMessageTextView.setBackground(Drawable.createFromPath("app/src/main/res/drawable/my_message_background.xml"));
-            holder.myMessageTextView.setBackgroundColor(Color.CYAN);
+            int RGB = android.graphics.Color.rgb(140, 230, 221);
+            holder.myMessageTextView.setBackgroundColor(RGB);
             holder.otherMessageTextView.setText("");
         }
         else {
             holder.otherMessageTextView.setText(list.get(position).getMessage());
             holder.myMessageTextView.setBackground(Drawable.createFromPath("app/src/main/res/drawable/other_message_background.xml"));
+            holder.otherMessageTextView.setBackgroundColor(Color.LTGRAY);
             holder.myMessageTextView.setText("");
         }
     }

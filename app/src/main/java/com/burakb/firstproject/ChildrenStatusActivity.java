@@ -52,9 +52,13 @@ public class ChildrenStatusActivity extends AppCompatActivity implements BottomN
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 current = snapshot.child("Teachers").child(mUser.getUid()).getValue(Teacher.class);
+                int count = 0;
                 for(String id : current.getStudentList()){
                     Child child = snapshot.child("Students").child(id).getValue(Child.class);
-                    list.add(child);
+                    if(count != 0 ){
+                        list.add(child);
+                    }
+                    count++;
                 }
                 create();
             }

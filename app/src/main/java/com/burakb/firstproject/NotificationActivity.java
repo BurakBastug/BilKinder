@@ -78,11 +78,13 @@ public class NotificationActivity extends AppCompatActivity implements BottomNav
         nData.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int count = 0;
                 for(DataSnapshot notifObjects : snapshot.getChildren()){
                     Notification tmpNotif = notifObjects.getValue(Notification.class);
                     if(tmpNotif.getTeacher().equals(t.getUsername())){
                         list.add(tmpNotif);
                     }
+                    //count++;
                 }
                 createFeed();
             }

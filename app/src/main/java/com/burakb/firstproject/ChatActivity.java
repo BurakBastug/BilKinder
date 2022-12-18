@@ -86,7 +86,7 @@ public class ChatActivity extends AppCompatActivity {
                             list.clear();
                             for(DataSnapshot messsageObject : snapshot.getChildren()){
                                 Message mes = messsageObject.getValue(Message.class);
-                                if(mes.getSenderMail().equals(c.getEmail()) || mes.getReceiverMail().equals(c.getEmail())){
+                                if((mes.getSenderMail().equals(c.getEmail()) || mes.getReceiverMail().equals(c.getEmail())) && (mes.getSenderMail().equals(t.getEmail()) || mes.getReceiverMail().equals(t.getEmail()))){
                                     list.add(mes);
                                 }
                             }
@@ -133,7 +133,7 @@ public class ChatActivity extends AppCompatActivity {
                             list.clear();
                             for(DataSnapshot messsageObject : snapshot.getChildren()){
                                 Message mes = messsageObject.getValue(Message.class);
-                                if(mes.getSenderMail().equals(t.getEmail()) || mes.getReceiverMail().equals(t.getEmail())){
+                                if((mes.getSenderMail().equals(c.getEmail()) || mes.getReceiverMail().equals(c.getEmail())) && (mes.getSenderMail().equals(t.getEmail()) || mes.getReceiverMail().equals(t.getEmail()))){
                                     list.add(mes);
                                 }
                             }
