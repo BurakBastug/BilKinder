@@ -1,6 +1,7 @@
 package com.burakb.firstproject;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,13 +44,16 @@ public class MessageAdaptor extends RecyclerView.Adapter<MessageAdaptor.ViewHold
         mAuth = FirebaseAuth.getInstance();
         mData = FirebaseDatabase.getInstance("https://bilkinder2data-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
 
-        if(mAuth.getCurrentUser().getUid().equals(list.get(position).getSenderUid())) {
+        if(mAuth.getCurrentUser().getEmail().equals(list.get(position).getSenderMail())) {
             holder.myMessageTextView.setText(list.get(position).getMessage());
             holder.myMessageTextView.setBackground(Drawable.createFromPath("app/src/main/res/drawable/my_message_background.xml"));
+            holder.myMessageTextView.setBackgroundColor(Color.CYAN);
+            holder.otherMessageTextView.setText("");
         }
         else {
             holder.otherMessageTextView.setText(list.get(position).getMessage());
             holder.myMessageTextView.setBackground(Drawable.createFromPath("app/src/main/res/drawable/other_message_background.xml"));
+            holder.myMessageTextView.setText("");
         }
     }
 

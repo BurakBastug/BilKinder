@@ -14,13 +14,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ViewHolder>{
+public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ViewHolder> implements ChildrenStatusItemListener{
     Context context;
     ArrayList<Child> chatList = new ArrayList<>();
+    ChildrenStatusItemListener itemListener;
 
-    public ChatListAdapter(Context context, ArrayList<Child> list){
+    public ChatListAdapter(Context context, ArrayList<Child> list,ChildrenStatusItemListener itemListener){
         this.context = context;
         this.chatList = list;
+        this.itemListener = itemListener;
     }
 
     @NonNull
@@ -36,11 +38,10 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ViewHo
     public void onBindViewHolder(@NonNull ChatListAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         //holder.image.setImageResource(list.get(position).getImg());
         holder.name.setText(chatList.get(position).getUsername());
-        holder.parent_layout.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Toast.makeText(context, chatList.get(position).getUsername(), Toast.LENGTH_SHORT).show();
-
+            public void onClick(View view) {
+                itemListener.onItemClick(chatList.get(position));
             }
         });
     }
@@ -48,6 +49,11 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ViewHo
     @Override
     public int getItemCount() {
         return chatList.size();
+    }
+
+    @Override
+    public void onItemClick(Child child) {
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
