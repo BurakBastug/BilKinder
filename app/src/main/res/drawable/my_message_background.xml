@@ -6,13 +6,14 @@
         android:color="#BF66F9"/>
 
     <corners
-        android:bottomLeftRadius="400dp"
-        android:topLeftRadius="400dp" />
+        android:bottomLeftRadius="200dp"
+        android:topLeftRadius="200dp"
+        android:topRightRadius="200dp"/>
 
     <gradient
-        android:centerColor="#075E54"
-        android:startColor="#075E54"
-        android:endColor="#075E54"
+        android:centerColor="#118A7C"
+        android:startColor="#118A7C"
+        android:endColor="#118A7C"
 
         android:type="linear"/>
     <stroke
@@ -20,6 +21,7 @@
         android:color="#D9D9D9"/>
 
     <padding
-        android:left="10dp"/>
+        android:left="10dp"
+        android:right="10dp"/>
 
 </shape>
