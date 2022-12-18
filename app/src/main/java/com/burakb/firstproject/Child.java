@@ -10,8 +10,8 @@ public class Child extends User{
     private String contactNumber;
     private String contactMail;
     private String medicalCondition;
-    private boolean isSick;
     private String sickOrNot;
+    private boolean isSick;
     private ArrayList<Event> allowedEvents;
 
     public Child(){
@@ -26,8 +26,8 @@ public class Child extends User{
         contactNumber = "";
         contactMail = "";
         medicalCondition = "";
-        isSick = false;
         sickOrNot = "We don't know yet";
+        isSick = false;
     }
     public String getTeacherName() { return this.teacherName; }
 
@@ -107,7 +107,7 @@ public class Child extends User{
     public static boolean isCorrectFormOfBloodType(String bloodType) {
         return bloodType.length() == 5 && (bloodType.charAt(0) == 'A'|| bloodType.charAt(0) == 'B' || bloodType.charAt(0) == '0'
                     || bloodType.charAt(1) == 'A'|| bloodType.charAt(1) == 'B' || bloodType.charAt(1) == '0'
-                    && bloodType.substring(2).equalsIgnoreCase("rh") && bloodType.charAt(4) == '+' || bloodType.charAt(4) == '-');
+                    && bloodType.substring(2).equalsIgnoreCase("rh") && (bloodType.charAt(4) == '+' || bloodType.charAt(4) == '-'));
     }
 
     public String toString(){
@@ -121,11 +121,6 @@ public class Child extends User{
     }
 
     public boolean equals(Child child){
-        if(this.getEmail().equals(child.getEmail())){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return this.getEmail().equals(child.getEmail());
     }
 }

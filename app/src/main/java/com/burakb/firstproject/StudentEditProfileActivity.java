@@ -287,57 +287,17 @@ public class StudentEditProfileActivity extends AppCompatActivity implements Bot
         switch (id){
             case R.id.profile:
                 if(checkStudentData()) {
-                    mData.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if(snapshot.child("Students").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
-                                startActivity(new Intent(StudentEditProfileActivity.this, StudentProfileActivity.class));
-                            }
-                            else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
-                                startActivity(new Intent(StudentEditProfileActivity.this, TeacherProfileActivity.class));
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
+                    startActivity(new Intent(StudentEditProfileActivity.this, StudentProfileActivity.class));
                 }
                 break;
             case R.id.homee:
                 if(checkStudentData()) {
-                    mData.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if(snapshot.child("Students").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
-                                startActivity(new Intent(StudentEditProfileActivity.this, StudentHomeActivity.class));
-                            }
-                            else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
-                                startActivity(new Intent(StudentEditProfileActivity.this, TeacherHomeActivity.class));
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
+                    startActivity(new Intent(StudentEditProfileActivity.this, StudentHomeActivity.class));
                 }
                 break;
             case R.id.settings:
                 if(checkStudentData()) {
-                    mData.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            startActivity(new Intent(StudentEditProfileActivity.this, SettingsActivity.class));
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
+                    startActivity(new Intent(StudentEditProfileActivity.this, SettingsActivity.class));
                 }
                 break;
         }

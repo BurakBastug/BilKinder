@@ -2,9 +2,9 @@ package com.burakb.firstproject;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -24,11 +25,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.UUID;
 
-public class ChatActivity extends AppCompatActivity {
+public class ChatActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
     Context context = this;
     RecyclerView recyclerView;
     MessageAdaptor adapter;
@@ -40,6 +40,7 @@ public class ChatActivity extends AppCompatActivity {
     private FirebaseUser mUser;
     private EditText messageInput;
     private Button send;
+    BottomNavigationView bottomNavigationView;
 
 
     @Override
@@ -47,7 +48,7 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chat);
         recyclerView = findViewById(R.id.chat_rec_view);
-        //initialize list
+
         mAuth = FirebaseAuth.getInstance();
         mData = FirebaseDatabase.getInstance("https://bilkinder2data-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
         nData = FirebaseDatabase.getInstance("https://bilkinder2data-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Messages");
@@ -55,6 +56,8 @@ public class ChatActivity extends AppCompatActivity {
 
         messageInput = findViewById(R.id.message_input);
         send = findViewById(R.id.send_btn);
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
 
         mData.addValueEventListener(new ValueEventListener() {
@@ -67,7 +70,6 @@ public class ChatActivity extends AppCompatActivity {
                         if(c.getTeacherName().equals(tmpT.getUsername())){
                             t = tmpT;
                         }
-                        //System.out.println(t.getEmail());
                     }
                     send.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -158,18 +160,52 @@ public class ChatActivity extends AppCompatActivity {
 
             }
         });
+    }
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case R.id.profile:
+                    mData.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if(snapshot.child("Students").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
+                                startActivity(new Intent(ChatActivity.this, StudentProfileActivity.class));
+                            }
+                            else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
+                                startActivity(new Intent(ChatActivity.this, TeacherProfileActivity.class));
+                            }
+                        }
 
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
 
+                        }
+                    });
+                break;
+            case R.id.homee:
+                    mData.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if(snapshot.child("Students").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
+                                startActivity(new Intent(ChatActivity.this, StudentHomeActivity.class));
+                            }
+                            else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
+                                startActivity(new Intent(ChatActivity.this, TeacherHomeActivity.class));
+                            }
+                        }
 
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
 
-
-
-
-
-
-
-
-
+                        }
+                    });
+                break;
+            case R.id.settings:
+                startActivity(new Intent(ChatActivity.this, SettingsActivity.class));
+                break;
+        }
+        return false;
     }
 }

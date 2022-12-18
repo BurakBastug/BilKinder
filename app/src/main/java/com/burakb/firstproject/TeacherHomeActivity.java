@@ -20,11 +20,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class TeacherHomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
-    Button openNavBar, navBarReturnHome, navBarProfile, aboutUs, askForPermission,
+    Button aboutUs, askForPermission,
         viewWeeklyMenu, viewWeeklySchedule, viewStudent, privateChat, myProfile,feed,
         startaPoll;
-
-
 
     FirebaseAuth mAuth;
     FirebaseUser mUser;
@@ -36,9 +34,6 @@ public class TeacherHomeActivity extends AppCompatActivity implements BottomNavi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.teacher_menu);
 
-        //openNavBar = findViewById(R.id.openNavigatorBar);
-        //navBarReturnHome = findViewById(R.id.navigatorBarReturnHome);
-        //navBarProfile = findViewById(R.id.navigatorBarMyProfile);
         aboutUs = findViewById(R.id.aboutUs);
         askForPermission = findViewById(R.id.askForPermission);
         viewWeeklyMenu = findViewById(R.id.viewWeeklyMenu);
@@ -54,7 +49,6 @@ public class TeacherHomeActivity extends AppCompatActivity implements BottomNavi
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         mData = FirebaseDatabase.getInstance("https://bilkinder2data-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
-
 
         aboutUs.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,30 +113,10 @@ public class TeacherHomeActivity extends AppCompatActivity implements BottomNavi
         int id = item.getItemId();
         switch (id){
             case R.id.profile:
-                mData.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        startActivity(new Intent(TeacherHomeActivity.this, TeacherProfileActivity.class));
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                startActivity(new Intent(TeacherHomeActivity.this, TeacherProfileActivity.class));
                 break;
             case R.id.settings:
-                mData.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        startActivity(new Intent(TeacherHomeActivity.this, SettingsActivity.class));
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                startActivity(new Intent(TeacherHomeActivity.this, SettingsActivity.class));
                 break;
         }
         return false;

@@ -104,30 +104,10 @@ public class StudentHomeActivity extends AppCompatActivity implements BottomNavi
         int id = item.getItemId();
         switch (id){
             case R.id.profile:
-                mData.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        startActivity(new Intent(StudentHomeActivity.this, StudentProfileActivity.class));
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                startActivity(new Intent(StudentHomeActivity.this, StudentProfileActivity.class));
                 break;
             case R.id.settings:
-                mData.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        startActivity(new Intent(StudentHomeActivity.this, SettingsActivity.class));
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                startActivity(new Intent(StudentHomeActivity.this, SettingsActivity.class));
                 break;
         }
         return false;

@@ -31,7 +31,6 @@ public class ChangePasswordActivity extends AppCompatActivity implements BottomN
     private FirebaseUser mUser;
     String oldPassword;
 
-
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -44,13 +43,9 @@ public class ChangePasswordActivity extends AppCompatActivity implements BottomN
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
-
-
         mAuth = FirebaseAuth.getInstance();
         mData = FirebaseDatabase.getInstance("https://bilkinder2data-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
         mUser = mAuth.getCurrentUser();
-
-
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +62,6 @@ public class ChangePasswordActivity extends AppCompatActivity implements BottomN
                             oldPassword = user.getPassword();
                         }
                         updatePsw(oldPassword);
-
                     }
 
                     @Override
@@ -75,8 +69,6 @@ public class ChangePasswordActivity extends AppCompatActivity implements BottomN
 
                     }
                 });
-
-
             }
         });
 
@@ -112,8 +104,6 @@ public class ChangePasswordActivity extends AppCompatActivity implements BottomN
                         mData.child("Teachers").child(mUser.getUid()).setValue(teacher);
                     }
                 }
-
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
 
@@ -128,6 +118,24 @@ public class ChangePasswordActivity extends AppCompatActivity implements BottomN
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         switch (id){
+            case R.id.profile:
+                mData.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.child("Students").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
+                            startActivity(new Intent(ChangePasswordActivity.this, StudentProfileActivity.class));
+                        }
+                        else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
+                            startActivity(new Intent(ChangePasswordActivity.this, TeacherProfileActivity.class));
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                break;
             case R.id.homee:
                 mData.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -147,35 +155,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements BottomN
                 });
                 break;
             case R.id.settings:
-                mData.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        startActivity(new Intent(ChangePasswordActivity.this, SettingsActivity.class));
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-                break;
-            case R.id.profile:
-                mData.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if(snapshot.child("Students").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
-                            startActivity(new Intent(ChangePasswordActivity.this, StudentProfileActivity.class));
-                        }
-                        else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
-                            startActivity(new Intent(ChangePasswordActivity.this, TeacherProfileActivity.class));
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                startActivity(new Intent(ChangePasswordActivity.this, SettingsActivity.class));
                 break;
         }
         return false;

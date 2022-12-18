@@ -3,9 +3,7 @@ package com.burakb.firstproject;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -36,7 +34,6 @@ public class NotificationActivity extends AppCompatActivity implements BottomNav
     Teacher t;
     Child c;
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +59,6 @@ public class NotificationActivity extends AppCompatActivity implements BottomNav
                             t = tmp;
                         }
                     }
-
                 }
                 else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
                     t = snapshot.child("Teachers").child(mUser.getUid()).getValue(Teacher.class);
@@ -78,13 +74,11 @@ public class NotificationActivity extends AppCompatActivity implements BottomNav
         nData.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                int count = 0;
                 for(DataSnapshot notifObjects : snapshot.getChildren()){
                     Notification tmpNotif = notifObjects.getValue(Notification.class);
                     if(tmpNotif.getTeacher().equals(t.getUsername())){
                         list.add(tmpNotif);
                     }
-                    //count++;
                 }
                 createFeed();
             }
@@ -94,13 +88,6 @@ public class NotificationActivity extends AppCompatActivity implements BottomNav
 
             }
         });
-
-        //implement the list of notifications this is sample list with the simple constructor(not original constructor)
-
-
-
-
-
     }
 
     public void createFeed(){
@@ -129,12 +116,9 @@ public class NotificationActivity extends AppCompatActivity implements BottomNav
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.child("Students").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
                             startActivity(new Intent(NotificationActivity.this, StudentProfileActivity.class));
-                            System.out.println("öğrenci");
-
                         }
                         else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
                             startActivity(new Intent(NotificationActivity.this, TeacherProfileActivity.class));
-                            System.out.println("hoca");
                         }
                     }
 
@@ -150,12 +134,9 @@ public class NotificationActivity extends AppCompatActivity implements BottomNav
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.child("Students").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
                             startActivity(new Intent(NotificationActivity.this, StudentHomeActivity.class));
-                            System.out.println("öğrenci");
-
                         }
                         else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
                             startActivity(new Intent(NotificationActivity.this, TeacherHomeActivity.class));
-                            System.out.println("hoca");
                         }
                     }
 
@@ -166,17 +147,7 @@ public class NotificationActivity extends AppCompatActivity implements BottomNav
                 });
                 break;
             case R.id.settings:
-                mData.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        startActivity(new Intent(NotificationActivity.this, SettingsActivity.class));
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                startActivity(new Intent(NotificationActivity.this, SettingsActivity.class));
                 break;
         }
         return false;

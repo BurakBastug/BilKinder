@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,9 +25,7 @@ import java.util.ArrayList;
 public class FeedActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemReselectedListener{
     BottomNavigationView bottomNavigationView;
     ArrayList<Event> list = new ArrayList<>();
-    //Event event;
     Context context = this;
-    //int image;
     RecyclerView recyclerView;
     FeedAdaptor adaptor;
     private FirebaseAuth mAuth;
@@ -37,8 +34,6 @@ public class FeedActivity extends AppCompatActivity implements BottomNavigationV
     private DatabaseReference nData;
     Teacher t;
     Child c;
-
-
 
 
     @Override
@@ -97,16 +92,9 @@ public class FeedActivity extends AppCompatActivity implements BottomNavigationV
 
             }
         });
-
-
-
-
-
-
     }
 
     public void createFeed(){
-
         adaptor = new FeedAdaptor(context,list);
         recyclerView.setAdapter(adaptor);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
@@ -117,21 +105,15 @@ public class FeedActivity extends AppCompatActivity implements BottomNavigationV
         int id = item.getItemId();
         switch (id) {
             case R.id.profile:
-                System.out.println("basıldı");
                 mData.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.child("Students").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
                             startActivity(new Intent(FeedActivity.this, StudentProfileActivity.class));
-                            System.out.println("öğrenci");
-
                         }
                         else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
                             startActivity(new Intent(FeedActivity.this, TeacherProfileActivity.class));
-                            System.out.println("hoca");
                         }
-                        System.out.println("method");
-
                     }
 
                     @Override
@@ -146,15 +128,10 @@ public class FeedActivity extends AppCompatActivity implements BottomNavigationV
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.child("Students").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
                             startActivity(new Intent(FeedActivity.this, StudentHomeActivity.class));
-                            System.out.println("öğrenci");
-
                         }
                         else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
                             startActivity(new Intent(FeedActivity.this, TeacherHomeActivity.class));
-                            System.out.println("hoca");
                         }
-                        System.out.println("method");
-
                     }
 
                     @Override
@@ -164,17 +141,7 @@ public class FeedActivity extends AppCompatActivity implements BottomNavigationV
                 });
                 break;
             case R.id.settings:
-                mData.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        startActivity(new Intent(FeedActivity.this, SettingsActivity.class));
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                startActivity(new Intent(FeedActivity.this, SettingsActivity.class));
                 break;
 
         }

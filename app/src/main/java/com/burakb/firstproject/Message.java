@@ -2,14 +2,12 @@ package com.burakb.firstproject;
 
 import android.os.Build;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Message implements Comparable {
     private String senderMail;
     private String receiverMail;
     private String message;
-    //private String dateTime;
     private String dateTime;
 
     public Message(){
@@ -58,9 +56,6 @@ public class Message implements Comparable {
 
     @Override
     public int compareTo(Object o) {
-
-
-
         if(o instanceof Message){
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                 LocalDateTime current = LocalDateTime.parse(this.dateTime);

@@ -42,10 +42,6 @@ public class WeeklyMenuEditActivity extends AppCompatActivity implements BottomN
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
-
-
-
-
         meal1 = findViewById(R.id.editMeal1);
         meal2 = findViewById(R.id.editMeal2);
         meal3 = findViewById(R.id.editMeal3);
@@ -83,8 +79,6 @@ public class WeeklyMenuEditActivity extends AppCompatActivity implements BottomN
 
             }
         });
-
-
     }
 
     public void setData(String meal1, String meal2, String meal3, String meal4, String meal5){
@@ -116,43 +110,13 @@ public class WeeklyMenuEditActivity extends AppCompatActivity implements BottomN
         int id = item.getItemId();
         switch (id){
             case R.id.profile:
-                mData.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        startActivity(new Intent(WeeklyMenuEditActivity.this, TeacherProfileActivity.class));
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                startActivity(new Intent(WeeklyMenuEditActivity.this, TeacherProfileActivity.class));
                 break;
             case R.id.settings:
-                mData.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        startActivity(new Intent(WeeklyMenuEditActivity.this, SettingsActivity.class));
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                startActivity(new Intent(WeeklyMenuEditActivity.this, SettingsActivity.class));
                 break;
             case R.id.homee:
-                mData.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        startActivity(new Intent(WeeklyMenuEditActivity.this, TeacherHomeActivity.class));
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                startActivity(new Intent(WeeklyMenuEditActivity.this, TeacherHomeActivity.class));
         }
         return false;
     }

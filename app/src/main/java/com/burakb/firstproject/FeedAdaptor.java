@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -33,7 +32,6 @@ public class FeedAdaptor extends RecyclerView.Adapter<FeedAdaptor.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        //holder.image.setImageResource(list.get(position).getImg());
         holder.name.setText(list.get(position).getName());
         holder.desc.setText(list.get(position).getDescription());
     }
@@ -44,15 +42,12 @@ public class FeedAdaptor extends RecyclerView.Adapter<FeedAdaptor.ViewHolder>{
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        //ImageView image;
         TextView name;
         TextView desc;
         LinearLayout parent_layout;
 
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            //image = itemView.findViewById(R.id.event_image);
             name = itemView.findViewById(R.id.event_name);
             desc = itemView.findViewById(R.id.event_desc);
             parent_layout = itemView.findViewById(R.id.parent_layout);

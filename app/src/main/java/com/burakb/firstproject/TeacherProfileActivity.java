@@ -110,30 +110,10 @@ public class TeacherProfileActivity extends AppCompatActivity implements BottomN
         int id = item.getItemId();
         switch (id){
             case R.id.homee:
-                mData.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        startActivity(new Intent(TeacherProfileActivity.this, TeacherHomeActivity.class));
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                startActivity(new Intent(TeacherProfileActivity.this, TeacherHomeActivity.class));
                 break;
             case R.id.settings:
-                mData.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        startActivity(new Intent(TeacherProfileActivity.this, SettingsActivity.class));
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                startActivity(new Intent(TeacherProfileActivity.this, SettingsActivity.class));
                 break;
         }
         return false;

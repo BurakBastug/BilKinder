@@ -2,8 +2,8 @@ package com.burakb.firstproject;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -21,15 +22,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class EventCreationActivity extends AppCompatActivity {
+public class EventCreationActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
     EditText title,description;
-    Button openNavBar, navBarReturnHome, navBarProfile, submit;
+    Button submit;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
     DatabaseReference mData, mData2;
     Teacher current;
-
+    BottomNavigationView bottomNavigationView;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,16 +39,13 @@ public class EventCreationActivity extends AppCompatActivity {
         title = findViewById(R.id.eventname);
         description = findViewById(R.id.eventdetails);
         submit = findViewById(R.id.publishbtn);
-        //openNavBar = findViewById(R.id.barhomebtn);
-        //navBarProfile = findViewById(R.id.barprofilebtn);
-        //navBarReturnHome = findViewById(R.id.barhomebtn);
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         mData = FirebaseDatabase.getInstance("https://bilkinder2data-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Events");
         mData2 = FirebaseDatabase.getInstance("https://bilkinder2data-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
-
-
 
 
         mData2.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -61,7 +59,6 @@ public class EventCreationActivity extends AppCompatActivity {
 
             }
         });
-
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,5 +82,22 @@ public class EventCreationActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case R.id.profile:
+                startActivity(new Intent(EventCreationActivity.this, TeacherProfileActivity.class));
+                break;
+            case R.id.homee:
+                startActivity(new Intent(EventCreationActivity.this, TeacherHomeActivity.class));
+                break;
+            case R.id.settings:
+                startActivity(new Intent(EventCreationActivity.this, SettingsActivity.class));
+                break;
+        }
+        return false;
     }
 }

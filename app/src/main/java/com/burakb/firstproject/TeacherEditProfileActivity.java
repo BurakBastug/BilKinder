@@ -271,50 +271,17 @@ public class TeacherEditProfileActivity extends AppCompatActivity implements Bot
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         switch (id){
-            case R.id.settings:
-                if(checkTeacherData()) {
-                    mData.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            startActivity(new Intent(TeacherEditProfileActivity.this, SettingsActivity.class));
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-                }
+            case R.id.profile:
+                if(checkTeacherData())
+                    startActivity(new Intent(TeacherEditProfileActivity.this, TeacherProfileActivity.class));
                 break;
             case R.id.homee:
-                if(checkTeacherData()) {
-                    mData.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            startActivity(new Intent(TeacherEditProfileActivity.this, TeacherHomeActivity.class));
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-                }
+                if(checkTeacherData())
+                    startActivity(new Intent(TeacherEditProfileActivity.this, TeacherHomeActivity.class));
                 break;
-            case R.id.profile:
-                if(checkTeacherData()) {
-                    mData.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            startActivity(new Intent(TeacherEditProfileActivity.this, TeacherProfileActivity.class));
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-                }
+            case R.id.settings:
+                if(checkTeacherData())
+                    startActivity(new Intent(TeacherEditProfileActivity.this, SettingsActivity.class));
                 break;
         }
         return false;

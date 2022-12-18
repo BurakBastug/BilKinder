@@ -42,7 +42,6 @@ public class MessageAdaptor extends RecyclerView.Adapter<MessageAdaptor.ViewHold
         DatabaseReference mData;
 
         mAuth = FirebaseAuth.getInstance();
-        mData = FirebaseDatabase.getInstance("https://bilkinder2data-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
 
         if(mAuth.getCurrentUser().getEmail().equals(list.get(position).getSenderMail())) {
             holder.myMessageTextView.setText(list.get(position).getMessage());
@@ -68,8 +67,6 @@ public class MessageAdaptor extends RecyclerView.Adapter<MessageAdaptor.ViewHold
         TextView myMessageTextView;
         TextView otherMessageTextView;
         LinearLayout parent_layout;
-
-
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

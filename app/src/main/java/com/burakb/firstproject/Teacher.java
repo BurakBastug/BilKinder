@@ -1,7 +1,5 @@
 package com.burakb.firstproject;
 
-import android.media.Image;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -70,8 +68,6 @@ public class Teacher extends User {
     public void setAge(String age) {
         this.age = age;
     }
-
-
 
     public String toString(){
         return this.getUsername();

@@ -43,8 +43,6 @@ public class ReportActivity extends AppCompatActivity implements BottomNavigatio
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
 
-
-
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

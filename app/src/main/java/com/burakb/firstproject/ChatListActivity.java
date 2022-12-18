@@ -39,6 +39,8 @@ public class ChatListActivity extends AppCompatActivity implements BottomNavigat
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chat_list);
         recyclerView = findViewById(R.id.privateChat);
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
         mAuth = FirebaseAuth.getInstance();
         mData = FirebaseDatabase.getInstance("https://bilkinder2data-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
@@ -64,8 +66,6 @@ public class ChatListActivity extends AppCompatActivity implements BottomNavigat
 
             }
         });
-
-
     }
 
     public void create(){
@@ -83,6 +83,18 @@ public class ChatListActivity extends AppCompatActivity implements BottomNavigat
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case R.id.profile:
+                startActivity(new Intent(ChatListActivity.this, TeacherProfileActivity.class));
+                break;
+            case R.id.homee:
+                startActivity(new Intent(ChatListActivity.this, TeacherHomeActivity.class));
+                break;
+            case R.id.settings:
+                startActivity(new Intent(ChatListActivity.this, SettingsActivity.class));
+                break;
+        }
         return false;
     }
 

@@ -2,7 +2,6 @@ package com.burakb.firstproject;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -60,13 +59,9 @@ public class NotifCreationActivity extends AppCompatActivity implements BottomNa
 
             }
         });
-
-
     }
 
     public void createNotif(){
-
-
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,43 +89,13 @@ public class NotifCreationActivity extends AppCompatActivity implements BottomNa
         int id = item.getItemId();
         switch (id){
             case R.id.profile:
-                mData.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        startActivity(new Intent(NotifCreationActivity.this, TeacherProfileActivity.class));
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-                break;
-            case R.id.settings:
-                mData.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        startActivity(new Intent(NotifCreationActivity.this, SettingsActivity.class));
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                startActivity(new Intent(NotifCreationActivity.this, TeacherProfileActivity.class));
                 break;
             case R.id.homee:
-                mData.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        startActivity(new Intent(NotifCreationActivity.this, TeacherHomeActivity.class));
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                startActivity(new Intent(NotifCreationActivity.this, TeacherHomeActivity.class));
+                break;
+            case R.id.settings:
+                startActivity(new Intent(NotifCreationActivity.this, SettingsActivity.class));
                 break;
         }
         return false;

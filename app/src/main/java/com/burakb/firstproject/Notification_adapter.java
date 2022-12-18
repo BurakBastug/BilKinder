@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,7 +36,6 @@ public class Notification_adapter extends RecyclerView.Adapter<Notification_adap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        //holder.image.setImageResource(list.get(position).getImg());
         holder.notifName.setText(list.get(position).getNotifName());
         holder.notifDesc.setText(list.get(position).getNotifDetails());
         holder.itemView.setOnClickListener(view -> {
@@ -56,7 +54,6 @@ public class Notification_adapter extends RecyclerView.Adapter<Notification_adap
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        //ImageView image;
         TextView notifName;
         TextView notifDesc;
         LinearLayout parent_layout;
@@ -64,7 +61,6 @@ public class Notification_adapter extends RecyclerView.Adapter<Notification_adap
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            //image = itemView.findViewById(R.id.event_image);
             notifName = itemView.findViewById(R.id.notif_name);
             notifDesc = itemView.findViewById(R.id.notif_desc);
             parent_layout = itemView.findViewById(R.id.notification_parent_layout);

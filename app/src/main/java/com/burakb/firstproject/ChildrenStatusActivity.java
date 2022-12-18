@@ -44,6 +44,7 @@ public class ChildrenStatusActivity extends AppCompatActivity implements BottomN
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         mData = FirebaseDatabase.getInstance("https://bilkinder2data-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
+
         //Initialize your student list, I will initialize a list in order to try layout
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
@@ -62,7 +63,6 @@ public class ChildrenStatusActivity extends AppCompatActivity implements BottomN
                 }
                 create();
             }
-
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -99,45 +99,15 @@ public class ChildrenStatusActivity extends AppCompatActivity implements BottomN
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         switch (id){
+            case R.id.profile:
+                startActivity(new Intent(ChildrenStatusActivity.this, TeacherProfileActivity.class));
+                break;
             case R.id.homee:
-                mData.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        startActivity(new Intent(ChildrenStatusActivity.this, TeacherHomeActivity.class));
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                startActivity(new Intent(ChildrenStatusActivity.this, TeacherHomeActivity.class));
                 break;
             case R.id.settings:
-                mData.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        startActivity(new Intent(ChildrenStatusActivity.this, SettingsActivity.class));
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                startActivity(new Intent(ChildrenStatusActivity.this, SettingsActivity.class));
                 break;
-            case R.id.profile:
-                mData.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        startActivity(new Intent(ChildrenStatusActivity.this, TeacherProfileActivity.class));
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-
         }
         return false;
     }
@@ -148,8 +118,6 @@ public class ChildrenStatusActivity extends AppCompatActivity implements BottomN
         intent.putExtra("Name",list.get(position).getUsername());
         intent.putExtra("Contact Number",list.get(position).getContactNumber());
         intent.putExtra("Parent Name:",list.get(position).getParentName());
-        //intent.putExtra("Name",list.get(position).getUsername());
-        //intent.putExtra("Name",list.get(position).getUsername());
         startActivity(intent);
 
     }

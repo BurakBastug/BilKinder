@@ -27,8 +27,6 @@ public class Notification {
         return allowedList;
     }
 
-
-
     public String getNotifDetails() {
         return notifDetails;
     }
@@ -40,7 +38,6 @@ public class Notification {
     public String getTeacher() {
         return teacher;
     }
-
 
     public void setNotifDetails(String notifDetails) {
         this.notifDetails = notifDetails;

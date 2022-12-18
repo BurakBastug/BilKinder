@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,7 +35,6 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ChatListAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        //holder.image.setImageResource(list.get(position).getImg());
         holder.name.setText(chatList.get(position).getUsername());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,14 +55,12 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        //ImageView image;
         TextView name;
         LinearLayout parent_layout;
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            //image = itemView.findViewById(R.id.event_image);
             name = itemView.findViewById(R.id.parent_name);
             parent_layout = itemView.findViewById(R.id.chat_parent_layout);
         }

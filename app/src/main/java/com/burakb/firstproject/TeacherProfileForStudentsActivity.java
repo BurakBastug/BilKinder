@@ -51,7 +51,6 @@ public class TeacherProfileForStudentsActivity extends AppCompatActivity impleme
         mData.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //System.out.println("First");
                 Child child = snapshot.child("Students").child(mUser.getUid()).getValue(Child.class);
 
                 String teacherName = child.getTeacherName();
@@ -75,48 +74,16 @@ public class TeacherProfileForStudentsActivity extends AppCompatActivity impleme
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         switch (id){
-            case R.id.homee:
-                mData.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        startActivity(new Intent(TeacherProfileForStudentsActivity.this, StudentHomeActivity.class));
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-                break;
             case R.id.profile:
-                mData.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        startActivity(new Intent(TeacherProfileForStudentsActivity.this, StudentProfileActivity.class));
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-
-                });
+                startActivity(new Intent(TeacherProfileForStudentsActivity.this, StudentProfileActivity.class));
+                break;
+            case R.id.homee:
+                startActivity(new Intent(TeacherProfileForStudentsActivity.this, StudentHomeActivity.class));
                 break;
             case R.id.settings:
-                mData.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        startActivity(new Intent(TeacherProfileForStudentsActivity.this, SettingsActivity.class));
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                startActivity(new Intent(TeacherProfileForStudentsActivity.this, SettingsActivity.class));
                 break;
         }
-
         return false;
     }
 

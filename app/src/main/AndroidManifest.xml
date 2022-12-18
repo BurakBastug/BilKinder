@@ -35,7 +35,6 @@
         <activity android:name=".ChangePasswordActivity"></activity>
         <activity android:name=".WeeklyMenuEditActivity"></activity>
         <activity android:name=".ReportActivity"></activity>
-        <activity android:name=".TestActivity"></activity>
         <activity android:name=".StudentProfileForTeachersActivity"></activity>
         <activity android:name=".NotifCreationActivity"></activity>
 

@@ -38,7 +38,6 @@ public class NotifDetailsActivity extends AppCompatActivity implements BottomNav
     Notification searched;
     String notifName;
     Child c;
-    ArrayList<String> tempList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -126,12 +125,7 @@ public class NotifDetailsActivity extends AppCompatActivity implements BottomNav
 
             }
         });
-
-
-
-
     }
-
 
     public void create(){
         adapter = new NotifDetailsAdapter(context,list);
@@ -149,12 +143,10 @@ public class NotifDetailsActivity extends AppCompatActivity implements BottomNav
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.child("Students").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
                             startActivity(new Intent(NotifDetailsActivity.this, StudentProfileActivity.class));
-                            System.out.println("öğrenci");
 
                         }
                         else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
                             startActivity(new Intent(NotifDetailsActivity.this, TeacherProfileActivity.class));
-                            System.out.println("hoca");
                         }
                     }
 
@@ -170,12 +162,10 @@ public class NotifDetailsActivity extends AppCompatActivity implements BottomNav
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.child("Students").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
                             startActivity(new Intent(NotifDetailsActivity.this, StudentHomeActivity.class));
-                            System.out.println("öğrenci");
 
                         }
                         else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
                             startActivity(new Intent(NotifDetailsActivity.this, TeacherHomeActivity.class));
-                            System.out.println("hoca");
                         }
                     }
 

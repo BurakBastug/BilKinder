@@ -98,9 +98,6 @@ public class SettingsActivity extends AppCompatActivity implements BottomNavigat
                 startActivity(new Intent(SettingsActivity.this, ChangePasswordActivity.class));
             }
         });
-
-        
-
     }
 
 
@@ -114,12 +111,9 @@ public class SettingsActivity extends AppCompatActivity implements BottomNavigat
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.child("Students").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
                             startActivity(new Intent(SettingsActivity.this, StudentProfileActivity.class));
-                            System.out.println("öğrenci");
-
                         }
                         else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
                             startActivity(new Intent(SettingsActivity.this, TeacherProfileActivity.class));
-                            System.out.println("hoca");
                         }
                     }
 
@@ -135,12 +129,9 @@ public class SettingsActivity extends AppCompatActivity implements BottomNavigat
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.child("Students").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
                             startActivity(new Intent(SettingsActivity.this, StudentHomeActivity.class));
-                            System.out.println("öğrenci");
-
                         }
                         else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
                             startActivity(new Intent(SettingsActivity.this, TeacherHomeActivity.class));
-                            System.out.println("hoca");
                         }
                     }
 
@@ -151,20 +142,9 @@ public class SettingsActivity extends AppCompatActivity implements BottomNavigat
                 });
                 break;
             case R.id.settings:
-                mData.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        startActivity(new Intent(SettingsActivity.this, SettingsActivity.class));
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                startActivity(new Intent(SettingsActivity.this, SettingsActivity.class));
                 break;
         }
-
         return false;
     }
 }
