@@ -26,16 +26,12 @@ public class SettingsActivity extends AppCompatActivity implements BottomNavigat
     FirebaseAuth mAuth;
     FirebaseUser mUser;
     DatabaseReference mData, nData;
-    User user;
     BottomNavigationView bottomNavigationView;
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
 
-        //openNavBar = findViewById(R.id.openNavigatorBar);
-        //navBarReturnHome = findViewById(R.id.navigatorBarReturnHome);
-        //navBarProfile = findViewById(R.id.navigatorBarMyProfile);
         notifPref = findViewById(R.id.notificationPreferences);
         edit = findViewById(R.id.editProfile);
         changePsw = findViewById(R.id.changePassword);
@@ -63,6 +59,7 @@ public class SettingsActivity extends AppCompatActivity implements BottomNavigat
                 mAuth.signOut();
                 Toast.makeText(SettingsActivity.this, "User logout", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(new Intent(SettingsActivity.this, LoginActivity.class)));
+                finish();
             }
         });
 
@@ -81,8 +78,6 @@ public class SettingsActivity extends AppCompatActivity implements BottomNavigat
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.child("Students").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
                             startActivity(new Intent(SettingsActivity.this, StudentEditProfileActivity.class));
-                            System.out.println("öğrenci");
-
                         }
                         else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
                             startActivity(new Intent(SettingsActivity.this, TeacherEditProfileActivity.class));

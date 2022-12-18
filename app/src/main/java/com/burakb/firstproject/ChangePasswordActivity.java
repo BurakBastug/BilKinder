@@ -60,22 +60,15 @@ public class ChangePasswordActivity extends AppCompatActivity implements BottomN
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.child("Students").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
                             User user = snapshot.child("Students").child(mUser.getUid()).getValue(Child.class);
-                            //System.out.println(user.getEmail());
                             oldPassword = user.getPassword();
-                            //System.out.println(oldPassword);
                         }
                         else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
                             User user = snapshot.child("Teachers").child(mUser.getUid()).getValue(Teacher.class);
-                            //System.out.println(user.getEmail());
                             oldPassword = user.getPassword();
-
-                            //System.out.println(oldPassword);
-
                         }
                         updatePsw(oldPassword);
 
                     }
-
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
@@ -93,9 +86,6 @@ public class ChangePasswordActivity extends AppCompatActivity implements BottomN
 
         String newInput = psw1.getText().toString();
         String oldInput = psw2.getText().toString();
-        System.out.println(newInput);
-        System.out.println(oldInput);
-
 
         if(TextUtils.isEmpty(oldInput )){
             psw2.setError("Enter a password");
@@ -112,23 +102,14 @@ public class ChangePasswordActivity extends AppCompatActivity implements BottomN
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                     if(snapshot.child("Students").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
-                        System.out.println("Student");
                         Child child = snapshot.child("Students").child(mUser.getUid()).getValue(Child.class);
                         child.setPassword(newInput);
                         mData.child("Students").child(mUser.getUid()).setValue(child);
-                        System.out.println(child.getPassword());
-                        //mUser.updatePassword(newInput);
-
-
                     }
                     else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
-                        System.out.println("Teacher");
                         Teacher teacher = snapshot.child("Teachers").child(mUser.getUid()).getValue(Teacher.class);
                         teacher.setPassword(newInput);
                         mData.child("Teachers").child(mUser.getUid()).setValue(teacher);
-                        System.out.println(teacher.getPassword());
-                        //mUser.updatePassword(newInput);
-
                     }
                 }
 
@@ -140,9 +121,6 @@ public class ChangePasswordActivity extends AppCompatActivity implements BottomN
             });
             mUser.updatePassword(newInput);
             Toast.makeText(ChangePasswordActivity.this, "Password changed", Toast.LENGTH_LONG).show();
-
-
-
         }
     }
 
@@ -156,12 +134,9 @@ public class ChangePasswordActivity extends AppCompatActivity implements BottomN
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.child("Students").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
                             startActivity(new Intent(ChangePasswordActivity.this, StudentHomeActivity.class));
-                            //System.out.println("öğrenci");
-
                         }
                         else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
                             startActivity(new Intent(ChangePasswordActivity.this, TeacherHomeActivity.class));
-                            //System.out.println("hoca");
                         }
                     }
 
@@ -190,12 +165,9 @@ public class ChangePasswordActivity extends AppCompatActivity implements BottomN
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.child("Students").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
                             startActivity(new Intent(ChangePasswordActivity.this, StudentProfileActivity.class));
-                            //System.out.println("öğrenci");
-
                         }
                         else if(snapshot.child("Teachers").hasChild(mAuth.getInstance().getCurrentUser().getUid())){
                             startActivity(new Intent(ChangePasswordActivity.this, TeacherProfileActivity.class));
-                            //System.out.println("hoca");
                         }
                     }
 
@@ -204,7 +176,6 @@ public class ChangePasswordActivity extends AppCompatActivity implements BottomN
 
                     }
                 });
-
                 break;
         }
         return false;

@@ -5,12 +5,15 @@ import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -34,15 +37,20 @@ public class MessageAdaptor extends RecyclerView.Adapter<MessageAdaptor.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        if() {
-            holder.myMessageTextView.setText(list.get(position).getContent());
+        FirebaseAuth mAuth;
+        DatabaseReference mData;
+
+        mAuth = FirebaseAuth.getInstance();
+        mData = FirebaseDatabase.getInstance("https://bilkinder2data-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
+
+        if(mAuth.getCurrentUser().getUid().equals(list.get(position).getSenderUid())) {
+            holder.myMessageTextView.setText(list.get(position).getMessage());
             holder.myMessageTextView.setBackground(Drawable.createFromPath("app/src/main/res/drawable/my_message_background.xml"));
         }
-        else {
-            holder.otherMessageTextView.setText(list.get(position).getContent());
+        else if(mAuth.getCurrentUser().getUid().equals(list.get(position).getReceiverUid())) {
+            holder.otherMessageTextView.setText(list.get(position).getMessage());
             holder.myMessageTextView.setBackground(Drawable.createFromPath("app/src/main/res/drawable/other_message_background.xml"));
         }
-
     }
 
     @Override

@@ -39,8 +39,6 @@ public class StudentHomeActivity extends AppCompatActivity implements BottomNavi
         weeklyMenu = findViewById(R.id.weeklyMenu);
         notification = findViewById(R.id.notification);
         aboutUs = findViewById(R.id.aboutUs);
-        //navigationBarProfile = findViewById(R.id.navigatorBarMyProfile);
-        //navigationBarHome = findViewById(R.id.navigatorBarReturnHome);
 
         mAuth = FirebaseAuth.getInstance();
         mData = FirebaseDatabase.getInstance("https://bilkinder2data-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
@@ -64,7 +62,7 @@ public class StudentHomeActivity extends AppCompatActivity implements BottomNavi
         chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                // TODO: 17.12.2022 start activity to chat 
             }
         });
         teacherInfo.setOnClickListener(new View.OnClickListener() {
