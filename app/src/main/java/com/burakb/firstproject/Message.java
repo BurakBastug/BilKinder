@@ -1,44 +1,44 @@
 package com.burakb.firstproject;
 
-import android.os.Build;
-
-import java.time.LocalDate;
-import java.util.Date;
-
 public class Message {
-    private Child child;
-    private Teacher teacher;
-    private LocalDate messageDate;
-    private String content;
+    private String receiverUid;
+    private String senderUid;
+    private String message;
+    private String dateTime;
 
     public Message(){
 
     }
-    public Message(Child child, Teacher teacher, String cont){
-        this.child = child;
-        this.teacher = teacher;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            this.messageDate = LocalDate.now();
-        }
-        this.content = cont;
 
+    public Message(String receiverUid, String senderUid, String message, String dateTime){
+        this.receiverUid = receiverUid;
+        this.senderUid = senderUid;
+        this.message = message;
+        this.dateTime = dateTime;
     }
 
-    public Child getChild(){
-        return this.child;
-    }
-    public Teacher getTeacher(){
-        return this.teacher;
-    }
-    public LocalDate getDate(){
-        return this.messageDate;
+    public String getReceiverUid(){
+        return this.receiverUid;
     }
 
-    public String getContent(){
-        return this.content;
+    public String getSenderUid(){
+        return this.senderUid;
     }
-    public void setContent(String message){
-        this.content = message;
+
+    public String getMessage(){
+        return this.message;
     }
+
+    public String getDateTime(){
+        return this.dateTime;
+    }
+
+    public void setReceiverUid(String receiverUid) { this.receiverUid = receiverUid; }
+
+    public void setSenderUid(String senderUid) { this.senderUid = senderUid; }
+
+    public void setMessage(String message){this.message = message;}
+
+    public void setDateTime(String dateTime){this.dateTime = dateTime;}
 
 }

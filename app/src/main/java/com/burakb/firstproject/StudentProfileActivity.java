@@ -148,12 +148,10 @@ public class StudentProfileActivity extends AppCompatActivity implements BottomN
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(StudentProfileActivity.this, StudentEditProfileActivity.class));
+                finish();
             }
         });
-
-
     }
-
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,9 +43,14 @@ public class StartEditProfileActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.child("Students").hasChild(mUser.getUid())) {
                             startActivity(new Intent(StartEditProfileActivity.this, StudentEditProfileActivity.class));
+                            finish();
                         }
                         else if(snapshot.child("Teachers").hasChild(mUser.getUid())) {
                             startActivity(new Intent(StartEditProfileActivity.this, TeacherEditProfileActivity.class));
+                            finish();
+                        }
+                        else {
+                            Toast.makeText(StartEditProfileActivity.this, "Unknown error occurred", Toast.LENGTH_SHORT).show();
                         }
                     }
 

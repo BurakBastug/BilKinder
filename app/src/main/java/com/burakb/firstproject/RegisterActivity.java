@@ -159,7 +159,6 @@ public class RegisterActivity extends AppCompatActivity {
                                 mData.child("Teachers").child(teacherUiNumber).setValue(yourTeacher);
                                 mData.child("Students").child(mAuth.getInstance().getCurrentUser().getUid()).setValue(child);
                                 startActivity(new Intent(RegisterActivity.this,StartEditProfileActivity.class));
-                                Toast.makeText(RegisterActivity.this, "User created successfully", Toast.LENGTH_LONG).show();
                             }
 
                             else if(teacherRatio.isChecked()) {
@@ -167,8 +166,9 @@ public class RegisterActivity extends AppCompatActivity {
 
                                 mData.child("Teachers").child(mAuth.getInstance().getCurrentUser().getUid()).setValue(teacher);
                                 startActivity(new Intent(RegisterActivity.this,StartEditProfileActivity.class));
-                                Toast.makeText(RegisterActivity.this, "User created successfully", Toast.LENGTH_LONG).show();
                             }
+                            Toast.makeText(RegisterActivity.this, "User created successfully", Toast.LENGTH_LONG).show();
+                            finish();
                         }
                     }
                 });
