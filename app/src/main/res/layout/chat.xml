@@ -47,7 +47,7 @@
             android:textSize="25dp"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="12dp"
-            android:paddingLeft="160dp"/>
+            />
 
     </androidx.appcompat.widget.Toolbar>
 
