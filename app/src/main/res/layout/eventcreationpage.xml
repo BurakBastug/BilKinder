@@ -13,24 +13,24 @@
         android:layout_height="66dp"
         android:background="@drawable/input_area"
         android:ems="10"
-        android:paddingRight="40dp"
         android:hint="Enter event name"
         android:inputType="text"
         android:minHeight="48dp"
+        android:paddingRight="40dp"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textColorHint="#9F9F9F"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.118" />
+        app:layout_constraintVertical_bias="0.114" />
 
     <EditText
         android:id="@+id/eventdetails"
-        android:layout_width="401dp"
-        android:layout_height="384dp"
+        android:layout_width="418dp"
+        android:layout_height="291dp"
         android:background="@drawable/input_area"
         android:ems="10"
         android:hint="Enter event details"
@@ -43,10 +43,10 @@
         android:textColorHint="#9F9F9F"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.469" />
+        app:layout_constraintVertical_bias="0.352" />
 
     <Button
         android:id="@+id/publishbtn"
@@ -59,10 +59,10 @@
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.369"
+        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.885" />
+        app:layout_constraintVertical_bias="0.903" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -110,13 +110,14 @@
         android:id="@+id/eventPhoto"
         android:layout_width="166dp"
         android:layout_height="171dp"
-        android:src="@drawable/memati"
-        app:layout_constraintBottom_toBottomOf="@+id/eventdetails"
+        android:layout_marginTop="388dp"
+        android:src="@drawable/galeria"
+        app:layout_constraintBottom_toTopOf="@+id/publishbtn"
         app:layout_constraintEnd_toEndOf="@+id/eventdetails"
-        app:layout_constraintHorizontal_bias="0.519"
+        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/eventdetails"
-        app:layout_constraintVertical_bias="0.821" />
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

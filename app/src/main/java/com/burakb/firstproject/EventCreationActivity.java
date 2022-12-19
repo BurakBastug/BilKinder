@@ -99,6 +99,7 @@ public class EventCreationActivity extends AppCompatActivity implements BottomNa
                 }
                 if(!(TextUtils.isEmpty(title.getText().toString()) || TextUtils.isEmpty(description.getText().toString()))){
                     String randomDatabaseDest = UUID.randomUUID().toString();
+                    System.out.println(randomDatabaseDest);
                     event.setName(eventName);
                     event.setDescription(eventDetails);
                     event.setEventDestination(randomDatabaseDest);
@@ -178,7 +179,7 @@ public class EventCreationActivity extends AppCompatActivity implements BottomNa
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 event.setImageDestination(randomKey);
-                mData.child(event.getEventDestination()).setValue(event);
+                mData.child("Events").child(event.getEventDestination()).setValue(event);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

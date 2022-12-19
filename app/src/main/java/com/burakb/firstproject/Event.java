@@ -16,8 +16,8 @@ public class Event {
         this.name = name;
         this.description = description;
         this.teacherName = teacherName;
-        this.imageDestination = "";
-        this.eventDestination = "default_event_photo";
+        this.imageDestination = "default_event_photo";
+        this.eventDestination = "";
         this.isVisible = true;
     }
 
