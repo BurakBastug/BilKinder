@@ -44,20 +44,18 @@ public class MessageAdaptor extends RecyclerView.Adapter<MessageAdaptor.ViewHold
         mAuth = FirebaseAuth.getInstance();
 
         if(mAuth.getCurrentUser().getEmail().equals(list.get(position).getSenderMail())) {
-            holder.otherMessageTextView.setBackgroundColor(Color.WHITE);
-            holder.otherMessageTextView.setText("");
-            //holder.myMessageTextView.setBackground(Drawable.createFromPath("app/src/main/res/drawable/my_message_background.xml"));
-            //int RGB = android.graphics.Color.rgb(140, 230, 221);
-            //holder.myMessageTextView.setBackgroundColor(RGB);
             holder.myMessageTextView.setText(list.get(position).getMessage());
+            holder.otherMessageTextView.setText("");
+            int RGB = android.graphics.Color.rgb(140, 230, 221);
+            holder.myMessageTextView.setBackgroundColor(RGB);
+
 
         }
         else {
-            holder.myMessageTextView.setBackgroundColor(Color.WHITE);
-            holder.myMessageTextView.setText("");
-            //holder.myMessageTextView.setBackground(Drawable.createFromPath("app/src/main/res/drawable/other_message_background.xml"));
-            //holder.otherMessageTextView.setBackgroundColor(Color.LTGRAY);
             holder.otherMessageTextView.setText(list.get(position).getMessage());
+            holder.myMessageTextView.setText("");
+            holder.otherMessageTextView.setBackgroundColor(Color.LTGRAY);
+
 
         }
     }
