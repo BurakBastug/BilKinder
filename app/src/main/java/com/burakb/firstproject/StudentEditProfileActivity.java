@@ -256,7 +256,7 @@ public class StudentEditProfileActivity extends AppCompatActivity implements Bot
             txtHomeAddress.setError("Address is required");
             isEnoughData = false;
         }
-        if(TextUtils.isEmpty(healthConditions)) { // it can be optional removing if statement
+        if(TextUtils.isEmpty(healthConditions)) {
             txtSpecialHealthConditions.setError("Health conditions ,s required");
             isEnoughData = false;
         }

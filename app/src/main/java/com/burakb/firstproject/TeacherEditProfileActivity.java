@@ -258,6 +258,9 @@ public class TeacherEditProfileActivity extends AppCompatActivity implements Bot
                 }
             });
         }
+        else {
+            isEnoughData = false;
+        }
         return isEnoughData;
     }
 
