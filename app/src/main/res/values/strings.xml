@@ -3,4 +3,13 @@
     <string name="button">Button</string>
     <string name="butto">Button</string>
     <string name="burak">burak</string>
+    <string name="selectSchool">Select School</string>
+    <string-array name="schools">
+        <item>School</item>
+        <item>Pema Koleji</item>
+        <item>AAAL</item>
+        <item>AAL</item>
+        <item>AAAAAL</item>
+        <item>ÖAFL</item>
+    </string-array>
 </resources>
