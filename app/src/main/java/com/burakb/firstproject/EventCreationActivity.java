@@ -49,7 +49,6 @@ public class EventCreationActivity extends AppCompatActivity implements BottomNa
     //for photo
     private ImageView eventImage;
     private Uri imagePath;
-    private FirebaseStorage storage;
     Event event = new Event("","","");
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,7 +66,6 @@ public class EventCreationActivity extends AppCompatActivity implements BottomNa
         mUser = mAuth.getCurrentUser();
         mData = FirebaseDatabase.getInstance("https://bilkinder2data-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Events");
         mData2 = FirebaseDatabase.getInstance("https://bilkinder2data-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
-        storage = FirebaseStorage.getInstance();
 
         mData2.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -99,7 +97,7 @@ public class EventCreationActivity extends AppCompatActivity implements BottomNa
                 if(TextUtils.isEmpty(eventDetails)){
                     description.setError("Please enter the description");
                 }
-                else{
+                if(!(TextUtils.isEmpty(title.getText().toString()) || TextUtils.isEmpty(description.getText().toString()))){
                     String randomDatabaseDest = UUID.randomUUID().toString();
                     event.setName(eventName);
                     event.setDescription(eventDetails);
