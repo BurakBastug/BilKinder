@@ -4,21 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/row_area"
-    android:orientation="horizontal"
-    android:padding="5dp"
-    android:rotationX="-14">
+    android:orientation="vertical"
+    >
 
     <ImageView
         android:id="@+id/event_image"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:padding="20dp" />
+        android:layout_width="380dp"
+        android:layout_height="250dp"
+        android:paddingLeft="30dp"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingLeft="40dp">
+        android:padding="31dp"
+        >
 
 
         <TextView
