@@ -177,29 +177,11 @@
 
     <Button
         android:id="@+id/feed"
-        android:layout_width="100dp"
-        android:layout_height="48dp"
-        android:accessibilityLiveRegion="none"
-        android:background="@drawable/half_circular_btn_right"
-        android:text="Feed"
-        android:textAllCaps="false"
-        android:textColor="#000000"
-        android:textSize="8pt"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.437" />
-
-    <Button
-        android:id="@+id/startAPoll"
-        android:layout_width="211dp"
-        android:layout_height="48dp"
+        android:layout_width="210dp"
+        android:layout_height="52dp"
         android:accessibilityLiveRegion="none"
         android:background="@drawable/half_circular_btn_left"
-        android:text="Start A Poll"
+        android:text="Feed"
         android:textAllCaps="false"
         android:textColor="#000000"
         android:textSize="8pt"
@@ -209,6 +191,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.688" />
+        app:layout_constraintVertical_bias="0.696" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

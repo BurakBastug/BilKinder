@@ -21,8 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class TeacherHomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     Button aboutUs, askForPermission,
-        viewWeeklyMenu, viewWeeklySchedule, viewStudent, privateChat, myProfile,feed,
-        startaPoll;
+        viewWeeklyMenu, viewWeeklySchedule, viewStudent, privateChat, myProfile,feed;
 
     FirebaseAuth mAuth;
     FirebaseUser mUser;
@@ -42,7 +41,6 @@ public class TeacherHomeActivity extends AppCompatActivity implements BottomNavi
         privateChat = findViewById(R.id.privateChat);
         myProfile = findViewById(R.id.announce);
         feed = findViewById(R.id.feed);
-        startaPoll = findViewById(R.id.startAPoll);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
@@ -96,12 +94,6 @@ public class TeacherHomeActivity extends AppCompatActivity implements BottomNavi
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(TeacherHomeActivity.this, FeedActivity.class));
-            }
-        });
-        startaPoll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
             }
         });
     }
