@@ -73,7 +73,7 @@ public class NotifCreationActivity extends AppCompatActivity implements BottomNa
                 if(descriptionStr.equals("")){
                     description.setError("Please enter a description");
                 }
-                else{
+                if(!(title.getText().toString().equals("") || description.getText().toString().equals(""))) {
                     Notification notif = new Notification(titleStr,descriptionStr,teacher.getUsername());
                     nData.child(notif.getNotifName()).setValue(notif);
                     mData.child("Teachers").child(mUser.getUid()).setValue(teacher);
