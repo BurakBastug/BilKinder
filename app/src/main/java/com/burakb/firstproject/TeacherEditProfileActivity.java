@@ -46,8 +46,8 @@ import java.util.UUID;
 
 public class TeacherEditProfileActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
-    private TextView txtTeacherName, txtClassAndNumberOfStudent;
-    private EditText txtAge, txtAddress, txtContactNum, txtContactMail;
+    private TextView txtTeacherName, txtClassAndNumberOfStudent, txtContactMail;
+    private EditText txtAge, txtAddress, txtContactNum;
     private Button saveButton;
 
     private DatabaseReference mData;
@@ -108,23 +108,21 @@ public class TeacherEditProfileActivity extends AppCompatActivity implements Bot
                 txtAge.setText(tmp.getAge());
                 txtAddress.setText(tmp.getAddress());
                 txtContactNum.setText(tmp.getTelNum());
-                txtContactMail.setText(tmp.getEmail());
+                txtContactMail.setText("Teacher Mail: " + tmp.getEmail());
 
                 StorageReference ref = storage.getReference().child("images/" + tmp.getImageDestination() + ".jpg");
 
-                if(!tmp.getImageDestination().equals("")) {
-                    try {
-                        final File localFile = File.createTempFile(tmp.getImageDestination(), "jpg");
-                        ref.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                            @Override
-                            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                                Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                                profileImage.setImageBitmap(bitmap);
-                            }
-                        });
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                try {
+                    final File localFile = File.createTempFile(tmp.getImageDestination(), "jpg");
+                    ref.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                            Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                            profileImage.setImageBitmap(bitmap);
+                        }
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
 
@@ -185,7 +183,7 @@ public class TeacherEditProfileActivity extends AppCompatActivity implements Bot
                         @Override
                         public void onComplete(@NonNull Task<Uri> task) {
                             if(task.isSuccessful()) {
-                                updateProfilePicture(randomKey);
+                                updateProfilePictureDestination(randomKey);
                             }
                         }
                     });
@@ -204,7 +202,7 @@ public class TeacherEditProfileActivity extends AppCompatActivity implements Bot
         });
     }
 
-    private void updateProfilePicture(String key) {
+    private void updateProfilePictureDestination(String key) {
         mData.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -225,7 +223,6 @@ public class TeacherEditProfileActivity extends AppCompatActivity implements Bot
         String age = txtAge.getText().toString();
         String address = txtAddress.getText().toString();
         String contactNum = txtContactNum.getText().toString();
-        String contactMail = txtContactMail.getText().toString();
         boolean isEnoughData = true;
 
         if(TextUtils.isEmpty(teacherName)) {
@@ -244,16 +241,12 @@ public class TeacherEditProfileActivity extends AppCompatActivity implements Bot
             txtContactNum.setError("Type as the form 0XXXXXXXXXX");
             isEnoughData = false;
         }
-        if(TextUtils.isEmpty(contactMail)) {
-            txtContactMail.setError("Contact mail cannot be empty");
-            isEnoughData = false;
-        }
         else {
             mData.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     Teacher teacher = snapshot.child("Teachers").child(mUser.getUid()).getValue(Teacher.class);
-                    teacher.setTeacherData(age, address, contactNum, contactMail);
+                    teacher.setTeacherData(age, address, contactNum);
                     mData.child("Teachers").child(mUser.getUid()).setValue(teacher);
                     Toast.makeText(TeacherEditProfileActivity.this, "Data updated", Toast.LENGTH_SHORT).show();
                 }

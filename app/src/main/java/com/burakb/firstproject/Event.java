@@ -4,6 +4,8 @@ public class Event {
     private String name;
     private String description;
     private String teacherName;
+    private String imageDestination;
+    private String eventDestination;
     private boolean isVisible;
 
     public Event(){
@@ -13,8 +15,10 @@ public class Event {
     public Event(String name, String description, String teacherName){
         this.name = name;
         this.description = description;
-        this.isVisible = true;
         this.teacherName = teacherName;
+        this.imageDestination = "";
+        this.eventDestination = "default_event_photo";
+        this.isVisible = true;
     }
 
     public String getTeacherName() {
@@ -24,13 +28,16 @@ public class Event {
     public String getName(){
         return this.name;
     }
+
     public String getDescription(){
         return this.description;
     }
 
-    public boolean getVisibility(){
-        return this.isVisible;
-    }
+    public boolean getVisibility(){return this.isVisible;}
+
+    public String getImageDestination() {return this.imageDestination;}
+
+    public String getEventDestination() {return eventDestination;}
 
     public void setName(String name){
         this.name = name;
@@ -40,9 +47,15 @@ public class Event {
         this.description =description;
     }
 
+    public void setTeacherName(String teacherName) { this.teacherName = teacherName;}
+
     public void setVisible(boolean visible){
         this.isVisible = visible;
     }
+
+    public void setImageDestination(String imageDestination) {this.imageDestination = imageDestination;}
+
+    public void setEventDestination(String eventDestination) {this.eventDestination = eventDestination;}
 
     public String toString(){
         String formatted = "";

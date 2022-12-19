@@ -173,15 +173,13 @@
 
     <ImageView
         android:id="@+id/profilePic"
-        android:src="@drawable/avatar"
         android:layout_width="92dp"
         android:layout_height="102dp"
         app:layout_constraintBottom_toBottomOf="@+id/button6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.58"
         app:layout_constraintStart_toEndOf="@+id/button6"
-        app:layout_constraintTop_toTopOf="@+id/button6"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintTop_toTopOf="@+id/button6" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

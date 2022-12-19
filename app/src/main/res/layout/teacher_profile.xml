@@ -10,14 +10,13 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
 
         android:id="@+id/bottomNavigationView"
-        android:layout_width="0dp"
+        android:layout_width="411dp"
         android:layout_height="wrap_content"
         android:background="#D7FDFF"
-        app:itemTextColor="@color/black"
         app:itemIconTint="@color/black"
+        app:itemTextColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav">
 
@@ -33,91 +32,84 @@
         android:text="Profile"
         android:textColor="@color/black"
         android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/teacherProfilePicture"
         android:layout_width="117dp"
         android:layout_height="100dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.738"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.248"
+        app:layout_constraintStart_toEndOf="@+id/button6"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.037"
         app:srcCompat="@drawable/ic_launcher_foreground" />
 
     <TextView
         android:id="@+id/teacherName"
         android:layout_width="237dp"
         android:layout_height="36dp"
-        android:layout_marginBottom="49dp"
-        android:text="Teacher Name"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/input_area"
+        android:text="Teacher Name"
         android:textColor="@color/black"
         android:textSize="10pt"
         app:layout_constraintBottom_toTopOf="@+id/classAndNumberOfStudent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        tools:layout_editor_absoluteX="87dp" />
 
     <TextView
         android:id="@+id/classAndNumberOfStudent"
         android:layout_width="390dp"
         android:layout_height="53dp"
-        android:layout_marginBottom="21dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/half_circular_btn_left"
-        android:text="Class and Number of Student"
+        android:text="Class and Number of Student(s)"
         android:textColor="@color/black"
         android:textSize="9pt"
         app:layout_constraintBottom_toTopOf="@+id/teacherAge"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/teacherAge"
         android:layout_width="347dp"
         android:layout_height="38dp"
-        android:layout_marginBottom="22dp"
-        android:text="Age"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/half_circular_btn_left"
+        android:text="Age"
         android:textColor="@color/black"
         android:textSize="9pt"
         app:layout_constraintBottom_toTopOf="@+id/teacherAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        tools:layout_editor_absoluteX="-2dp" />
 
     <TextView
         android:id="@+id/teacherAddress"
         android:layout_width="380dp"
         android:layout_height="71dp"
-        android:layout_marginBottom="26dp"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/half_circular_btn_left"
         android:text="Address"
         android:textColor="@color/black"
         android:textSize="7pt"
         app:layout_constraintBottom_toTopOf="@+id/teacherContactNumber"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        tools:layout_editor_absoluteX="0dp" />
 
     <TextView
         android:id="@+id/teacherContactNumber"
         android:layout_width="324dp"
         android:layout_height="43dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/half_circular_btn_left"
         android:text="Teacher Contact Number"
         android:textColor="@color/black"
         android:textSize="7pt"
         app:layout_constraintBottom_toTopOf="@+id/teacherContactMail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        tools:layout_editor_absoluteX="-3dp" />
 
     <TextView
         android:id="@+id/teacherContactMail"
@@ -125,38 +117,21 @@
         android:layout_height="42dp"
         android:layout_marginBottom="40dp"
         android:background="@drawable/half_circular_btn_left"
-        android:text="Teacher Contact Number"
-        android:textColor="@color/black"
-        android:textSize="7pt"
-        app:layout_constraintBottom_toTopOf="@+id/teacherMail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/teacherMail"
-        android:layout_width="330dp"
-        android:layout_height="41dp"
-        android:layout_marginBottom="36dp"
-        android:background="@drawable/half_circular_btn_left"
-        android:text="Teacher Mail"
+        android:text="Teacher Contact Mail"
         android:textColor="@color/black"
         android:textSize="7pt"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        tools:layout_editor_absoluteX="-2dp" />
 
     <Button
         android:id="@+id/editButton"
         android:layout_width="59dp"
         android:layout_height="57dp"
+        android:layout_marginEnd="4dp"
         android:background="@drawable/ic_baseline_edit_24"
         android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="SpeakableTextPresentCheck" />

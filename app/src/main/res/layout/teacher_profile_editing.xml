@@ -96,13 +96,12 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
+    <TextView
         android:id="@+id/teacherMail"
         android:layout_width="256dp"
         android:layout_height="48dp"
         android:layout_marginBottom="116dp"
         android:background="@drawable/half_circular_btn_left"
-        android:hint="Teacher Mail"
         android:textColor="@color/black"
         android:textColorHint="#9F9F9F"
         android:textSize="7pt"

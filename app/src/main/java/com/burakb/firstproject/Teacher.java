@@ -10,7 +10,7 @@ public class Teacher extends User {
     private HashMap<String,String> weeklySchedule;
     private HashMap<String,String> weeklyMenu;
     private Notification firstNotif = new Notification("","","");
-    private  Event firstEvent = new Event("","","");
+    private Event firstEvent = new Event("","","");
 
     public Teacher(){
 
@@ -32,12 +32,10 @@ public class Teacher extends User {
 
 
 
-    public void setTeacherData(String age, String address, String contactNum, String contactMail) {
+    public void setTeacherData(String age, String address, String contactNum) {
         setAge(age);
         setAddress(address);
         setTelNum(contactNum);
-        setEmail(contactMail);
-
     }
 
     public void setWeeklyMenu(HashMap<String, String> weeklyMenu) {

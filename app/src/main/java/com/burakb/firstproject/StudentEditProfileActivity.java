@@ -113,19 +113,17 @@ public class StudentEditProfileActivity extends AppCompatActivity implements Bot
 
                 StorageReference ref = storage.getReference().child("images/" + tmp.getImageDestination() + ".jpg");
 
-                if(!tmp.getImageDestination().equals("")) {
-                    try {
-                        final File localFile = File.createTempFile(tmp.getImageDestination(), "jpg");
-                        ref.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                            @Override
-                            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                                Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                                profileImage.setImageBitmap(bitmap);
-                            }
-                        });
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                try {
+                    final File localFile = File.createTempFile(tmp.getImageDestination(), "jpg");
+                    ref.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                            Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                            profileImage.setImageBitmap(bitmap);
+                        }
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
 

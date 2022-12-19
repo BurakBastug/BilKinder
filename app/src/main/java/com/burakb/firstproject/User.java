@@ -2,8 +2,6 @@ package com.burakb.firstproject;
 
 public class User {
     private String username;
-    private String firstname;
-    private String lastname;
     private String password;
     private String email;
     private String telNum;
@@ -18,11 +16,9 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
-        firstname = "";
-        lastname = "";
         telNum = "";
         address = "";
-        imageDestination = "";
+        imageDestination = "default_profile_photo";
     }
 
     public static boolean isCorrectFormOfContactNumber(String contactNumber) {
@@ -30,24 +26,8 @@ public class User {
                 (contactNumber.length() == 11 && contactNumber.charAt(0) == '0');
     }
 
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
     public String getTelNum() {
         return telNum;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
     }
 
     public void setTelNum(String telNum) {

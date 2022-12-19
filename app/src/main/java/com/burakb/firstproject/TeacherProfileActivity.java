@@ -71,22 +71,21 @@ public class TeacherProfileActivity extends AppCompatActivity implements BottomN
                 txtTeacherAge.setText("Age: " + tmp.getAge());
                 txtAddress.setText("Address: " + tmp.getAddress());
                 txtTeacherContactNum.setText("Contact Number: " + tmp.getTelNum());
-                txtTeacherContactMail.setText("Contact Mail:" + tmp.getEmail());
+                txtTeacherContactMail.setText("Contact Mail: " + tmp.getEmail());
 
                 StorageReference ref = storage.getReference().child("images/" + tmp.getImageDestination() + ".jpg");
-                if(!tmp.getImageDestination().equals("")) {
-                    try {
-                        final File localFile = File.createTempFile(tmp.getImageDestination(), "jpg");
-                        ref.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                            @Override
-                            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                                Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                                profileImage.setImageBitmap(bitmap);
-                            }
-                        });
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+
+                try {
+                    final File localFile = File.createTempFile(tmp.getImageDestination(), "jpg");
+                    ref.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                            Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                            profileImage.setImageBitmap(bitmap);
+                        }
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
 

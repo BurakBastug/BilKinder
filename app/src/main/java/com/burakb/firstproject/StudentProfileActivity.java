@@ -77,19 +77,17 @@ public class StudentProfileActivity extends AppCompatActivity implements BottomN
                 StorageReference ref = storage.getReference().child("images/" + tmp.getImageDestination() + ".jpg");
 
                 //for getting profile image from storage and set the ImageView object
-                if(!tmp.getImageDestination().equals("")) {
-                    try {
-                        final File localFile = File.createTempFile(tmp.getImageDestination(), "jpg");
-                        ref.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                            @Override
-                            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                                Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                                profileImage.setImageBitmap(bitmap);
-                            }
-                        });
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                try {
+                    final File localFile = File.createTempFile(tmp.getImageDestination(), "jpg");
+                    ref.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                            Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                            profileImage.setImageBitmap(bitmap);
+                        }
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
                 checkIsSick.setChecked(tmp.getIsSick());
             }

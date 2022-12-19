@@ -30,38 +30,40 @@
     <EditText
         android:id="@+id/eventdetails"
         android:layout_width="401dp"
-        android:layout_height="297dp"
+        android:layout_height="384dp"
         android:background="@drawable/input_area"
         android:ems="10"
         android:hint="Enter event details"
-        android:paddingRight="50dp"
-        android:paddingBottom="200dp"
         android:inputType="text"
         android:minHeight="48dp"
+        android:paddingRight="50dp"
+        android:paddingBottom="200dp"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textColorHint="#9F9F9F"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.407" />
+        app:layout_constraintVertical_bias="0.469" />
 
     <Button
         android:id="@+id/publishbtn"
-        android:layout_width="319dp"
-        android:layout_height="35dp"
-        android:text="Publish"
-        android:paddingBottom="5dp"
-        android:paddingRight="50dp"
+        android:layout_width="323dp"
+        android:layout_height="48dp"
         android:background="@drawable/input_area"
+        android:paddingRight="50dp"
+        android:paddingBottom="5dp"
+        android:text="Publish"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.372"
+        app:layout_constraintHorizontal_bias="0.369"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.868" />
+        app:layout_constraintVertical_bias="0.885" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
 
         android:id="@+id/bottomNavigationView"
@@ -103,6 +105,18 @@
             android:paddingLeft="110dp"/>
 
     </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/eventPhoto"
+        android:layout_width="166dp"
+        android:layout_height="171dp"
+        android:src="@drawable/memati"
+        app:layout_constraintBottom_toBottomOf="@+id/eventdetails"
+        app:layout_constraintEnd_toEndOf="@+id/eventdetails"
+        app:layout_constraintHorizontal_bias="0.519"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/eventdetails"
+        app:layout_constraintVertical_bias="0.821" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
