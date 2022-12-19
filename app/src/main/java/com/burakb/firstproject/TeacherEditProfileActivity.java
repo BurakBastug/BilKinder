@@ -229,7 +229,7 @@ public class TeacherEditProfileActivity extends AppCompatActivity implements Bot
             txtTeacherName.setError("Teacher name cannot be empty");
             isEnoughData = false;
         }
-        if(TextUtils.isEmpty(age)) {
+        if(!Teacher.isCorrectFormOfAge(age)) {
             txtAge.setError("Invalid age");
             isEnoughData = false;
         }

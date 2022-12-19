@@ -10,11 +10,10 @@
     android:padding="5dp">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/studentPicture"
         android:layout_width="143dp"
         android:layout_height="73dp"
-        android:layout_weight="1"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:layout_weight="1" />
 
     <TextView
         android:id="@+id/parent_name"

@@ -67,7 +67,7 @@ public class StudentProfileForTeachersActivity extends AppCompatActivity impleme
         String contactmail = "";
         String address = "";
         String healthissues = "";
-        //String imageDestination = "";
+        String imageDestination = "";
 
         Bundle extras = getIntent().getExtras();
         if(extras != null){
@@ -79,7 +79,7 @@ public class StudentProfileForTeachersActivity extends AppCompatActivity impleme
             contactmail = extras.getString("contactMail");
             teacherandclass = extras.getString("teacherName");
             healthissues = extras.getString("healthIssues");
-            //imageDestination = extras.getString("imageDestination");
+            imageDestination = extras.getString("imageDestination");
         }
 
         studentName.setText(username);
@@ -91,8 +91,7 @@ public class StudentProfileForTeachersActivity extends AppCompatActivity impleme
         addresss.setText(address);
         healthIssues.setText(healthissues);
 
-        /*StorageReference ref = storage.getReference().child("images/" + imageDestination + ".jpg");
-        System.out.println(imageDestination);
+        StorageReference ref = storage.getReference().child("images/" + imageDestination + ".jpg");
         try {
             final File localFile = File.createTempFile(imageDestination, "jpg");
             ref.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
@@ -104,7 +103,7 @@ public class StudentProfileForTeachersActivity extends AppCompatActivity impleme
             });
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
     }
 
 

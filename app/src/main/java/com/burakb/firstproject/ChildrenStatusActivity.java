@@ -87,6 +87,7 @@ public class ChildrenStatusActivity extends AppCompatActivity implements BottomN
                 intent.putExtra("healthIssues",child.getMedicalCondition());
                 intent.putExtra("contactMail",child.getContactMail());
                 intent.putExtra("teacherName",child.getTeacherName());
+                intent.putExtra("imageDestination", child.getImageDestination());
 
                 startActivity(intent);
             }
@@ -118,6 +119,7 @@ public class ChildrenStatusActivity extends AppCompatActivity implements BottomN
         intent.putExtra("Name",list.get(position).getUsername());
         intent.putExtra("Contact Number",list.get(position).getContactNumber());
         intent.putExtra("Parent Name:",list.get(position).getParentName());
+        intent.putExtra("imageDestination", list.get(position).getImageDestination());
         startActivity(intent);
 
     }

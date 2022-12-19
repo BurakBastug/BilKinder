@@ -30,8 +30,6 @@ public class Teacher extends User {
         this.weeklyMenu.put("Friday","");
     }
 
-
-
     public void setTeacherData(String age, String address, String contactNum) {
         setAge(age);
         setAddress(address);
@@ -49,6 +47,7 @@ public class Teacher extends User {
     public HashMap<String,String> getWeeklySchedule(){
         return this.weeklySchedule;
     }
+
     public HashMap<String,String> getWeeklyMenu(){
         return this.weeklyMenu;
     }
@@ -75,7 +74,8 @@ public class Teacher extends User {
         this.studentList.add(child);
     }
 
-
-
-
+    public static boolean isCorrectFormOfAge(String age) {
+        int intAge = Integer.parseInt(age);
+        return intAge > 18 && intAge < 100;
+    }
 }

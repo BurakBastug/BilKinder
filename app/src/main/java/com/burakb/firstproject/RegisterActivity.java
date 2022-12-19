@@ -94,12 +94,13 @@ public class RegisterActivity extends AppCompatActivity {
             password.setError("Password is too short");
         }
         else if(TextUtils.isEmpty(pswAgain)) {
-            passwordCheck.setError("Full name is required");
+            passwordCheck.setError("Enter your password again");
         }
         else if(TextUtils.isEmpty(mail)) {
             email.setError("E-mail is required");
         }
         else if(!(studentRatio.isChecked() || teacherRatio.isChecked())){
+            studentRatio.setError("");
             studentRatio.setError("Please select user type");
         }
         else if(!password.getText().toString().equals(passwordCheck.getText().toString()) || TextUtils.isEmpty(psw) ) {

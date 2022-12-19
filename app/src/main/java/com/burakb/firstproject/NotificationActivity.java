@@ -101,7 +101,6 @@ public class NotificationActivity extends AppCompatActivity implements BottomNav
 
             }
         });
-
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
     }
