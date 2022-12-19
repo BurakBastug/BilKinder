@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,6 +39,7 @@ public class ChatActivity extends AppCompatActivity implements BottomNavigationV
     private FirebaseAuth mAuth;
     private DatabaseReference mData,nData;
     private FirebaseUser mUser;
+    private TextView userName;
     private EditText messageInput;
     private Button send;
     BottomNavigationView bottomNavigationView;
@@ -54,6 +56,7 @@ public class ChatActivity extends AppCompatActivity implements BottomNavigationV
         nData = FirebaseDatabase.getInstance("https://bilkinder2data-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Messages");
         mUser = mAuth.getCurrentUser();
 
+        userName = findViewById(R.id.chat_userName);
         messageInput = findViewById(R.id.message_input);
         send = findViewById(R.id.send_btn);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -69,6 +72,7 @@ public class ChatActivity extends AppCompatActivity implements BottomNavigationV
                         Teacher tmpT = teacherObj.getValue(Teacher.class);
                         if(c.getTeacherName().equals(tmpT.getUsername())){
                             t = tmpT;
+                            userName.setText(t.getUsername() + "(Your teacher)");
                         }
                     }
                     send.setOnClickListener(new View.OnClickListener() {
@@ -116,6 +120,7 @@ public class ChatActivity extends AppCompatActivity implements BottomNavigationV
                         Child tmp = targetChild.getValue(Child.class);
                         if(studentID.equals(tmp.getEmail())){
                             c = tmp;
+                            userName.setText(c.getUsername() + "(Parent Name: " + c.getParentName() + ")");
                         }
                     }
                     send.setOnClickListener(new View.OnClickListener() {
