@@ -260,7 +260,9 @@ public class StudentEditProfileActivity extends AppCompatActivity implements Bot
             txtSpecialHealthConditions.setError("Health conditions ,s required");
             isEnoughData = false;
         }
-        else {
+        else if(!(txtStuName.getText().toString().equals("") || txtParentName.getText().toString().equals("") ||
+                Child.isCorrectFormOfBloodType(txtBloodType.getText().toString()) || User.isCorrectFormOfContactNumber(txtContactNum.getText().toString()
+                ) || txtContactMailAddress.getText().toString().equals("") || txtHomeAddress.getText().toString().equals("") || txtSpecialHealthConditions.getText().toString().equals(""))){
             mData.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -275,6 +277,9 @@ public class StudentEditProfileActivity extends AppCompatActivity implements Bot
 
                 }
             });
+        }
+        else {
+            isEnoughData = false;
         }
         return isEnoughData;
     }

@@ -60,17 +60,18 @@ public class Message implements Comparable {
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                 LocalDateTime current = LocalDateTime.parse(this.dateTime);
                 LocalDateTime oL = LocalDateTime.parse(((Message)o).getDateTime());
-                o = (Message) o;
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     if(current.isBefore(oL)){
                         return -1;
                     }
-                    else{
+                    else if(current.isAfter(oL)){
                         return 1;
+                    }
+                    else {
+                        return 0;
                     }
                 }
             }
-
         }
         return 0;
     }

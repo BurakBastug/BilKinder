@@ -241,7 +241,8 @@ public class TeacherEditProfileActivity extends AppCompatActivity implements Bot
             txtContactNum.setError("Type as the form 0XXXXXXXXXX");
             isEnoughData = false;
         }
-        else {
+        else if((txtTeacherName.getText().toString().equals("") || txtAge.getText().toString().equals("") || txtAddress.getText().toString().equals("")
+                || User.isCorrectFormOfContactNumber(txtContactNum.getText().toString()))){
             mData.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
