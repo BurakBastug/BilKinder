@@ -60,68 +60,80 @@
         android:textColor="@color/black"
         android:textSize="10pt"
         app:layout_constraintBottom_toTopOf="@+id/classAndNumberOfStudent"
-        tools:layout_editor_absoluteX="87dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/classAndNumberOfStudent"
-        android:layout_width="390dp"
-        android:layout_height="53dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="44dp"
         android:background="@drawable/half_circular_btn_left"
+        android:minWidth="250dp"
+        android:minHeight="40dp"
         android:text="Class and Number of Student(s)"
         android:textColor="@color/black"
         android:textSize="9pt"
         app:layout_constraintBottom_toTopOf="@+id/teacherAge"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.03"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/teacherAge"
-        android:layout_width="347dp"
-        android:layout_height="38dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="40dp"
+        android:minWidth="250dp"
         android:layout_marginBottom="40dp"
         android:background="@drawable/half_circular_btn_left"
         android:text="Age"
         android:textColor="@color/black"
         android:textSize="9pt"
         app:layout_constraintBottom_toTopOf="@+id/teacherAddress"
-        tools:layout_editor_absoluteX="-2dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/teacherAddress"
-        android:layout_width="380dp"
-        android:layout_height="71dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="40dp"
+        android:minWidth="250dp"
         android:layout_marginBottom="40dp"
         android:background="@drawable/half_circular_btn_left"
         android:text="Address"
         android:textColor="@color/black"
         android:textSize="7pt"
         app:layout_constraintBottom_toTopOf="@+id/teacherContactNumber"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/teacherContactNumber"
-        android:layout_width="324dp"
-        android:layout_height="43dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="40dp"
+        android:minWidth="250dp"
         android:layout_marginBottom="40dp"
         android:background="@drawable/half_circular_btn_left"
         android:text="Teacher Contact Number"
         android:textColor="@color/black"
         android:textSize="7pt"
         app:layout_constraintBottom_toTopOf="@+id/teacherContactMail"
-        tools:layout_editor_absoluteX="-3dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/teacherContactMail"
-        android:layout_width="326dp"
-        android:layout_height="42dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="40dp"
+        android:minWidth="250dp"
         android:layout_marginBottom="40dp"
         android:background="@drawable/half_circular_btn_left"
         android:text="Teacher Contact Mail"
         android:textColor="@color/black"
         android:textSize="7pt"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        tools:layout_editor_absoluteX="-2dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/editButton"

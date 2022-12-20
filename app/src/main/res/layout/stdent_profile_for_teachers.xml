@@ -41,8 +41,10 @@
 
             <TextView
                 android:id="@+id/teacherandclass"
-                android:layout_width="251dp"
-                android:layout_height="39dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="40dp"
+                android:minWidth="250dp"
                 android:layout_marginBottom="12dp"
                 android:background="@drawable/half_circular_btn_left"
                 android:gravity="center_vertical"
@@ -52,8 +54,10 @@
 
             <TextView
                 android:id="@+id/parentName"
-                android:layout_width="257dp"
-                android:layout_height="47dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="40dp"
+                android:minWidth="250dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/half_circular_btn_left"
                 android:gravity="center_vertical"
@@ -63,8 +67,10 @@
 
             <TextView
                 android:id="@+id/bloodType"
-                android:layout_width="223dp"
-                android:layout_height="39dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="40dp"
+                android:minWidth="250dp"
                 android:layout_marginBottom="24dp"
                 android:background="@drawable/half_circular_btn_left"
                 android:gravity="center_vertical"
@@ -74,8 +80,10 @@
 
             <TextView
                 android:id="@+id/contactNumber"
-                android:layout_width="223dp"
-                android:layout_height="44dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="40dp"
+                android:minWidth="250dp"
                 android:layout_marginBottom="24dp"
                 android:background="@drawable/half_circular_btn_left"
                 android:gravity="center_vertical"
@@ -85,8 +93,10 @@
 
             <TextView
                 android:id="@+id/contactMail"
-                android:layout_width="217dp"
-                android:layout_height="35dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="40dp"
+                android:minWidth="250dp"
                 android:layout_marginBottom="24dp"
                 android:background="@drawable/half_circular_btn_left"
                 android:gravity="center_vertical"
@@ -96,8 +106,10 @@
 
             <TextView
                 android:id="@+id/address"
-                android:layout_width="208dp"
-                android:layout_height="77dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="40dp"
+                android:minWidth="250dp"
                 android:layout_marginBottom="24dp"
                 android:background="@drawable/half_circular_btn_left"
                 android:gravity="center_vertical"
@@ -107,8 +119,10 @@
 
             <TextView
                 android:id="@+id/healthIssues"
-                android:layout_width="214dp"
-                android:layout_height="63dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="40dp"
+                android:minWidth="250dp"
                 android:layout_marginBottom="24dp"
                 android:background="@drawable/half_circular_btn_left"
                 android:gravity="center_vertical"

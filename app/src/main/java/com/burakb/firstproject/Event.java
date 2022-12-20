@@ -1,12 +1,17 @@
 package com.burakb.firstproject;
 
-public class Event {
+import android.os.Build;
+
+import java.time.LocalDateTime;
+
+public class Event implements Comparable{
     private String name;
     private String description;
     private String teacherName;
     private String imageDestination;
     private String eventDestination;
     private boolean isVisible;
+    private String dateTime;
 
     public Event(){
 
@@ -19,6 +24,13 @@ public class Event {
         this.imageDestination = "default_event_photo";
         this.eventDestination = "";
         this.isVisible = true;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            this.dateTime = LocalDateTime.now().toString();
+        }
+    }
+
+    public String getDateTime() {
+        return dateTime;
     }
 
     public String getTeacherName() {
@@ -62,5 +74,27 @@ public class Event {
         formatted += "Event Name: " + this.name + "\n";
         formatted += "Event Description: " + this.description + "\n";
         return formatted;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        if(o instanceof Event){
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                LocalDateTime current = LocalDateTime.parse(this.dateTime);
+                LocalDateTime oL = LocalDateTime.parse(((Event)o).getDateTime());
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    if(current.isBefore(oL)){
+                        return -1;
+                    }
+                    else if(current.isAfter(oL)){
+                        return 1;
+                    }
+                    else {
+                        return 0;
+                    }
+                }
+            }
+        }
+        return 0;
     }
 }

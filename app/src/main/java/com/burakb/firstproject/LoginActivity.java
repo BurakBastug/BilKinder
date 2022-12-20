@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
                 if(TextUtils.isEmpty(password)) {
                     txtPassword.setError("Password is required");
                 }
-                else {
+                if(!(txtemail.getText().toString().equals("")||txtPassword.getText().toString().equals(""))) {
                     mAuth.signInWithEmailAndPassword(mail, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {

@@ -67,7 +67,7 @@ public class TeacherProfileActivity extends AppCompatActivity implements BottomN
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Teacher tmp = snapshot.child("Teachers").child(mUser.getUid()).getValue(Teacher.class);
                 txtTeacherName.setText(tmp.getUsername());
-                txtClassAndNumOfStu.setText("Class and Number of Students: " + tmp.getUsername() + " " + (tmp.getStudentList().size()-1));
+                txtClassAndNumOfStu.setText("Class and Number of Students: \n" + tmp.getUsername() + " " + (tmp.getStudentList().size()-1));
                 txtTeacherAge.setText("Age: " + tmp.getAge());
                 txtAddress.setText("Address: " + tmp.getAddress());
                 txtTeacherContactNum.setText("Contact Number: " + tmp.getTelNum());

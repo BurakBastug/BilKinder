@@ -39,8 +39,10 @@
 
     <TextView
         android:id="@+id/classAndNumberOfStudent"
-        android:layout_width="354dp"
-        android:layout_height="46dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="40dp"
+        android:minWidth="250dp"
         android:layout_marginBottom="21dp"
         android:background="@drawable/half_circular_btn_left"
         android:text="Class and Number of Student"
@@ -53,8 +55,10 @@
 
     <EditText
         android:id="@+id/teacherAge"
-        android:layout_width="353dp"
-        android:layout_height="48dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="40dp"
+        android:minWidth="250dp"
         android:layout_marginBottom="12dp"
         android:background="@drawable/half_circular_btn_left"
         android:hint="Age"
@@ -68,8 +72,10 @@
 
     <EditText
         android:id="@+id/teacherAddress"
-        android:layout_width="346dp"
-        android:layout_height="83dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="40dp"
+        android:minWidth="250dp"
         android:layout_marginBottom="19dp"
         android:background="@drawable/half_circular_btn_left"
         android:hint="Address"
@@ -83,8 +89,10 @@
 
     <EditText
         android:id="@+id/teacherContactNumber"
-        android:layout_width="259dp"
-        android:layout_height="48dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="40dp"
+        android:minWidth="250dp"
         android:layout_marginBottom="26dp"
         android:background="@drawable/half_circular_btn_left"
         android:hint="Teacher Contact Number"
@@ -98,8 +106,10 @@
 
     <TextView
         android:id="@+id/teacherMail"
-        android:layout_width="256dp"
-        android:layout_height="48dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="40dp"
+        android:minWidth="250dp"
         android:layout_marginBottom="116dp"
         android:background="@drawable/half_circular_btn_left"
         android:textColor="@color/black"

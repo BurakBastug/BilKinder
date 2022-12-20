@@ -240,19 +240,19 @@ public class StudentEditProfileActivity extends AppCompatActivity implements Bot
             txtParentName.setError("Parent name cannot be empty");
             isEnoughData = false;
         }
-        if(!Child.isCorrectFormOfBloodType(bloodType)) { // it can be optional by removing if statement
+        if(!Child.isCorrectFormOfBloodType(bloodType)) {
             txtBloodType.setError("Type like the form ABRh+");
             isEnoughData = false;
         }
-        if(!User.isCorrectFormOfContactNumber(contactNumber)) { // it can be optional removing if statement
+        if(!User.isCorrectFormOfContactNumber(contactNumber)) {
             txtContactNum.setError("Type as the form 0XXXXXXXXXX");
             isEnoughData = false;
         }
-        if(TextUtils.isEmpty(contactMail)) { // it can be optional removing if statement
+        if(TextUtils.isEmpty(contactMail)) {
             txtContactMailAddress.setError("Contact mail is required");
             isEnoughData = false;
         }
-        if(TextUtils.isEmpty(address)) { // it can be optional removing if statement
+        if(TextUtils.isEmpty(address)) {
             txtHomeAddress.setError("Address is required");
             isEnoughData = false;
         }
@@ -260,8 +260,8 @@ public class StudentEditProfileActivity extends AppCompatActivity implements Bot
             txtSpecialHealthConditions.setError("Health conditions ,s required");
             isEnoughData = false;
         }
-        else if(!(txtStuName.getText().toString().equals("") || txtParentName.getText().toString().equals("") ||
-                Child.isCorrectFormOfBloodType(txtBloodType.getText().toString()) || User.isCorrectFormOfContactNumber(txtContactNum.getText().toString()
+        if(!(txtStuName.getText().toString().equals("") || txtParentName.getText().toString().equals("") ||
+                !Child.isCorrectFormOfBloodType(txtBloodType.getText().toString()) || !User.isCorrectFormOfContactNumber(txtContactNum.getText().toString()
                 ) || txtContactMailAddress.getText().toString().equals("") || txtHomeAddress.getText().toString().equals("") || txtSpecialHealthConditions.getText().toString().equals(""))){
             mData.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override

@@ -21,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class FeedActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemReselectedListener{
     BottomNavigationView bottomNavigationView;
@@ -78,12 +79,14 @@ public class FeedActivity extends AppCompatActivity implements BottomNavigationV
         nData.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
                 for(DataSnapshot eventObject : snapshot.getChildren()){
                     Event tmp = eventObject.getValue(Event.class);
                     if(tmp.getTeacherName().equals(t.getUsername())){
                         list.add(tmp);
                     }
                 }
+                Collections.sort(list);
                 createFeed();
             }
 

@@ -45,19 +45,18 @@ public class MessageAdaptor extends RecyclerView.Adapter<MessageAdaptor.ViewHold
 
         if(mAuth.getCurrentUser().getEmail().equals(list.get(position).getSenderMail())) {
             holder.myMessageTextView.setText(list.get(position).getMessage());
-            holder.otherMessageTextView.setBackgroundColor(Color.WHITE);
-            holder.otherMessageTextView.setText("");
+            holder.otherMessageTextView.setText(list.get(position).getDateTime().substring(11,16));
             int RGB = android.graphics.Color.rgb(140, 230, 221);
             holder.myMessageTextView.setBackgroundColor(RGB);
+            holder.otherMessageTextView.setBackgroundColor(Color.WHITE);
 
 
         }
         else {
             holder.otherMessageTextView.setText(list.get(position).getMessage());
-            holder.myMessageTextView.setBackgroundColor(Color.WHITE);
-            holder.myMessageTextView.setText("");
+            holder.myMessageTextView.setText(list.get(position).getDateTime().substring(11,16));
             holder.otherMessageTextView.setBackgroundColor(Color.LTGRAY);
-
+            holder.myMessageTextView.setBackgroundColor(Color.WHITE);
 
         }
     }

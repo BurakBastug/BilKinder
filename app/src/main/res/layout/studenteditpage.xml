@@ -53,13 +53,14 @@
 
             <EditText
                 android:id="@+id/parentname"
-                android:layout_width="254dp"
-                android:layout_height="43dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/half_circular_btn_left"
                 android:ems="10"
                 android:hint="Parent Name (Relation)"
                 android:inputType="text"
+                android:minWidth="250dp"
                 android:minHeight="48dp"
                 android:textColor="@color/black"
                 android:textColorHint="#9F9F9F" />
@@ -73,6 +74,7 @@
                 android:ems="10"
                 android:hint="Blood Type: XXRh+"
                 android:inputType="text"
+                android:minWidth="250dp"
                 android:minHeight="48dp"
                 android:textColor="@color/black"
                 android:textColorHint="#9F9F9F" />
@@ -83,9 +85,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
                 android:background="@drawable/half_circular_btn_left"
-                android:ems="10"
                 android:hint="Adress"
                 android:inputType="text"
+                android:minWidth="250dp"
                 android:minHeight="48dp"
                 android:textColor="@color/black"
                 android:textColorHint="#9F9F9F" />
@@ -99,6 +101,7 @@
                 android:ems="10"
                 android:hint="Mail Adress"
                 android:inputType="text"
+                android:minWidth="250dp"
                 android:minHeight="48dp"
                 android:textColor="@color/black"
                 android:textColorHint="#9F9F9F" />
@@ -112,19 +115,21 @@
                 android:ems="10"
                 android:hint="Phone number"
                 android:inputType="text"
+                android:minWidth="250dp"
                 android:minHeight="48dp"
                 android:textColor="@color/black"
                 android:textColorHint="#9F9F9F" />
 
             <EditText
                 android:id="@+id/healthissues"
-                android:layout_width="298dp"
-                android:layout_height="96dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="32dp"
                 android:background="@drawable/half_circular_btn_left"
                 android:ems="10"
                 android:hint="Special Health Issues"
                 android:inputType="text"
+                android:minWidth="250dp"
                 android:minHeight="48dp"
                 android:textColor="@color/black"
                 android:textColorHint="#9F9F9F" />
