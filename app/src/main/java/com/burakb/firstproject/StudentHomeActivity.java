@@ -35,7 +35,7 @@ public class StudentHomeActivity extends AppCompatActivity implements BottomNavi
         myProfile = findViewById(R.id.myProfile);
         chat = findViewById(R.id.privateChat);
         teacherInfo = findViewById(R.id.teacherInformation);
-        weeklySchedule = findViewById(R.id.weeklySchedule);
+
         weeklyMenu = findViewById(R.id.weeklyMenu);
         notification = findViewById(R.id.notification);
         aboutUs = findViewById(R.id.aboutUs);
@@ -77,12 +77,7 @@ public class StudentHomeActivity extends AppCompatActivity implements BottomNavi
                 startActivity(new Intent(StudentHomeActivity.this, WeeklyMenuActivity.class));
             }
         });
-        weeklySchedule.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(StudentHomeActivity.this, WeeklyMenuActivity.class));
-            }
-        });
+
         notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,7 +87,7 @@ public class StudentHomeActivity extends AppCompatActivity implements BottomNavi
         aboutUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(StudentHomeActivity.this,AboutUsActivity.class));
             }
         });
 

@@ -45,6 +45,7 @@
         app:layout_constraintVertical_bias="0.895"
         tools:ignore="MissingConstraints" />
 
+
     <Button
         android:id="@+id/notification"
         android:layout_width="206dp"
@@ -61,7 +62,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.664" />
+        app:layout_constraintVertical_bias="0.591" />
 
     <Button
         android:id="@+id/weeklyMenu"
@@ -79,24 +80,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.582" />
-
-    <Button
-        android:id="@+id/weeklySchedule"
-        android:layout_width="272dp"
-        android:layout_height="48dp"
-        android:accessibilityLiveRegion="none"
-        android:background="@drawable/half_circular_btn_left"
-        android:text="Weekly Schedule"
-        android:textAllCaps="false"
-        android:textColor="#000000"
-        android:textSize="8pt"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintVertical_bias="0.499" />
 
     <Button
         android:id="@+id/teacherInformation"

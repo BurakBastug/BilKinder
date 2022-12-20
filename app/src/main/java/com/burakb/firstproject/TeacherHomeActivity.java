@@ -51,7 +51,7 @@ public class TeacherHomeActivity extends AppCompatActivity implements BottomNavi
         aboutUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(TeacherHomeActivity.this, AboutUsActivity.class));
             }
         });
         askForPermission.setOnClickListener(new View.OnClickListener() {

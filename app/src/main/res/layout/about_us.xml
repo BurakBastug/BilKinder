@@ -32,10 +32,12 @@
 
     <TextView
         android:id="@+id/textView10"
-        android:layout_width="156dp"
-        android:layout_height="76dp"
+        android:layout_width="398dp"
+        android:layout_height="675dp"
         android:padding="10dp"
-        android:text="Text"
+        android:text="We love coding and going forward admittedly. Even though we faced lots of problems during implementation. We can proudly announce that we achieved guys.
+                        Wish to be better programmers, special thanks to \n\n Arda Öztürk \n Göktuğ Serdar Yıldırım \n Burak Baştuğ \n Berkin Kağan Ateş \n\n\n\n\n\n\n\n\n\n
+\n\n\n\n\n                                                               Mbappe deserved more"
         android:textAlignment="textStart"
         android:textColor="@color/black"
         android:textSize="20sp"
