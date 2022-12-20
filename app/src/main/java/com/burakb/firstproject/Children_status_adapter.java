@@ -55,7 +55,14 @@ public class Children_status_adapter extends RecyclerView.Adapter<Children_statu
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.name.setText(list.get(position).getUsername());
-        holder.condition.setText(list.get(position).getMedicalCondition());
+        if(list.get(position).getIsSick()) {
+            holder.condition.setText("Student is currently sick!");
+        }
+        else {
+            holder.condition.setText("Student is not sick.");
+        }
+
+
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference ref = storage.getReference().child("images/" + list.get(position).getImageDestination() + ".jpg");

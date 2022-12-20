@@ -42,7 +42,7 @@ public class FeedAdaptor extends RecyclerView.Adapter<FeedAdaptor.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.name.setText(list.get(position).getName());
+        holder.name.setText(list.get(position).getName()+"       "+list.get(position).getDateTime().substring(11,16));
         holder.desc.setText(list.get(position).getDescription());
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference ref = storage.getReference().child("images/" + list.get(position).getImageDestination() + ".jpg");

@@ -99,7 +99,6 @@ public class EventCreationActivity extends AppCompatActivity implements BottomNa
                 }
                 if(!(TextUtils.isEmpty(title.getText().toString()) || TextUtils.isEmpty(description.getText().toString()))){
                     String randomDatabaseDest = UUID.randomUUID().toString();
-                    System.out.println(randomDatabaseDest);
                     event.setName(eventName);
                     event.setDescription(eventDetails);
                     event.setEventDestination(randomDatabaseDest);
