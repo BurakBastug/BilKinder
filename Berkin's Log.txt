@@ -1,0 +1,90 @@
+
+Berkin Kağan Ateş
+Project Development Log
+22102519
+
+Dec 7, 2022
+============
+I tried to learn basic structure of Firebase and added to the our app.
+
+Dec 8, 2022
+============
+Since I implemented Firebase code into our project, I fixed the 
+database implementation and added the some main object classes.
+
+Dec 9, 2022
+============
+Log in and register systems are partially implemented.
+
+Dec 10, 2022
+=============
+I have started to learn fundamental functionalities of using a database.
+I implemented database writing function.
+
+Dec 11, 2022
+=============
+After I learnt basics of database, I implemented the user types as
+"Teacher" and "Child"
+
+Dec 12, 2022
+=============
+I have taken the firs steps of real time chat
+by creating Message Class.
+
+Dec 13, 2022
+=============
+After the implementation of navigation bar and main buttons
+by Burak, I added page routing by adding listeners into these
+buttons.
+
+Dec 14, 2022
+=============
+After the full implementation of registration system, I have started
+to implement to correlation between Child and Teacher classes.
+
+Dec 15, 2022
+=============
+I have started to learn adapter classes and code to 
+feed page by using object and adapter classes.
+I added listeners to navbar for new layouts.
+Finally, I completed the implementation of
+teacher page for Student accounts.
+Since we have got error during implementation of storage,
+We decided to transfer database to another as a team.
+
+Dec 16, 2022
+=============
+I implemented change password feature and ChildrenStatusActivity class
+completely. I added to edit function for weekly menu and bug report feature
+to the project.
+
+Dec 17, 2022
+=============
+ChildrenStatusItemListener and StudentProfileForTeachersActivity interfaces
+added to new layouts. These interfaces used for NotificationActivity class
+and I fixed some navbar bugs in feed page.
+
+Dec 18, 2022
+=============
+I have done Notifcation page. Moreover, Arda and I implemented chat
+feature completely.
+
+Dec 21, 2022
+=============
+I have checked all functionalities belonging to the app
+and fixed some minor bugs about edit and feed pages.
+The app reached the golden version and completed!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
