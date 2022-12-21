@@ -108,7 +108,7 @@ public class StudentProfileActivity extends AppCompatActivity implements BottomN
                         if(checkIsSick.isChecked()){
                             checkIsSick.setText("Currently Sick");
                         }
-                        else{
+                        else if(!checkIsSick.isChecked()){
                             checkIsSick.setText("Currently Not Sick");
                         }
 
