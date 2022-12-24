@@ -1,0 +1,24 @@
+Arda Öztürk
+Project Development Log
+22103616
+
+I tried to understand Firebase Authentication and Firebase Real Time Database on 8th December.
+
+Added register and login functionalities on 8-9th December with Berkin.
+
+I learned how to retrieve data from Real Time Database and I added StudentEditProfileActivity and StartEditProfileActivity on 9th December.
+
+I Added separation from login page for student and teacher login on 10th December.
+
+Changes in StudentEditProfileActivity on 11th December.
+
+I searched for how to upload images and download images on 12th and 13th December.
+
+Fixed some bugs on 14th December.
+
+Added setting profile image for users on 15th December.
+
+Real time chat implemented with Berkin on 18th December.
+
+Added setting photos for events for users on 19th December.
+
