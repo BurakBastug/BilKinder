@@ -1,0 +1,33 @@
+Burak Baştuğ
+22102266
+Project Development Log
+
+First, I started to design layouts by using bacground photos.(8-9-10 December)
+
+Then added buttons in it.(8-9-10 December)
+
+In order to create relistic design, I learned how to create navigation bar and use 
+different button or input types.(10-11-12 December)
+
+When we initialize button listeners, I have started to learn detiled desing.(10-11-12 December)
+
+When I learn how to make shaped buttons, I changed bacground photos in the layouts.(13-14 December)
+
+In order to make detailed design, I have learned how to use xml detiled.(10-14 December)
+
+Then I learned how to use recycler-view to create dynamic design.(12-13 December)
+
+With recycler-view I learned how to use scroll-view.(12 December)
+
+Then I learned how to create adapter in java to integrate dynamic design into
+our app.(12-16 December)
+
+Then I learned how to use click-listener into the java adapter to connect different student
+profiles in one page.(14 December)
+
+I tried to learn how database is working to help my friends in meetings.(10-19 December)
+
+We worked on private chat.(19-21 December)
+
+Finally we checked bugs in the app and fixed them.(20-21 December)
+
