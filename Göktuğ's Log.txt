@@ -1,0 +1,25 @@
+Göktuğ Serdar Yıldırım
+22103111
+Project Development Log
+
+First, I started to taking screenshots of our app's background and design layouts by using bacground photos.(8-9-10 December)
+
+Then added buttons in it.(8-9-10 December)
+
+We decided to make more realistic designs so I try to learn how to make menu and more detailed design.(10-11-12 December)
+
+When Burak creates default buttons for us, I changed buttons and layouts.(13-14 December)
+
+In order to make detailed design, I have learned how to use xml detiled.(10-14 December)
+
+Then I learned how create dynamic design.(12-13 December)
+
+For dynamic design, I learned how to create adapter in java.(12-16 December)
+
+I learned adding click-listeners and some other fuctionalities by using adapter and
+I created chat list.(14 December)
+
+I tried to learn how database is working to help my friends in meetings.(10-19 December)
+
+Finally we checked bugs in the app and fixed them.(20-21 December)
+
